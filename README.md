@@ -12,9 +12,9 @@ _JavaScript library to pretty-print JSON data to HTML for formatted color displa
 ## Setup
 From the [jsdelivr.com CDN](https://www.jsdelivr.com/package/npm/pretty-print-json):
 ```html
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/pretty-print-json@0.0/pretty-print-json.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/pretty-print-json@0.0/dist/pretty-print-json.css>
 ...
-<script src=https://cdn.jsdelivr.net/npm/pretty-print-json@0.0/pretty-print-json.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/pretty-print-json@0.0/dist/pretty-print-json.min.js></script>
 ```
 
 In a Node.js project:
