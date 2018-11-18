@@ -1,5 +1,5 @@
 const prettyPrintJson = {
-   version: '0.0.1',
+   version: '0.0.2',
    toHtml: function(obj) {
       function replacer(match, pIndent, pKey, pVal, pEnd) {
          const key =  '<span class=json-key>';

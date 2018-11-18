@@ -1,6 +1,6 @@
-//! pretty-print-json v0.0.1 ~ github.com/center-key/pretty-print-json ~ MIT License
+//! pretty-print-json v0.0.2 ~ github.com/center-key/pretty-print-json ~ MIT License
 const prettyPrintJson = {
-   version: '0.0.1',
+   version: '0.0.2',
    toHtml: function(obj) {
       function replacer(match, pIndent, pKey, pVal, pEnd) {
          const key =  '<span class=json-key>';
