@@ -1,0 +1,55 @@
+{
+   "name": "pretty-print-json",
+   "version": "0.0.1",
+   "description": "JavaScript library to pretty-print JSON data to HTML for formatted color display",
+   "license": "MIT",
+   "main": "pretty-print-json.js",
+   "repository": "github:center-key/pretty-print-json",
+   "homepage": "https://github.com/center-key/pretty-print-json",
+   "bugs": "https://github.com/center-key/pretty-print-json/issues",
+   "docs": "https://centerkey.com/pretty-print-json",
+   "author": "Center Key (https://centerkey.com)",
+   "keywords": [
+      "color",
+      "javascript",
+      "json",
+      "html",
+      "pretty-print"
+   ],
+   "jshintConfig": {
+      "esversion": 6,
+      "strict": "implied",
+      "undef": true,
+      "unused": true,
+      "browser": true,
+      "node": true,
+      "mocha": true
+   },
+   "scripts": {
+      "pretest": "jshint *.js && gulp lint-html && gulp set-version && gulp build-dist",
+      "test": "mocha spec.js"
+   },
+   "dependencies": {},
+   "devDependencies": {
+      "@babel/core": "~7.1",
+      "@babel/preset-env": "~7.1",
+      "ajv": "~6.5",
+      "babel-preset-minify": "~0.5",
+      "dna.js": "~1.4",
+      "gulp": "~4.0",
+      "gulp-babel": "~8.0",
+      "gulp-babel-minify": "~0.5",
+      "gulp-header": "~2.0",
+      "gulp-htmlhint": "~2.2",
+      "gulp-jshint": "~2.1",
+      "gulp-rename": "~1.4",
+      "gulp-replace": "~1.0",
+      "gulp-size": "~3.0",
+      "gulp-w3c-html-validator": "~1.4",
+      "jquery": "~3.3",
+      "jshint": "~2.9",
+      "merge-stream": "~1.0",
+      "mocha": "~5.2",
+      "web-ignition": "~0.0"
+   }
+}
