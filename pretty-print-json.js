@@ -12,12 +12,11 @@ const prettyPrintJson = {
          const str =  '<span class=json-string>';
          const isBool = ['true', 'false'].includes(part.value);
          const valSpan = /^"/.test(part.value) ? str : isBool ? bool : val;
-         let r = part.indent || '';
-         if (part.key)
-            r = r + key + part.key.replace(/[": ]/g, '') + '</span>: ';
-         if (part.value)
-            r = r + valSpan + part.value + '</span>';
-         return r + (part.end || '');
+         const indentHtml = part.indent || '';
+         const keyHtml =    part.key ? key + part.key.replace(/[": ]/g, '') + '</span>: ' : '';
+         const valueHtml =  part.value ? valSpan + part.value + '</span>' : '';
+         const endHtml =    part.end || '';
+         return indentHtml + keyHtml + valueHtml + endHtml;
          }
       const jsonLine = /^( *)("[\w]+": )?("[^"]*"|[\w.+-]*)?([,[{])?$/mg;
       // Regex parses each line of the JSON string into four parts:
