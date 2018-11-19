@@ -12,7 +12,7 @@
 <meta property=og:type                content="website">
 <meta property=og:image               content="https://centerkey.com/graphics/center-key-card.png">
 <meta property=og:image:alt           content="Logo">
-<title>Pretty Print JSON &bull; Online tool to pretty-print JSON</title>
+<title>Pretty-Print JSON &bull; Online tool to format JSON</title>
 <link rel=icon             href=https://centerkey.com/graphics/bookmark.png>
 <link rel=apple-touch-icon href=https://centerkey.com/graphics/mobile-home-screen.png>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.3/css/all.min.css>
@@ -20,38 +20,86 @@
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@0.0/dist/reset.min.css>
 <link rel=stylesheet       href=pretty-print-json.css>
 <style>
+   body {
+      max-width: 1000px;
+      color: whitesmoke;
+      background-color: black;
+      }
+   body >header {
+      margin-bottom: 40px;
+      }
+   body >main >.flex-columns >div:first-child {
+      }
+   body >main >.flex-columns >div:first-child textarea {
+      max-width: none;
+      min-height: 300px;
+      font-family: monospace;
+      color: navy;
+      background-color: white;
+      padding: 10px 15px;
+      margin: 0px;
+      }
+   body >main >.flex-columns >div:first-child #error-message {
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-align: center;
+      color: crimson;
+      padding-top: 3px;
+      }
+   body >main >.flex-columns >div:last-child pre {
+      min-height: 350px;
+      font-size: 0.9rem;
+      color: black;
+      background-color: white;
+      border: 5px solid silver;
+      padding: 5px 10px;
+      margin: 0px;
+      overflow: scroll;
+      }
+   body >footer b {
+      font-size: 1.1rem;
+      }
+   body >footer a[rel=license] img {
+      background-color: gainsboro;
+      border-radius: 1000px;
+      padding: 2px 0px;
+      }
    @media (max-width: 667px) {  /* selects iPhone 6/6s/7/8 landscape and anything narrower */
+      body >main >.flex-columns >div:first-child textarea { min-height: 200px; }
       }
 </style>
 </head>
 <body>
 
 <header>
-   <h1>Pretty Print JSON</h1>
-   <h2>Online tool to pretty-print JSON</h2>
+   <h1>Pretty-Print JSON</h1>
+   <h2>Online tool to format JSON</h2>
    <a id=fork-me href=https://github.com/center-key/pretty-print-json>Fork me on GitHub</a>
 </header>
 
 <main>
-   <section>
-      <h2>Stuff</h2>
+   <div data-component=pretty-print data-on-load=app.setup class=flex-columns>
       <div>
-         <label>
-            <span>JSON:</span>
-            <textarea data-smart-update=app.processJson placeholder="Enter some JSON" autofocus></textarea>
-         </label>
-         <p class=message>&nbsp;</p>
+         <h3>JSON input:</h3>
+         <textarea data-smart-update=app.processJson placeholder="Enter some JSON" autofocus></textarea>
+         <p id=error-message></p>
       </div>
       <div>
-         <output></output>
+         <h3>Colorized output:</h3>
+         <pre><output></output></pre>
       </div>
-   </section>
+   </div>
 </main>
 
 <footer>
-   <div>
+   <div class=plain>
       <p>
-         JavaScript library to pretty-print JSON data to HTML for formatted color display
+         <b>pretty-print-json</b><br>
+         JavaScript library to pretty-print JSON data to HTML for formatted color display<br>
+         <a href=https://centerkey.com/pretty-print-json>https://centerkey.com/pretty-print-json</a>
+      </p>
+      <p>
+         <a href=https://github.com/center-key/pretty-print-json><i data-brand=github-alt></i></a>
       </p>
       <p class=external-site>
          <a rel=license href=http://creativecommons.org/licenses/by-sa/4.0>
@@ -59,7 +107,7 @@
          </a>
       </p>
       <p>
-         <a href=https://centerkey.com/pretty-print-json>
+         <a href=https://centerkey.com>
             <img src=https://centerkey.com/graphics/center-key-icon.svg alt=logo>
          </a>
       </p>
@@ -72,6 +120,25 @@
 <script src=pretty-print-json.js></script>
 <script>
    const app = {
+      processJson: function(textarea, event, component) {
+         const output =  component.find('output');
+         const message = component.find('#error-message').hide();
+         try {
+            const data = textarea.val().trim().length ? JSON.parse(textarea.val()) : null;
+            output.html(data ? prettyPrintJson.toHtml(data) : '[EMPTY]');
+            }
+         catch(e) {
+            message.text('Invalid JSON').fadeIn();
+            }
+         },
+      setup: function(component) {
+         const intro = {
+            message: 'Put some JSON in the text box.',
+            year:    new Date().getFullYear(),
+            ios:     dna.browser.iOS()
+            };
+         component.find('textarea').val(JSON.stringify(intro)).change();
+         }
       };
 </script>
 </body>
