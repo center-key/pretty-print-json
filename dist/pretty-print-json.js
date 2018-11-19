@@ -27,6 +27,6 @@ const prettyPrintJson = {
    };
 
 if (typeof module === 'object')
-   module.exports = prettyPrintJson;  //Node.js module loading system (CommonJS)
+   module.exports = prettyPrintJson;  //node module loading system (CommonJS)
 if (typeof window === 'object')
    window.prettyPrintJson = prettyPrintJson;  //support both global and window property

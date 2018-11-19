@@ -9,6 +9,9 @@ _JavaScript library to pretty-print JSON data to HTML for formatted color displa
 [![Vulnerabilities](https://snyk.io/test/github/center-key/pretty-print-json/badge.svg)](https://snyk.io/test/github/center-key/pretty-print-json)
 [![Build](https://travis-ci.org/center-key/pretty-print-json.svg)](https://travis-ci.org/center-key/pretty-print-json)
 
+<img src=https://3.bp.blogspot.com/-CLD6GDO4ul8/W_Jv9qrDCaI/AAAAAAAAIbw/C9JUx-v8xFUYJ_jWMkpNrGASjkqSQjLowCLcBGAs/s1600/pretty-print-json.png
+   width=350 alt=screenshot>
+
 ## Try it out
 Online tool to format JSON:<br>
 https://centerkey.com/pretty-print-json
