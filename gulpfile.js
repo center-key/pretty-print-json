@@ -38,17 +38,18 @@ const task = {
       },
    buildDistribution: function() {
       const transpileES6 = ['@babel/env', { modules: false }];
+      const staticBanner = /[/][/]!.*/;
       return mergeStream(
          gulp.src('pretty-print-json.css')
             .pipe(header('/*! ' + banner + ' */\n'))
             .pipe(size({ showFiles: true }))
             .pipe(gulp.dest('dist')),
          gulp.src('pretty-print-json.js')
-            .pipe(header('//! ' + banner + '\n'))
+            .pipe(replace(staticBanner, '//! ' + banner))
             .pipe(size({ showFiles: true }))
             .pipe(gulp.dest('dist')),
          gulp.src('pretty-print-json.js')
-            .pipe(babel({ presets: [transpileES6, 'minify'] }))
+            .pipe(babel({ presets: [transpileES6, 'minify'], comments: false }))
             .pipe(rename({ extname: '.min.js' }))
             .pipe(header('//! ' + banner + '\n'))
             .pipe(size({ showFiles: true }))
