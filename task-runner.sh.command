@@ -79,8 +79,30 @@ buildProject() {
    echo
    }
 
+publishWebFiles() {
+   cd $projectHome
+   publishWebRoot=$(grep ^DocumentRoot /private/etc/apache2/httpd.conf | awk -F'"' '{ print $2 }')
+   publishSite=$publishWebRoot/centerkey.com
+   publishFolder=$publishSite/pretty-print-json
+   minorVersion=$(echo ${released:1} | awk -F"." '{ print $1 "." $2 }')
+   cdnUri=https://cdn.jsdelivr.net/npm/pretty-print-json@$minorVersion/pretty-print-json
+   publish() {
+      echo "Publishing:"
+      echo $publishFolder
+      mkdir -p $publishFolder
+      replaceCss="s|pretty-print-json.css|$cdnUri.css|"
+      replaceJs="s|pretty-print-json.js|$cdnUri.min.js|"
+      sed -e $replaceCss -e $replaceJs pretty-print-json.html > $publishFolder/index.html
+      ls -o $publishFolder
+      grep pretty-print-json.min.js $publishFolder/index.html
+      echo
+      }
+   test -w $publishSite && publish
+   }
+
 setupTools
 releaseInstructions
 buildProject
+publishWebFiles
 sleep 2
 open pretty-print-json.html
