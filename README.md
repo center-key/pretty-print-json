@@ -34,9 +34,12 @@ const prettyPrintJson = require('pretty-print-json');
 ```
 
 ## Usage
+```html
+<pre id=account></pre>
+```
 ```javascript
 const data = { active: true, codes: [48348, 28923, 39080], city: 'London' };
-$('#account code').html(prettyPrintJson.toHtml(data));
+$('#account').html(prettyPrintJson.toHtml(data));
 ```
 
 ---
