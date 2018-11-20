@@ -18,14 +18,14 @@ const prettyPrintJson = {
          const endHtml =    part.end || '';
          return indentHtml + keyHtml + valueHtml + endHtml;
          }
-      const jsonLine = /^( *)("[\w]+": )?("[^"]*"|[\w.+-]*)?([,[{])?$/mg;
+      const jsonLine = /^( *)("[\w]+": )?("[^"]*"|[\w.+-]*)?([{}[\],]*)?$/mg;
       // Regex parses each line of the JSON string into four parts:
       //    Capture group       Name    Part                         "   active: true,"
       //    ------------------  ------  ---------------------------  ------------------
       //    ( *)                indent  Spaces for indentation       "   "
       //    ("[\w]+": )         key     Key name                     "active"
       //    ("[^"]*"|[\w.+-]*)  value   Key value                    "true"
-      //    ([,[{])             end     Line termination characters  ","
+      //    ([{}[\],]*)         end     Line termination characters  ","
       return JSON.stringify(obj, null, 3)
          .replace(/&/g, '&amp;')
          .replace(/\\"/g, '&quot;')
