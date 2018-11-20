@@ -2,8 +2,9 @@
 // Mocha Specifications Cases
 
 // Imports
-const assert =           require('assert').strict;
-const prettyPrintJson =  require('./pretty-print-json.js');
+const assert =          require('assert').strict;
+const fs =              require('fs');
+const prettyPrintJson = require('./pretty-print-json.js');
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 describe('Library version number', () => {
@@ -69,6 +70,15 @@ describe('The .toHtml() function', () => {
          ];
       const actual =   { html: prettyPrintJson.toHtml(input).split('\n') };
       const expected = { html: htmlLines };
+      assert.deepEqual(actual, expected);
+      });
+
+   it('outputs correct number of lines for formatting package.json', () => {
+      const packageJson = fs.readFileSync('package.json', 'utf8');
+      const lines = prettyPrintJson.toHtml(JSON.parse(packageJson)).split('\n');
+      const fileLineCount = packageJson.trim().split('\n').length;
+      const actual =   { lines: lines.length,  first: lines[0], last: lines[lines.length - 1] };
+      const expected = { lines: fileLineCount, first: '{',      last: '}' };
       assert.deepEqual(actual, expected);
       });
 
