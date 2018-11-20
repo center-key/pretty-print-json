@@ -1,22 +1,32 @@
 //! pretty-print-json v0.0.3 ~ github.com/center-key/pretty-print-json ~ MIT License
+
 const prettyPrintJson = {
    version: '0.0.3',
    toHtml: function(obj) {
-      function replacer(match, pIndent, pKey, pVal, pEnd) {
+      function replacer(match, p1, p2, p3, p4) {
+         // Converts the four parenthesized capture groups (indent, key, value, end) into HTML
+         const part = { indent: p1, key: p2, value: p3, end: p4 };
          const key =  '<span class=json-key>';
          const val =  '<span class=json-value>';
          const bool = '<span class=json-boolean>';
          const str =  '<span class=json-string>';
-         const isBool = ['true', 'false'].includes(pVal);
-         const pValSpan = /^"/.test(pVal) ? str : isBool ? bool : val;
-         let r = pIndent || '';
-         if (pKey)
-            r = r + key + pKey.replace(/[": ]/g, '') + '</span>: ';
-         if (pVal)
-            r = r + pValSpan + pVal + '</span>';
-         return r + (pEnd || '');
+         const isBool = ['true', 'false'].includes(part.value);
+         const valSpan = /^"/.test(part.value) ? str : isBool ? bool : val;
+         const findName = /"([\w]+)": |(.*): /;
+         const indentHtml = part.indent || '';
+         const keyHtml =    part.key ? key + part.key.replace(findName, '$1$2') + '</span>: ' : '';
+         const valueHtml =  part.value ? valSpan + part.value + '</span>' : '';
+         const endHtml =    part.end || '';
+         return indentHtml + keyHtml + valueHtml + endHtml;
          }
-      const jsonLine = /^( *)("[\w]+": )?("[^"]*"|[\w.+-]*)?([,[{])?$/mg;
+      const jsonLine = /^( *)("[^"]+": )?("[^"]*"|[\w.+-]*)?([{}[\],]*)?$/mg;
+      // Regex parses each line of the JSON string into four parts:
+      //    Capture group       Part    Description                  '   "active": true,'
+      //    ------------------  ------  ---------------------------  --------------------
+      //    ( *)                indent  Spaces for indentation       '   '
+      //    ("[^"]+": )         key     Key name                     '"active": '
+      //    ("[^"]*"|[\w.+-]*)  value   Key value                    'true'
+      //    ([{}[\],]*)         end     Line termination characters  ','
       return JSON.stringify(obj, null, 3)
          .replace(/&/g, '&amp;')
          .replace(/\\"/g, '&quot;')
