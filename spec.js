@@ -54,17 +54,20 @@ describe('The .toHtml() function', () => {
       });
 
    it('handles a value that is an empty array', () => {
-      const input = { x: [], y: [true, false, []], z: [] };
+      const input = [[], { x: [], y: [true, false, []], z: [] }];
       const htmlLines = [
-         '{',
-         '   <span class=json-key>x</span>: [],',
-         '   <span class=json-key>y</span>: [',
-         '      <span class=json-boolean>true</span>,',
-         '      <span class=json-boolean>false</span>,',
-         '      []',
-         '   ],',
-         '   <span class=json-key>z</span>: []',
-         '}'
+         '[',
+         '   [],',
+         '   {',
+         '      <span class=json-key>x</span>: [],',
+         '      <span class=json-key>y</span>: [',
+         '         <span class=json-boolean>true</span>,',
+         '         <span class=json-boolean>false</span>,',
+         '         []',
+         '      ],',
+         '      <span class=json-key>z</span>: []',
+         '   }',
+         ']',
          ];
       const actual =   { html: prettyPrintJson.toHtml(input).split('\n') };
       const expected = { html: htmlLines };
