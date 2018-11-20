@@ -39,14 +39,29 @@ describe('The .toHtml() function', () => {
       assert.deepEqual(actual, expected);
       });
 
+   it('puts quotes around key names that contain special characters', () => {
+      const input = { normal: 'No quotes', '     ': 'Spaces', '~!@#$%^&*()': 'Crazy!' };
+      const htmlLines = [
+         '{',
+         '   <span class=json-key>normal</span>: <span class=json-string>"No quotes"</span>,',
+         '   <span class=json-key>"     "</span>: <span class=json-string>"Spaces"</span>,',
+         '   <span class=json-key>"~!@#$%^&amp;*()"</span>: <span class=json-string>"Crazy!"</span>',
+         '}'
+         ];
+      const actual =   { html: prettyPrintJson.toHtml(input).split('\n') };
+      const expected = { html: htmlLines };
+      assert.deepEqual(actual, expected);
+      });
+
    it('handles a value that is an empty array', () => {
-      const input = { x: [], y: [true, false], z: [] };
+      const input = { x: [], y: [true, false, []], z: [] };
       const htmlLines = [
          '{',
          '   <span class=json-key>x</span>: [],',
          '   <span class=json-key>y</span>: [',
          '      <span class=json-boolean>true</span>,',
-         '      <span class=json-boolean>false</span>',
+         '      <span class=json-boolean>false</span>,',
+         '      []',
          '   ],',
          '   <span class=json-key>z</span>: []',
          '}'
