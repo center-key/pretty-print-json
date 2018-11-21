@@ -3,6 +3,14 @@
 const prettyPrintJson = {
    version: '0.0.3',
    toHtml: function(thing) {
+      function makeHtmlFriendly(string) {
+         // Convert characters to their HTML entities
+         return string
+            .replace(/&/g,   '&amp;')
+            .replace(/\\"/g, '&quot;')
+            .replace(/</g,   '&lt;')
+            .replace(/>/g,   '&gt;');
+         }
       function replacer(match, p1, p2, p3, p4) {
          // Converts the four parenthesized capture groups (indent, key, value, end) into HTML
          const part = { indent: p1, key: p2, value: p3, end: p4 };
@@ -27,12 +35,7 @@ const prettyPrintJson = {
       //    ("[^"]+": )         key     Key name                     '"active": '
       //    ("[^"]*"|[\w.+-]*)  value   Key value                    'true'
       //    ([{}[\],]*)         end     Line termination characters  ','
-      return JSON.stringify(thing, null, 3)
-         .replace(/&/g, '&amp;')
-         .replace(/\\"/g, '&quot;')
-         .replace(/</g, '&lt;')
-         .replace(/>/g, '&gt;')
-         .replace(jsonLine, replacer);
+      return makeHtmlFriendly(JSON.stringify(thing, null, 3)).replace(jsonLine, replacer);
       }
    };
 
