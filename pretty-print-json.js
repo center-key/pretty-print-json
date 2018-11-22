@@ -4,7 +4,7 @@ const prettyPrintJson = {
    version: '0.0.3',
    toHtml: function(thing) {
       function makeHtmlFriendly(string) {
-         // Convert characters to their HTML entities
+         // Converts characters into their HTML entities
          return string
             .replace(/&/g,   '&amp;')
             .replace(/\\"/g, '&quot;')
