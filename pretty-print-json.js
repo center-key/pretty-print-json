@@ -1,7 +1,7 @@
 //! pretty-print-json ~ MIT License
 
 const prettyPrintJson = {
-   version: '0.0.3',
+   version: '0.0.4',
    toHtml: function(thing) {
       function makeHtmlFriendly(string) {
          // Converts characters into their HTML entities
