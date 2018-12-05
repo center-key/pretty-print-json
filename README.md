@@ -29,14 +29,17 @@ Install package from npm:
 ```shell
 $ npm install pretty-print-json
 ```
+Import into your application:
 ```javascript
 const prettyPrintJson = require('pretty-print-json');
 ```
 
 ## Usage
+Example HTML:
 ```html
 <pre id=account></pre>
 ```
+Pass data into `prettyPrintJson.toHtml()` and display the results:
 ```javascript
 const data = { active: true, codes: [48348, 28923, 39080], city: 'London' };
 $('#account').html(prettyPrintJson.toHtml(data));
