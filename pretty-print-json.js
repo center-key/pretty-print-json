@@ -1,7 +1,9 @@
-//! pretty-print-json ~ MIT License
+// pretty-print-json ~ MIT License
 
 const prettyPrintJson = {
-   version: '0.0.4',
+
+   version: '[VERSION]',
+
    toHtml: function(thing) {
       function makeHtmlFriendly(string) {
          // Converts characters into their HTML entities
@@ -37,6 +39,7 @@ const prettyPrintJson = {
       //    ([{}[\],]*)         end     Line termination characters  ','
       return makeHtmlFriendly(JSON.stringify(thing, null, 3)).replace(jsonLine, replacer);
       }
+
    };
 
 if (typeof module === 'object')

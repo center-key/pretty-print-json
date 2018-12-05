@@ -4,15 +4,16 @@
 // Imports
 const assert =          require('assert').strict;
 const fs =              require('fs');
-const prettyPrintJson = require('./pretty-print-json.js');
+const prettyPrintJson = require('./dist/pretty-print-json.js');
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 describe('Library version number', () => {
 
    it('follows semantic version formatting', () => {
+      const data = prettyPrintJson.version;
       const semVerPattern = /\d+[.]\d+[.]\d+/;
-      const actual =   { valid: semVerPattern.test(prettyPrintJson.version) };
-      const expected = { valid: true };
+      const actual =   { version: data, valid: semVerPattern.test(data) };
+      const expected = { version: data, valid: true };
       assert.deepEqual(actual, expected);
       });
 

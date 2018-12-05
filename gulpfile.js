@@ -3,6 +3,7 @@
 
 // Imports
 const babel =         require('gulp-babel');
+const gap =           require('gulp-append-prepend');
 const gulp =          require('gulp');
 const header =        require('gulp-header');
 const htmlHint =      require('gulp-htmlhint');
@@ -15,50 +16,47 @@ const size =          require('gulp-size');
 // Setup
 const pkg =            require('./package.json');
 const home =           pkg.homepage.replace('https://', '');
-const license =        pkg.license + ' License';
-const banner =         'pretty-print-json v' + [pkg.version, home, license].join(' ~ ');
+const banner =         'pretty-print-json v' + pkg.version + ' ~ ' + home + ' ~ MIT License';
+const bannerCss =      '/*! ' + banner + ' */\n';
+const bannerJs =       '//! ' + banner + '\n';
 const htmlHintConfig = { 'attr-value-double-quotes': false };
+const headerComments = /^[/][/].*\n/gm;
+const transpileES6 =   ['@babel/env', { modules: false }];
+const babelMinifyJs =  { presets: [transpileES6, 'minify'], comments: false };
 
 // Tasks
 const task = {
-   analyzeHtml: function() {
+   analyzeHtml: () => {
       return gulp.src('pretty-print-json.html')
          .pipe(htmlHint(htmlHintConfig))
          .pipe(htmlHint.reporter())
          .pipe(htmlValidator())
          .pipe(htmlValidator.reporter())
-         .pipe(size({ showFiles: true }))
-         ;
+         .pipe(size({ showFiles: true }));
       },
-   setVersion: function() {
-      const semVerPattern = /\d+[.]\d+[.]\d+/g;
-      return gulp.src('pretty-print-json.js')
-         .pipe(replace(semVerPattern, pkg.version))
-         .pipe(gulp.dest('.'));
-      },
-   buildDistribution: function() {
-      const transpileES6 = ['@babel/env', { modules: false }];
-      const staticBanner = /[/][/]!.*/;
-      return mergeStream(
+   buildDistribution: () => {
+      const buildCss = () =>
          gulp.src('pretty-print-json.css')
-            .pipe(header('/*! ' + banner + ' */\n'))
+            .pipe(header(bannerCss))
             .pipe(size({ showFiles: true }))
-            .pipe(gulp.dest('dist')),
+            .pipe(gulp.dest('dist'));
+      const buildJs = () =>
          gulp.src('pretty-print-json.js')
-            .pipe(replace(staticBanner, '//! ' + banner))
-            .pipe(size({ showFiles: true }))
-            .pipe(gulp.dest('dist')),
-         gulp.src('pretty-print-json.js')
-            .pipe(babel({ presets: [transpileES6, 'minify'], comments: false }))
-            .pipe(rename({ extname: '.min.js' }))
-            .pipe(header('//! ' + banner + '\n'))
+            .pipe(replace(headerComments, ''))
+            .pipe(header(bannerJs))
+            .pipe(replace('[VERSION]', pkg.version))
             .pipe(size({ showFiles: true }))
             .pipe(gulp.dest('dist'))
-         );
+            .pipe(babel(babelMinifyJs))
+            .pipe(rename({ extname: '.min.js' }))
+            .pipe(header(bannerJs))
+            .pipe(gap.appendText('\n'))
+            .pipe(size({ showFiles: true }))
+            .pipe(gulp.dest('dist'));
+      return mergeStream(buildCss(), buildJs());
       }
    };
 
 // Gulp
-gulp.task('lint-html',   task.analyzeHtml);
-gulp.task('set-version', task.setVersion);
-gulp.task('build-dist',  task.buildDistribution);
+gulp.task('lint-html',  task.analyzeHtml);
+gulp.task('build-dist', task.buildDistribution);
