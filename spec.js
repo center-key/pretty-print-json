@@ -2,9 +2,16 @@
 // Mocha Specifications Cases
 
 // Imports
-const assert =          require('assert').strict;
-const fs =              require('fs');
-const prettyPrintJson = require('./dist/pretty-print-json.js');
+const assert = require('assert').strict;
+const fs =     require('fs');
+
+// Setup
+const extension =       process.env.specMode === 'minified' ? 'min.js' : 'js';
+const path =            './dist/pretty-print-json.' + extension;
+const prettyPrintJson = require(path);
+
+// Specification suite
+describe(require('path').basename(__filename) + ': ' + path, () => {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 describe('Library version number', () => {
@@ -102,3 +109,6 @@ describe('The .toHtml() function', () => {
       });
 
    });
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+});
