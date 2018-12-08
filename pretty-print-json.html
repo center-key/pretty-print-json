@@ -15,7 +15,7 @@
 <title>Pretty-Print JSON &bull; Online tool to format JSON</title>
 <link rel=icon             href=https://centerkey.com/graphics/bookmark.png>
 <link rel=apple-touch-icon href=https://centerkey.com/graphics/mobile-home-screen.png>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.5/css/all.min.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6/css/all.min.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@1.5/dist/dna.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@1.0/dist/reset.min.css>
 <link rel=stylesheet       href=pretty-print-json.css>
@@ -125,7 +125,7 @@
 <script src=pretty-print-json.js></script>
 <script>
    const app = {
-      processJson: function(textarea, event, component) {
+      processJson: (textarea, event, component) => {
          const output =  component.find('output');
          const message = component.find('#error-message').hide();
          try {
@@ -136,7 +136,7 @@
             message.text('Invalid JSON').fadeIn();
             }
          },
-      setup: function(component) {
+      setup: (component) => {
          const intro = {
             message: 'Put some JSON in the text box.',
             year:    new Date().getFullYear(),
