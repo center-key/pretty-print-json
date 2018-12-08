@@ -3,7 +3,7 @@
    "version": "0.0.4",
    "description": "Open Source JavaScript library to pretty-print JSON data to HTML for formatted color display",
    "license": "MIT",
-   "main": "pretty-print-json.js",
+   "main": "dist/pretty-print-json.js",
    "browser": "dist/pretty-print-json.min.js",
    "repository": "github:center-key/pretty-print-json",
    "homepage": "https://github.com/center-key/pretty-print-json",
