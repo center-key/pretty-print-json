@@ -85,7 +85,7 @@ publishWebFiles() {
    publishWebRoot=$(grep ^DocumentRoot /private/etc/apache2/httpd.conf | awk -F'"' '{ print $2 }')
    publishSite=$publishWebRoot/centerkey.com
    publishFolder=$publishSite/pretty-print-json
-   cdnUri=https://cdn.jsdelivr.net/npm/pretty-print-json@$minorVersion/pretty-print-json
+   cdnUri=https://cdn.jsdelivr.net/npm/pretty-print-json@$minorVersion/dist/pretty-print-json
    publish() {
       echo "Publishing:"
       echo $publishFolder
