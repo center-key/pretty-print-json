@@ -1,10 +1,10 @@
-//! pretty-print-json v0.0.4 ~ github.com/center-key/pretty-print-json ~ MIT License
+//! pretty-print-json v0.0.5 ~ github.com/center-key/pretty-print-json ~ MIT License
 
 const prettyPrintJson = {
 
-   version: '0.0.4',
+   version: '0.0.5',
 
-   toHtml: function(thing) {
+   toHtml: (thing) => {
       const makeHtmlFriendly = (string) => {
          // Converts characters into their HTML entities
          return string
