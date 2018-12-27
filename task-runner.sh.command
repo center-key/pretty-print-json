@@ -45,7 +45,7 @@ releaseInstructions() {
    echo "   $version (local) --> $pushed (pushed) --> $released (released)"
    echo
    echo "Next release action:"
-   nextActionUpdate() {
+   nextActionBump() {
       echo "   === Increment version ==="
       echo "   Edit pacakge.json to bump $version to next version number"
       echo "   $projectHome/package.json"
@@ -66,10 +66,8 @@ releaseInstructions() {
       echo "   git push origin --tags"
       echo "   npm publish"
       }
-   checkStatus() {
-      test "$version" ">" "$pushed" && nextActionCommit || nextActionUpdate
-      }
-   test "$pushed" ">" "$released" && nextActionTag || checkStatus
+   nextAction() { test "$version" ">" "$released" && nextActionTag || nextActionBump; }
+   test "$version" ">" "$pushed" && test -d dist && nextActionCommit || nextAction
    echo
    }
 
