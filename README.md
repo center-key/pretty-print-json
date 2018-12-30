@@ -14,7 +14,7 @@ _JavaScript library to pretty-print JSON data to HTML for formatted color displa
 
 ## Try it out
 Online tool to format JSON:<br>
-https://centerkey.com/pretty-print-json
+https://pretty-print-json.js.org
 
 ## Setup
 ### Browser

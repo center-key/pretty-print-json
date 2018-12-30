@@ -15,6 +15,7 @@ const size =          require('gulp-size');
 
 // Setup
 const pkg =            require('./package.json');
+const minorVersion =   pkg.version.split('.').slice(0,2).join('.');
 const home =           pkg.homepage.replace('https://', '');
 const banner =         'pretty-print-json v' + pkg.version + ' ~ ' + home + ' ~ MIT License';
 const bannerCss =      '/*! ' + banner + ' */\n';
@@ -26,14 +27,6 @@ const babelMinifyJs =  { presets: [transpileES6, 'minify'], comments: false };
 
 // Tasks
 const task = {
-   analyzeHtml: () => {
-      return gulp.src('pretty-print-json.html')
-         .pipe(htmlHint(htmlHintConfig))
-         .pipe(htmlHint.reporter())
-         .pipe(htmlValidator())
-         .pipe(htmlValidator.reporter())
-         .pipe(size({ showFiles: true }));
-      },
    buildDistribution: () => {
       const buildCss = () =>
          gulp.src('pretty-print-json.css')
@@ -55,9 +48,22 @@ const task = {
             .pipe(size({ showFiles: true, gzip: true }))
             .pipe(gulp.dest('dist'));
       return mergeStream(buildCss(), buildJs());
+      },
+   publishWebsite: () => {
+      const cdnUri = 'https://cdn.jsdelivr.net/npm/pretty-print-json@' + minorVersion;
+      return gulp.src('pretty-print-json.html')
+         .pipe(htmlHint(htmlHintConfig))
+         .pipe(htmlHint.reporter())
+         .pipe(htmlValidator())
+         .pipe(htmlValidator.reporter())
+         .pipe(rename('index.html'))
+         .pipe(replace('href=pretty-print-json.css', 'href=' + cdnUri + '/dist/pretty-print-json.css'))
+         .pipe(replace('src=pretty-print-json.js',   'src=' +  cdnUri + '/dist/pretty-print-json.js'))
+         .pipe(size({ showFiles: true }))
+         .pipe(gulp.dest('docs'));
       }
    };
 
 // Gulp
-gulp.task('lint-html',  task.analyzeHtml);
-gulp.task('build-dist', task.buildDistribution);
+gulp.task('build-dist',      task.buildDistribution);
+gulp.task('publish-website', task.publishWebsite);

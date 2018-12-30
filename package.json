@@ -27,8 +27,9 @@
       "mocha": true
    },
    "scripts": {
-      "pretest": "jshint *.js && gulp lint-html && gulp build-dist",
-      "test": "mocha spec.js && env specMode=minified mocha spec.js"
+      "pretest": "jshint *.js && gulp build-dist",
+      "test": "mocha spec.js && env specMode=minified mocha spec.js",
+      "posttest": "gulp publish-website"
    },
    "devDependencies": {
       "@babel/core": "~7.2",
