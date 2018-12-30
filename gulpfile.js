@@ -30,6 +30,7 @@ const task = {
    buildDistribution: () => {
       const buildCss = () =>
          gulp.src('pretty-print-json.css')
+            .pipe(replace(/.*License.*\n/, ''))
             .pipe(header(bannerCss))
             .pipe(size({ showFiles: true }))
             .pipe(gulp.dest('dist'));
@@ -51,14 +52,16 @@ const task = {
       },
    publishWebsite: () => {
       const cdnUri = 'https://cdn.jsdelivr.net/npm/pretty-print-json@' + minorVersion;
-      return gulp.src('pretty-print-json.html')
+      const cdnCss = 'href=' + cdnUri + '/dist/pretty-print-json.css';
+      const cdnJs =  'src=' +  cdnUri + '/dist/pretty-print-json.js';
+      return gulp.src('spec/interactive.html')
          .pipe(htmlHint(htmlHintConfig))
          .pipe(htmlHint.reporter())
          .pipe(htmlValidator())
          .pipe(htmlValidator.reporter())
          .pipe(rename('index.html'))
-         .pipe(replace('href=pretty-print-json.css', 'href=' + cdnUri + '/dist/pretty-print-json.css'))
-         .pipe(replace('src=pretty-print-json.js',   'src=' +  cdnUri + '/dist/pretty-print-json.js'))
+         .pipe(replace('href=../pretty-print-json.css', cdnCss))
+         .pipe(replace('src=../pretty-print-json.js',   cdnJs))
          .pipe(size({ showFiles: true }))
          .pipe(gulp.dest('docs'));
       }

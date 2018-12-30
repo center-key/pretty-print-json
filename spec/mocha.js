@@ -7,7 +7,7 @@ const fs =     require('fs');
 
 // Setup
 const extension =       process.env.specMode === 'minified' ? 'min.js' : 'js';
-const path =            './dist/pretty-print-json.' + extension;
+const path =            '../dist/pretty-print-json.' + extension;
 const prettyPrintJson = require(path);
 
 // Specification suite

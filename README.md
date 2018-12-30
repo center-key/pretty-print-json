@@ -13,7 +13,7 @@ _JavaScript library to pretty-print JSON data to HTML for formatted color displa
    width=350 alt=screenshot>
 
 ## Try it out
-Online tool to format JSON:<br>
+Interactive online tool to format JSON:<br>
 https://pretty-print-json.js.org
 
 ## Setup

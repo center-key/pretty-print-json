@@ -82,4 +82,4 @@ setupTools
 releaseInstructions
 buildProject
 sleep 2
-open pretty-print-json.html
+open spec/interactive.html
