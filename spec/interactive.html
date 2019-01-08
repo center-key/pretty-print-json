@@ -141,9 +141,9 @@
          const intro = {
             message: 'Put some JSON in the text box.',
             year:    new Date().getFullYear(),
-            ios:     dna.browser.iOS()
+            ios:     library.browser.iOS()
             };
-         component.find('textarea').val(JSON.stringify(intro)).change();
+         component.find('textarea').val(JSON.stringify(intro)).trigger('change');
          $('.version-number').text(prettyPrintJson.version);
          }
       };
