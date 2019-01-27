@@ -34,7 +34,7 @@
    },
    "devDependencies": {
       "@babel/core": "~7.2",
-      "@babel/preset-env": "~7.2",
+      "@babel/preset-env": "~7.3",
       "babel-minify": "~0.5",
       "babel-preset-minify": "~0.5",
       "dna.js": "~1.5",
@@ -52,6 +52,6 @@
       "jshint": "~2.9",
       "merge-stream": "~1.0",
       "mocha": "~5.2",
-      "web-ignition": "~1.0"
+      "web-ignition": "~1.1"
    }
 }
