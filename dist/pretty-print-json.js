@@ -1,15 +1,15 @@
-//! pretty-print-json v0.0.5 ~ github.com/center-key/pretty-print-json ~ MIT License
+//! pretty-print-json v0.0.6 ~ github.com/center-key/pretty-print-json ~ MIT License
 
 const prettyPrintJson = {
 
-   version: '0.0.5',
+   version: '0.0.6',
 
    toHtml: (thing) => {
-      const makeHtmlFriendly = (string) => {
-         // Converts characters into their HTML entities
+      const htmlEntities = (string) => {
+         // Makes text displayable in browsers
          return string
             .replace(/&/g,   '&amp;')
-            .replace(/\\"/g, '&quot;')
+            .replace(/\\"/g, '&bsol;&quot;')
             .replace(/</g,   '&lt;')
             .replace(/>/g,   '&gt;');
          };
@@ -31,13 +31,13 @@ const prettyPrintJson = {
          };
       const jsonLine = /^( *)("[^"]+": )?("[^"]*"|[\w.+-]*)?([{}[\],]*)?$/mg;
       // Regex parses each line of the JSON string into four parts:
-      //    Capture group       Part    Description                  '   "active": true,'
-      //    ------------------  ------  ---------------------------  --------------------
-      //    ( *)                indent  Spaces for indentation       '   '
-      //    ("[^"]+": )         key     Key name                     '"active": '
-      //    ("[^"]*"|[\w.+-]*)  value   Key value                    'true'
-      //    ([{}[\],]*)         end     Line termination characters  ','
-      return makeHtmlFriendly(JSON.stringify(thing, null, 3)).replace(jsonLine, replacer);
+      //    Capture group       Part        Description                  '   "active": true,'
+      //    ------------------  ----------  ---------------------------  --------------------
+      //    ( *)                p1: indent  Spaces for indentation       '   '
+      //    ("[^"]+": )         p2: key     Key name                     '"active": '
+      //    ("[^"]*"|[\w.+-]*)  p3: value   Key value                    'true'
+      //    ([{}[\],]*)         p4: end     Line termination characters  ','
+      return htmlEntities(JSON.stringify(thing, null, 3)).replace(jsonLine, replacer);
       }
 
    };
