@@ -9,7 +9,7 @@ const prettyPrintJson = {
          // Makes text displayable in browsers
          return string
             .replace(/&/g,   '&amp;')
-            .replace(/\\"/g, '&quot;')
+            .replace(/\\"/g, '&bsol;&quot;')
             .replace(/</g,   '&lt;')
             .replace(/>/g,   '&gt;');
          };
