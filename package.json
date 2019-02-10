@@ -1,6 +1,6 @@
 {
    "name": "pretty-print-json",
-   "version": "0.0.5",
+   "version": "0.0.6",
    "description": "JavaScript library to pretty-print JSON data to HTML for formatted color display",
    "license": "MIT",
    "main": "dist/pretty-print-json.js",
@@ -49,7 +49,7 @@
       "gulp-size": "~3.0",
       "gulp-w3c-html-validator": "~1.4",
       "jquery": "~3.3",
-      "jshint": "~2.9",
+      "jshint": "~2.10",
       "merge-stream": "~1.0",
       "mocha": "~5.2",
       "web-ignition": "~1.1"
