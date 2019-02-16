@@ -60,10 +60,8 @@
    body >footer b {
       font-size: 1.1rem;
       }
-   body >footer a[rel=license] img {
-      background-color: gainsboro;
-      border-radius: 1000px;
-      padding: 2px 0px;
+   body >footer p a+a {
+      margin-left: 10px;
       }
    @media (max-width: 667px) {  /* selects iPhone 6/6s/7/8 landscape and anything narrower */
       body >main >.flex-columns >div { max-width: none; }
@@ -108,8 +106,11 @@
          </a>
       </p>
       <p class=external-site>
-         <a rel=license href=http://creativecommons.org/licenses/by-sa/4.0>
-            <img src=https://licensebuttons.net/i/l/by-sa/transparent/33/33/33/88x31.png alt=license>
+         <a rel=license href=http://creativecommons.org/licenses/by-sa/4.0 data-license=cc-by-sa>
+            <i data-brand=creative-commons></i>
+         </a>
+         <a href=https://blog.centerkey.com/2013/05/javascript-colorized-pretty-print-json.html>
+            <i data-icon=rss></i>
          </a>
       </p>
       <p>
