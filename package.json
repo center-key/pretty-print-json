@@ -33,8 +33,8 @@
       "posttest": "gulp publish-website"
    },
    "devDependencies": {
-      "@babel/core": "~7.2",
-      "@babel/preset-env": "~7.3",
+      "@babel/core": "~7.4",
+      "@babel/preset-env": "~7.4",
       "babel-minify": "~0.5",
       "babel-preset-minify": "~0.5",
       "dna.js": "~1.5",
@@ -51,7 +51,7 @@
       "jquery": "~3.3",
       "jshint": "~2.10",
       "merge-stream": "~1.0",
-      "mocha": "~5.2",
+      "mocha": "~6.0",
       "web-ignition": "~1.1"
    }
 }
