@@ -19,8 +19,9 @@
       "pretty-print"
    ],
    "jshintConfig": {
-      "esversion": 6,
+      "esversion": 9,
       "strict": "implied",
+      "eqeqeq": true,
       "undef": true,
       "unused": true,
       "browser": true,
@@ -48,10 +49,10 @@
       "gulp-replace": "~1.0",
       "gulp-size": "~3.0",
       "gulp-w3c-html-validator": "~1.4",
-      "jquery": "~3.3",
+      "jquery": "~3.4",
       "jshint": "~2.10",
       "merge-stream": "~1.0",
-      "mocha": "~6.0",
+      "mocha": "~6.1",
       "web-ignition": "~1.1"
    }
 }
