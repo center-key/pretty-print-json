@@ -51,7 +51,7 @@
       "gulp-w3c-html-validator": "~1.4",
       "jquery": "~3.4",
       "jshint": "~2.10",
-      "merge-stream": "~1.0",
+      "merge-stream": "~2.0",
       "mocha": "~6.1",
       "web-ignition": "~1.1"
    }
