@@ -15,7 +15,7 @@ const size =          require('gulp-size');
 
 // Setup
 const pkg =            require('./package.json');
-const minorVersion =   pkg.version.split('.').slice(0,2).join('.');
+const minorVersion =   pkg.version.split('.').slice(0, 2).join('.');
 const home =           pkg.homepage.replace('https://', '');
 const banner =         'pretty-print-json v' + pkg.version + ' ~ ' + home + ' ~ MIT License';
 const bannerCss =      '/*! ' + banner + ' */\n';
