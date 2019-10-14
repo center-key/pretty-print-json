@@ -10,8 +10,8 @@ _JavaScript library to pretty-print JSON data to HTML for formatted color displa
 [![Downloads](https://data.jsdelivr.com/v1/package/npm/pretty-print-json/badge?style=rounded)](https://www.jsdelivr.com/package/npm/pretty-print-json)
 [![Build](https://travis-ci.org/center-key/pretty-print-json.svg)](https://travis-ci.org/center-key/pretty-print-json)
 
-<img src=https://3.bp.blogspot.com/-CLD6GDO4ul8/W_Jv9qrDCaI/AAAAAAAAIbw/C9JUx-v8xFUYJ_jWMkpNrGASjkqSQjLowCLcBGAs/s1600/pretty-print-json.png
-   width=350 alt=screenshot>
+<img width=350 alt=screenshot
+   src=https://3.bp.blogspot.com/-M13HQRG7cqQ/XaQvF0Q_KyI/AAAAAAAAJeg/3_CTIgPAh5Yqa29aYPvB1aTO9VsUlksLACNcBGAsYHQ/s1600/pretty-print-json.png>
 
 ## Try it out
 Interactive online tool to format JSON:<br>
@@ -42,8 +42,8 @@ Example HTML:
 ```
 Pass data into `prettyPrintJson.toHtml()` and display the results:
 ```javascript
-const data = { active: true, codes: [48348, 28923, 39080], city: 'London' };
-$('#account').html(prettyPrintJson.toHtml(data));
+const data = { active: true, mode: '🚃', codes: [48348, 28923, 39080], city: 'London' };
+document.getElementById('account').innerHTML = prettyPrintJson.toHtml(data);
 ```
 
 ---
