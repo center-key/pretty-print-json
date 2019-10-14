@@ -7,6 +7,7 @@ _JavaScript library to pretty-print JSON data to HTML for formatted color displa
 [![npm](https://img.shields.io/npm/v/pretty-print-json.svg)](https://www.npmjs.com/package/pretty-print-json)
 [![Dependencies](https://david-dm.org/center-key/pretty-print-json/status.svg)](https://david-dm.org/center-key/pretty-print-json)
 [![Vulnerabilities](https://snyk.io/test/github/center-key/pretty-print-json/badge.svg)](https://snyk.io/test/github/center-key/pretty-print-json)
+[![Downloads](https://data.jsdelivr.com/v1/package/npm/pretty-print-json/badge?style=rounded)](https://www.jsdelivr.com/package/npm/pretty-print-json)
 [![Build](https://travis-ci.org/center-key/pretty-print-json.svg)](https://travis-ci.org/center-key/pretty-print-json)
 
 <img src=https://3.bp.blogspot.com/-CLD6GDO4ul8/W_Jv9qrDCaI/AAAAAAAAIbw/C9JUx-v8xFUYJ_jWMkpNrGASjkqSQjLowCLcBGAs/s1600/pretty-print-json.png
