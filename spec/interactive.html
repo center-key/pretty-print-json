@@ -34,6 +34,11 @@
    body >main >.flex-columns >div {
       max-width: 50%;
       }
+   body >main >.flex-columns i.font-icon {
+      float: right;
+      font-size: 1.3rem;
+      color: lightskyblue;
+      }
    body >main >.flex-columns >div:first-child textarea {
       max-width: none;
       min-height: 300px;
@@ -90,6 +95,7 @@
          <p id=error-message></p>
       </div>
       <div>
+         <i data-icon=copy data-click=app.copyToClipboard></i>
          <h3>Colorized output:</h3>
          <pre><output></output></pre>
       </div>
@@ -146,6 +152,15 @@
          catch(e) {
             message.text('Invalid JSON').fadeIn();
             }
+         },
+      copyToClipboard: (icon, event, component) => {
+         const output =    component.find('output');
+         const selection = window.getSelection();
+         const range =     document.createRange();
+         range.selectNodeContents(output[0]);
+         selection.empty();
+         selection.addRange(range);
+         document.execCommand('copy');
          },
       setup: (component) => {
          const intro = {
