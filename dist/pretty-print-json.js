@@ -1,8 +1,8 @@
-//! pretty-print-json v0.1.0 ~ github.com/center-key/pretty-print-json ~ MIT License
+//! pretty-print-json v0.1.1 ~ github.com/center-key/pretty-print-json ~ MIT License
 
 const prettyPrintJson = {
 
-   version: '0.1.0',
+   version: '0.1.1',
 
    toHtml: (thing) => {
       const htmlEntities = (string) => {
