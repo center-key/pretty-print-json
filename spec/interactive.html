@@ -157,7 +157,7 @@
          const output =    component.find('output');
          const selection = window.getSelection();
          const range =     document.createRange();
-         range.selectNodeContents(output[0]);
+         range.selectNode(output[0]);
          selection.empty();
          selection.addRange(range);
          document.execCommand('copy');

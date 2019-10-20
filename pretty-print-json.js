@@ -24,7 +24,8 @@ const prettyPrintJson = {
          const valSpan =    /^"/.test(part.value) ? str : isBool ? bool : val;
          const findName =   /"([\w]+)": |(.*): /;
          const indentHtml = part.indent || '';
-         const keyHtml =    part.key ? key + part.key.replace(findName, '$1$2') + '</span>: ' : '';
+         const keyName =    part.key && part.key.replace(findName, '$1$2');
+         const keyHtml =    part.key ? key + keyName + '</span>: ' : '';
          const valueHtml =  part.value ? valSpan + part.value + '</span>' : '';
          const endHtml =    part.end || '';
          return indentHtml + keyHtml + valueHtml + endHtml;
