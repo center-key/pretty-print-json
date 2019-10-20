@@ -13,11 +13,11 @@ _JavaScript library to pretty-print JSON data to HTML for formatted color displa
 <img width=350 alt=screenshot
    src=https://3.bp.blogspot.com/-M13HQRG7cqQ/XaQvF0Q_KyI/AAAAAAAAJeg/3_CTIgPAh5Yqa29aYPvB1aTO9VsUlksLACNcBGAsYHQ/s1600/pretty-print-json.png>
 
-## Try it out
+## 1) Try it out
 Interactive online tool to format JSON:<br>
 https://pretty-print-json.js.org
 
-## Setup
+## 2) Setup
 ### Browser
 Load from the [jsdelivr.com CDN](https://www.jsdelivr.com/package/npm/pretty-print-json):
 ```html
@@ -35,7 +35,7 @@ Import into your application:
 const prettyPrintJson = require('pretty-print-json');
 ```
 
-## Usage
+## 3) Usage
 Example HTML:
 ```html
 <pre id=account></pre>
