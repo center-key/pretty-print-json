@@ -32,12 +32,16 @@
       font-size: 3rem;
       }
    body >main >.flex-columns >div {
+      position: relative;
       max-width: 50%;
       }
    body >main >.flex-columns i.font-icon {
-      float: right;
-      font-size: 1.3rem;
+      position: absolute;
+      top: -15px;
+      right: -12px;
+      font-size: 1.4rem;
       color: lightskyblue;
+      padding: 15px;  /* enlarge click target */
       }
    body >main >.flex-columns >div:first-child textarea {
       max-width: none;
