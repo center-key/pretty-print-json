@@ -5,7 +5,7 @@
 <html lang=en>
 <head>
 <meta charset=utf-8>
-<meta name=viewport                   content="width=device-width, initial-scale=1">
+<meta name=viewport                   content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name=apple-mobile-web-app-title content="JSON">
 <meta property=og:title               content="Pretty Print JSON">
 <meta property=og:description         content="JavaScript library to pretty-print JSON data to HTML for formatted color display">
@@ -32,12 +32,17 @@
       font-size: 3rem;
       }
    body >main >.flex-columns >div {
+      position: relative;
       max-width: 50%;
       }
    body >main >.flex-columns i.font-icon {
-      float: right;
-      font-size: 1.3rem;
+      position: absolute;
+      top: -15px;
+      right: -12px;
+      font-size: 1.4rem;
       color: lightskyblue;
+      padding: 15px;  /* enlarge click target */
+      transition: opacity 0.4s;
       }
    body >main >.flex-columns >div:first-child textarea {
       max-width: none;
@@ -157,7 +162,7 @@
          const output =    component.find('output');
          const selection = window.getSelection();
          const range =     document.createRange();
-         range.selectNodeContents(output[0]);
+         range.selectNode(output[0]);
          selection.empty();
          selection.addRange(range);
          document.execCommand('copy');
