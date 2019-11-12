@@ -34,8 +34,8 @@
       "posttest": "gulp publish-website"
    },
    "devDependencies": {
-      "@babel/core": "~7.6",
-      "@babel/preset-env": "~7.6",
+      "@babel/core": "~7.7",
+      "@babel/preset-env": "~7.7",
       "babel-minify": "~0.5",
       "babel-preset-minify": "~0.5",
       "dna.js": "~1.5",
