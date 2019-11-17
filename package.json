@@ -43,7 +43,7 @@
       "gulp-append-prepend": "~1.0",
       "gulp-babel": "~8.0",
       "gulp-header": "~2.0",
-      "gulp-htmlhint": "~2.2",
+      "gulp-htmlhint": "~3.0",
       "gulp-jshint": "~2.1",
       "gulp-rename": "~1.4",
       "gulp-replace": "~1.0",
