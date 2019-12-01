@@ -124,7 +124,7 @@ describe('The .toHtml() function', () => {
    });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-describe('The quoteKeys option for .toHtml()', () => {
+describe('The "quoteKeys" option', () => {
 
    it('puts double quotes around all key names', () => {
       const input = { active: true, codes: [48348, 28923, 39080], city: 'London' };
@@ -140,6 +140,29 @@ describe('The quoteKeys option for .toHtml()', () => {
          '}'
          ];
       const actual =   { html: prettyPrintJson.toHtml(input, { quoteKeys: true }).split('\n') };
+      const expected = { html: htmlLines };
+      assert.deepEqual(actual, expected);
+      });
+
+   });
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+describe('The "indent" option', () => {
+
+   it('indents the correct number of spaces', () => {
+      const input = { active: true, codes: [48348, 28923, 39080], city: 'London' };
+      const htmlLines = [
+         '{',
+         '          <span class=json-key>active</span>: <span class=json-boolean>true</span>,',
+         '          <span class=json-key>codes</span>: [',
+         '                    <span class=json-value>48348</span>,',
+         '                    <span class=json-value>28923</span>,',
+         '                    <span class=json-value>39080</span>',
+         '          ],',
+         '          <span class=json-key>city</span>: <span class=json-string>"London"</span>',
+         '}'
+         ];
+      const actual =   { html: prettyPrintJson.toHtml(input, { indent: 10 }).split('\n') };
       const expected = { html: htmlLines };
       assert.deepEqual(actual, expected);
       });

@@ -53,9 +53,11 @@ const elem = document.getElementById('account');
 elem.innerHTML = prettyPrintJson.toHtml(data);
 ```
 ### Options
-| Name (key)  | Type        | Default | Description                         |
-| :---------- | :---------- | :------ | :---------------------------------- |
-| `quoteKeys` | **boolean** | `false` | Always display key names in quotes. |
+| Name (key)  | Type        | Default | Description                       |
+| :---------- | :---------- | :------ | :-------------------------------- |
+| `indent`    | **integer** | `3`     | Number of spaces for indentation. |
+| `quoteKeys` | **boolean** | `false` | Always double quote key names.    |
 
+<br>
 ---
 [MIT License](LICENSE.txt) | [Blog post](https://blog.centerkey.com/2013/05/javascript-colorized-pretty-print-json.html)
