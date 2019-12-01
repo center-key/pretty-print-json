@@ -57,6 +57,7 @@
       font-size: 1.2rem;
       font-weight: bold;
       text-align: center;
+      text-shadow: 0px 0px 0.1em white;
       color: crimson;
       padding-top: 3px;
       }
@@ -69,6 +70,11 @@
       padding: 5px 10px;
       margin: 0px;
       overflow: scroll;
+      }
+   body >main >.flex-columns >div:last-child label {
+      text-align: right;
+      color: silver;
+      padding-top: 3px;
       }
    body >footer b {
       font-size: 1.1rem;
@@ -103,6 +109,7 @@
          <i data-icon=copy data-click=app.copyToClipboard></i>
          <h3>Colorized output:</h3>
          <pre><output></output></pre>
+         <label><input type=checkbox data-change=app.processJson>quote keys</label>
       </div>
    </div>
 </main>
@@ -147,15 +154,21 @@
 <script src=https://cdn.jsdelivr.net/npm/pretty-print-json@0.1/dist/pretty-print-json.js></script>
 <script>
    const app = {
-      processJson: (textarea, event, component) => {
-         const output =  component.find('output');
-         const message = component.find('#error-message').hide();
+      processJson: (target, event, component) => {
+         const elem = {
+            textarea: component.find('textarea'),
+            message:  component.find('#error-message').fadeOut(),
+            output:   component.find('output'),
+            checkbox: component.find('input[type=checkbox]'),
+            };
          try {
-            const data = textarea.val().trim().length ? JSON.parse(textarea.val()) : null;
-            output.html(data ? prettyPrintJson.toHtml(data) : '[EMPTY]');
+            const data = elem.textarea.val().trim().length ? JSON.parse(elem.textarea.val()) : null;
+            const options = { quoteKeys: elem.checkbox.is(':checked') };
+            const html = data ? prettyPrintJson.toHtml(data, options) : '[EMPTY]';
+            elem.output.html(html);
             }
          catch(e) {
-            message.text('Invalid JSON').fadeIn();
+            elem.message.text('Invalid JSON').finish().fadeIn();
             }
          },
       copyToClipboard: (icon, event, component) => {
