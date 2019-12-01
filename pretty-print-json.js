@@ -4,7 +4,9 @@ const prettyPrintJson = {
 
    version: '[VERSION]',
 
-   toHtml: (thing) => {
+   toHtml: (thing, options) => {
+      const defaults = { quoteKeys: false };
+      const settings = Object.assign(defaults, options);
       const htmlEntities = (string) => {
          // Makes text displayable in browsers
          return string
@@ -22,7 +24,7 @@ const prettyPrintJson = {
          const str =        '<span class=json-string>';
          const isBool =     ['true', 'false'].includes(part.value);
          const valSpan =    /^"/.test(part.value) ? str : isBool ? bool : val;
-         const findName =   /"([\w]+)": |(.*): /;
+         const findName =   settings.quoteKeys ? /(.*)(): / : /"([\w]+)": |(.*): /;
          const indentHtml = part.indent || '';
          const keyName =    part.key && part.key.replace(findName, '$1$2');
          const keyHtml =    part.key ? key + keyName + '</span>: ' : '';

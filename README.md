@@ -36,15 +36,26 @@ const prettyPrintJson = require('pretty-print-json');
 ```
 
 ## 3) Usage
-Example HTML:
+### API
+```javascript
+const html = prettyPrintJson.toHtml(data[, options]);
+```
+### Example
+##### HTML:
 ```html
 <pre id=account></pre>
 ```
-Pass data into `prettyPrintJson.toHtml()` and display the results:
+##### JavaScript:
+Pass data into `prettyPrintJson.toHtml()` and display the results.
 ```javascript
 const data = { active: true, mode: '🚃', codes: [48348, 28923, 39080], city: 'London' };
-document.getElementById('account').innerHTML = prettyPrintJson.toHtml(data);
+const elem = document.getElementById('account');
+elem.innerHTML = prettyPrintJson.toHtml(data);
 ```
+### Options
+| Name (key)  | Type        | Default | Description                         |
+| :---------- | :---------- | :------ | :---------------------------------- |
+| `quoteKeys` | **boolean** | `false` | Always display key names in quotes. |
 
 ---
 [MIT License](LICENSE.txt) | [Blog post](https://blog.centerkey.com/2013/05/javascript-colorized-pretty-print-json.html)
