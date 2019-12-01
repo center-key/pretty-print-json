@@ -5,7 +5,10 @@ const prettyPrintJson = {
    version: '[VERSION]',
 
    toHtml: (thing, options) => {
-      const defaults = { quoteKeys: false };
+      const defaults = {
+         quoteKeys: false,
+         indent: 3
+         };
       const settings = Object.assign(defaults, options);
       const htmlEntities = (string) => {
          // Makes text displayable in browsers
@@ -40,7 +43,7 @@ const prettyPrintJson = {
       //    ("[^"]+": )         p2: key     Key name                     '"active": '
       //    ("[^"]*"|[\w.+-]*)  p3: value   Key value                    'true'
       //    ([{}[\],]*)         p4: end     Line termination characters  ','
-      return htmlEntities(JSON.stringify(thing, null, 3)).replace(jsonLine, replacer);
+      return htmlEntities(JSON.stringify(thing, null, settings.indent)).replace(jsonLine, replacer);
       }
 
    };
