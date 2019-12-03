@@ -1,11 +1,11 @@
-//! pretty-print-json v0.1.3 ~ github.com/center-key/pretty-print-json ~ MIT License
+//! pretty-print-json v0.1.4 ~ github.com/center-key/pretty-print-json ~ MIT License
 
 const prettyPrintJson = {
 
-   version: '0.1.3',
+   version: '0.1.4',
 
    toHtml: (thing, options) => {
-      const defaults = { quoteKeys: false };
+      const defaults = { indent: 3, quoteKeys: false };
       const settings = Object.assign(defaults, options);
       const htmlEntities = (string) => {
          // Makes text displayable in browsers
@@ -40,7 +40,7 @@ const prettyPrintJson = {
       //    ("[^"]+": )         p2: key     Key name                     '"active": '
       //    ("[^"]*"|[\w.+-]*)  p3: value   Key value                    'true'
       //    ([{}[\],]*)         p4: end     Line termination characters  ','
-      return htmlEntities(JSON.stringify(thing, null, 3)).replace(jsonLine, replacer);
+      return htmlEntities(JSON.stringify(thing, null, settings.indent)).replace(jsonLine, replacer);
       }
 
    };

@@ -5,10 +5,7 @@ const prettyPrintJson = {
    version: '[VERSION]',
 
    toHtml: (thing, options) => {
-      const defaults = {
-         quoteKeys: false,
-         indent: 3
-         };
+      const defaults = { indent: 3, quoteKeys: false };
       const settings = Object.assign(defaults, options);
       const htmlEntities = (string) => {
          // Makes text displayable in browsers

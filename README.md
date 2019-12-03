@@ -58,6 +58,7 @@ elem.innerHTML = prettyPrintJson.toHtml(data);
 | `indent`    | **integer** | `3`     | Number of spaces for indentation. |
 | `quoteKeys` | **boolean** | `false` | Always double quote key names.    |
 
-\
+<br>
+
 ---
 [MIT License](LICENSE.txt) | [Blog post](https://blog.centerkey.com/2013/05/javascript-colorized-pretty-print-json.html)
