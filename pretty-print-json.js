@@ -22,8 +22,10 @@ const prettyPrintJson = {
          const val =        '<span class=json-value>';
          const bool =       '<span class=json-boolean>';
          const str =        '<span class=json-string>';
+         const nullVal =   '<span class=json-null>';
          const isBool =     ['true', 'false'].includes(part.value);
-         const valSpan =    /^"/.test(part.value) ? str : isBool ? bool : val;
+         const isNull =     part.value === 'null';
+         const valSpan =    /^"/.test(part.value) ? str : isBool ? bool : isNull ? nullVal: val;
          const findName =   settings.quoteKeys ? /(.*)(): / : /"([\w]+)": |(.*): /;
          const indentHtml = part.indent || '';
          const keyName =    part.key && part.key.replace(findName, '$1$2');

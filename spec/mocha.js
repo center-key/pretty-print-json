@@ -121,6 +121,17 @@ describe('The .toHtml() function', () => {
       assert.deepEqual(actual, expected);
       });
 
+      it('handles a value that is a null', () => {
+         const input = { x: null };
+         const htmlLines = [
+            '{',
+            '   <span class=json-key>x</span>: <span class=json-null>null</span>',
+            '}'
+            ];
+         const actual =   { html: prettyPrintJson.toHtml(input).split('\n') };
+         const expected = { html: htmlLines };
+         assert.deepEqual(actual, expected);
+         });
    });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
