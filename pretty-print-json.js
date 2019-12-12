@@ -16,6 +16,7 @@ const prettyPrintJson = {
             .replace(/>/g,   '&gt;');
          };
       const buildValueHtml = (value) => {
+         // Returns a string like: "<span class=json-boolean>true</span>"
          const strType =  /^"/.test(value) && 'string';
          const boolType = ['true', 'false'].includes(value) && 'boolean';
          const nullType = value === 'null' && 'null';
@@ -34,14 +35,15 @@ const prettyPrintJson = {
          return indentHtml + keyHtml + valueHtml + endHtml;
          };
       const jsonLine = /^( *)("[^"]+": )?("[^"]*"|[\w.+-]*)?([{}[\],]*)?$/mg;
-      // Regex parses each line of the JSON string into four parts:
-      //    Capture group       Part        Description                  '   "active": true,'
-      //    ------------------  ----------  ---------------------------  --------------------
-      //    ( *)                p1: indent  Spaces for indentation       '   '
-      //    ("[^"]+": )         p2: key     Key name                     '"active": '
-      //    ("[^"]*"|[\w.+-]*)  p3: value   Key value                    'true'
-      //    ([{}[\],]*)         p4: end     Line termination characters  ','
-      return htmlEntities(JSON.stringify(thing, null, settings.indent)).replace(jsonLine, replacer);
+         // Regex parses each line of the JSON string into four parts:
+         //    Capture group       Part        Description                  '   "active": true,'
+         //    ------------------  ----------  ---------------------------  --------------------
+         //    ( *)                p1: indent  Spaces for indentation       '   '
+         //    ("[^"]+": )         p2: key     Key name                     '"active": '
+         //    ("[^"]*"|[\w.+-]*)  p3: value   Key value                    'true'
+         //    ([{}[\],]*)         p4: end     Line termination characters  ','
+      const json = JSON.stringify(thing, null, settings.indent);
+      return htmlEntities(json).replace(jsonLine, replacer);
       }
 
    };
