@@ -2,6 +2,6 @@
 
 .json-key     { color: brown; }
 .json-string  { color: olive; }
-.json-value  { color: navy; }
+.json-value   { color: navy; }
 .json-boolean { color: teal; }
 .json-null    { color: dimgray; }

@@ -1,8 +1,8 @@
-//! pretty-print-json v0.1.4 ~ github.com/center-key/pretty-print-json ~ MIT License
+//! pretty-print-json v0.1.5 ~ github.com/center-key/pretty-print-json ~ MIT License
 
 const prettyPrintJson = {
 
-   version: '0.1.4',
+   version: '0.1.5',
 
    toHtml: (thing, options) => {
       const defaults = { indent: 3, quoteKeys: false };
@@ -15,22 +15,21 @@ const prettyPrintJson = {
             .replace(/</g,   '&lt;')
             .replace(/>/g,   '&gt;');
          };
+      const buildValueHtml = (value) => {
+         const strType =  /^"/.test(value) && 'string';
+         const boolType = ['true', 'false'].includes(value) && 'boolean';
+         const nullType = value === 'null' && 'null';
+         const type =     boolType || nullType || strType || 'value';
+         return '<span class=json-' + type + '>' + value + '</span>';
+         };
       const replacer = (match, p1, p2, p3, p4) => {
          // Converts the four parenthesized capture groups (indent, key, value, end) into HTML
          const part =       { indent: p1, key: p2, value: p3, end: p4 };
-         const key =        '<span class=json-key>';
-         const val =        '<span class=json-value>';
-         const bool =       '<span class=json-boolean>';
-         const str =        '<span class=json-string>';
-         const nullVal =   '<span class=json-null>';
-         const isBool =     ['true', 'false'].includes(part.value);
-         const isNull =     part.value === 'null';
-         const valSpan =    /^"/.test(part.value) ? str : isBool ? bool : isNull ? nullVal: val;
          const findName =   settings.quoteKeys ? /(.*)(): / : /"([\w]+)": |(.*): /;
          const indentHtml = part.indent || '';
          const keyName =    part.key && part.key.replace(findName, '$1$2');
-         const keyHtml =    part.key ? key + keyName + '</span>: ' : '';
-         const valueHtml =  part.value ? valSpan + part.value + '</span>' : '';
+         const keyHtml =    part.key ? '<span class=json-key>' + keyName + '</span>: ' : '';
+         const valueHtml =  part.value ? buildValueHtml(part.value) : '';
          const endHtml =    part.end || '';
          return indentHtml + keyHtml + valueHtml + endHtml;
          };

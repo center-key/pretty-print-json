@@ -62,6 +62,18 @@ describe('The .toHtml() function', () => {
       assert.deepEqual(actual, expected);
       });
 
+   it('handles a value that is null', () => {
+      const input = { x: null };
+      const htmlLines = [
+         '{',
+         '   <span class=json-key>x</span>: <span class=json-null>null</span>',
+         '}'
+         ];
+      const actual =   { html: prettyPrintJson.toHtml(input).split('\n') };
+      const expected = { html: htmlLines };
+      assert.deepEqual(actual, expected);
+      });
+
    it('handles a value that is an empty array', () => {
       const input = [[], { x: [], y: [true, false, []], z: [] }];
       const htmlLines = [
@@ -104,7 +116,8 @@ describe('The .toHtml() function', () => {
       const input = { quote: 'The Terminator warned, "I\'ll be back."' };
       const htmlLines = [
          '{',
-         '   <span class=json-key>quote</span>: <span class=json-string>"The Terminator warned, &bsol;&quot;I\'ll be back.&bsol;&quot;"</span>',
+         '   <span class=json-key>quote</span>: <span class=json-string>' +
+            '"The Terminator warned, &bsol;&quot;I\'ll be back.&bsol;&quot;"</span>',
          '}'
          ];
       const actual =   { html: prettyPrintJson.toHtml(input).split('\n') };
@@ -121,17 +134,6 @@ describe('The .toHtml() function', () => {
       assert.deepEqual(actual, expected);
       });
 
-      it('handles a value that is a null', () => {
-         const input = { x: null };
-         const htmlLines = [
-            '{',
-            '   <span class=json-key>x</span>: <span class=json-null>null</span>',
-            '}'
-            ];
-         const actual =   { html: prettyPrintJson.toHtml(input).split('\n') };
-         const expected = { html: htmlLines };
-         assert.deepEqual(actual, expected);
-         });
    });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
