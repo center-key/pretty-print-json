@@ -20,7 +20,7 @@ const prettyPrintJson = {
          const strType =  /^"/.test(value) && 'string';
          const boolType = ['true', 'false'].includes(value) && 'boolean';
          const nullType = value === 'null' && 'null';
-         const type =     boolType || nullType || strType || 'value';
+         const type =     boolType || nullType || strType || 'number';
          return '<span class=json-' + type + '>' + value + '</span>';
          };
       const replacer = (match, p1, p2, p3, p4) => {
