@@ -1,7 +1,7 @@
 /* pretty-print-json ~ MIT License */
 
 .json-key     { color: brown; }
-.json-value   { color: navy; }
-.json-boolean { color: teal; }
 .json-string  { color: olive; }
-.json-null { color: dimgray; }
+.json-value  { color: navy; }
+.json-boolean { color: teal; }
+.json-null    { color: dimgray; }
