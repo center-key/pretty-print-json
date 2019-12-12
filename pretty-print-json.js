@@ -4,7 +4,7 @@ const prettyPrintJson = {
 
    version: '[VERSION]',
 
-   toHtml: (thing, options) => {
+   toHtml(thing, options) {
       const defaults = { indent: 3, quoteKeys: false };
       const settings = Object.assign(defaults, options);
       const htmlEntities = (string) => {
