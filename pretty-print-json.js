@@ -16,7 +16,7 @@ const prettyPrintJson = {
             .replace(/>/g,   '&gt;');
          };
       const buildValueHtml = (value) => {
-         // Returns a string like: "<span class=json-boolean>true</span>"
+         // Returns a string like: "<span class=json-number>3.1415</span>"
          const strType =  /^"/.test(value) && 'string';
          const boolType = ['true', 'false'].includes(value) && 'boolean';
          const nullType = value === 'null' && 'null';

@@ -72,6 +72,11 @@ releaseInstructions() {
    echo
    }
 
+updateReadme() {
+   cd $projectHome
+   sed -i "" "s/pretty-print-json@[0-9][.][0-9]/pretty-print-json@$minorVersion/" README.md
+   }
+
 buildProject() {
    cd $projectHome
    echo "Build:"
@@ -81,6 +86,7 @@ buildProject() {
 
 setupTools
 releaseInstructions
+updateReadme
 buildProject
 sleep 2
 open spec/interactive.html
