@@ -109,7 +109,7 @@
          <i data-icon=copy data-click=app.copyToClipboard></i>
          <h3>Colorized output:</h3>
          <pre><output></output></pre>
-         <label><input type=checkbox data-change=app.processJson>quote keys</label>
+         <label><input type=checkbox data-change=app.processJson>quote map keys</label>
       </div>
    </div>
 </main>
@@ -175,6 +175,7 @@
          const output =    component.find('output');
          const selection = window.getSelection();
          const range =     document.createRange();
+         library.animate.jiggleIt(icon);
          range.selectNode(output[0]);
          selection.empty();
          selection.addRange(range);
