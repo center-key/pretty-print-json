@@ -38,7 +38,7 @@
       "@babel/preset-env": "~7.7",
       "babel-minify": "~0.5",
       "babel-preset-minify": "~0.5",
-      "dna.js": "~1.5",
+      "dna.js": "~1.6",
       "gulp": "~4.0",
       "gulp-append-prepend": "~1.0",
       "gulp-babel": "~8.0",
@@ -53,6 +53,6 @@
       "jshint": "~2.10",
       "merge-stream": "~2.0",
       "mocha": "~6.2",
-      "web-ignition": "~1.1"
+      "web-ignition": "~1.2"
    }
 }
