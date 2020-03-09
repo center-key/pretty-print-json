@@ -16,7 +16,7 @@ const size =          require('gulp-size');
 // Setup
 const pkg =            require('./package.json');
 const minorVersion =   pkg.version.split('.').slice(0, 2).join('.');
-const home =           pkg.homepage.replace('https://', '');
+const home =           pkg.repository.replace('github:', 'github.com/');
 const banner =         'pretty-print-json v' + pkg.version + ' ~ ' + home + ' ~ MIT License';
 const bannerCss =      '/*! ' + banner + ' */\n';
 const bannerJs =       '//! ' + banner + '\n';
@@ -64,7 +64,7 @@ const task = {
          .pipe(replace('src=../pretty-print-json.js',   cdnJs))
          .pipe(size({ showFiles: true }))
          .pipe(gulp.dest('docs'));
-      }
+      },
    };
 
 // Gulp

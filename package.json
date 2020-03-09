@@ -7,9 +7,9 @@
    "browser": "dist/pretty-print-json.min.js",
    "style": "dist/pretty-print-json.css",
    "repository": "github:center-key/pretty-print-json",
-   "homepage": "https://github.com/center-key/pretty-print-json",
+   "homepage": "https://pretty-print-json.js.org",
    "bugs": "https://github.com/center-key/pretty-print-json/issues",
-   "docs": "https://centerkey.com/pretty-print-json",
+   "docs": "https://pretty-print-json.js.org",
    "author": "Center Key (https://centerkey.com)",
    "keywords": [
       "color",
