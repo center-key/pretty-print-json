@@ -48,11 +48,18 @@ describe('The .toHtml() function', () => {
       });
 
    it('puts quotes around key names that contain special characters', () => {
-      const input = { normal: 'No quotes', '     ': 'Spaces', '~!@#$%^&*()': 'Crazy!', "🚀": 'Unicode' };
+      const input = {
+         normal:        'No quotes',
+         '     ':       'Spaces',
+         '$':           'Money',
+         '~!@#$%^&*()': 'Crazy!',
+         '🚀':          'Unicode',
+         };
       const htmlLines = [
          '{',
          '   <span class=json-key>normal</span>: <span class=json-string>"No quotes"</span>,',
          '   <span class=json-key>"     "</span>: <span class=json-string>"Spaces"</span>,',
+         '   <span class=json-key>"$"</span>: <span class=json-string>"Money"</span>,',
          '   <span class=json-key>"~!@#$%^&amp;*()"</span>: <span class=json-string>"Crazy!"</span>,',
          '   <span class=json-key>"🚀"</span>: <span class=json-string>"Unicode"</span>',
          '}'
@@ -62,11 +69,23 @@ describe('The .toHtml() function', () => {
       assert.deepEqual(actual, expected);
       });
 
-   it('handles a value that is null', () => {
-      const input = { x: null };
+   it('handles a value that is an emoticon', () => {
+      const input = { $: '💰' };
       const htmlLines = [
          '{',
-         '   <span class=json-key>x</span>: <span class=json-null>null</span>',
+         '   <span class=json-key>"$"</span>: <span class=json-string>"💰"</span>',
+         '}'
+         ];
+      const actual =   { html: prettyPrintJson.toHtml(input).split('\n') };
+      const expected = { html: htmlLines };
+      assert.deepEqual(actual, expected);
+      });
+
+   it('handles a value that is null', () => {
+      const input = { _: null };
+      const htmlLines = [
+         '{',
+         '   <span class=json-key>_</span>: <span class=json-null>null</span>',
          '}'
          ];
       const actual =   { html: prettyPrintJson.toHtml(input).split('\n') };
