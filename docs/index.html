@@ -15,7 +15,7 @@
 <title>Pretty-Print JSON &bull; Interactive online JavaScript tool to format JSON</title>
 <link rel=icon             href=https://centerkey.com/graphics/bookmark.png>
 <link rel=apple-touch-icon href=https://centerkey.com/graphics/mobile-home-screen.png>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13/css/all.min.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@1.6/dist/dna.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@1.2/dist/reset.min.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/pretty-print-json@0.2/dist/pretty-print-json.css>
@@ -42,7 +42,7 @@
       font-size: 1.4rem;
       color: lightskyblue;
       padding: 15px;  /* enlarge click target */
-      transition: opacity 0.4s;
+      transition: opacity 400ms;
       }
    body >main >.flex-columns >div:first-child textarea {
       max-width: none;
@@ -82,7 +82,7 @@
    body >footer p a+a {
       margin-left: 10px;
       }
-   @media (max-width: 667px) {  /* selects iPhone 6/6s/7/8 landscape and anything narrower */
+   @media (max-width: 667px) {  /* selects iPhone 6/6s/7/8/SE(2020) landscape and anything narrower */
       body >main >.flex-columns >div { max-width: none; }
       body >main >.flex-columns >div:first-child textarea { min-height: 150px; }
       body >main >.flex-columns >div:last-child pre { min-height: 200px; }
