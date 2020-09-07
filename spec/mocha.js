@@ -59,7 +59,7 @@ describe('The .toHtml() function', () => {
          '{',
          '   <span class=json-key>normal</span>: <span class=json-string>"No quotes"</span>,',
          '   <span class=json-key>"     "</span>: <span class=json-string>"Spaces"</span>,',
-         '   <span class=json-key>"$"</span>: <span class=json-string>"Money"</span>,',
+         '   <span class=json-key>$</span>: <span class=json-string>"Money"</span>,',
          '   <span class=json-key>"~!@#$%^&amp;*()"</span>: <span class=json-string>"Crazy!"</span>,',
          '   <span class=json-key>"🚀"</span>: <span class=json-string>"Unicode"</span>',
          '}'
@@ -73,7 +73,7 @@ describe('The .toHtml() function', () => {
       const input = { $: '💰' };
       const htmlLines = [
          '{',
-         '   <span class=json-key>"$"</span>: <span class=json-string>"💰"</span>',
+         '   <span class=json-key>$</span>: <span class=json-string>"💰"</span>',
          '}'
          ];
       const actual =   { html: prettyPrintJson.toHtml(input).split('\n') };
