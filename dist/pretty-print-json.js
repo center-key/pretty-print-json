@@ -26,7 +26,7 @@ const prettyPrintJson = {
       const replacer = (match, p1, p2, p3, p4) => {
          // Converts the four parenthesized capture groups (indent, key, value, end) into HTML
          const part =       { indent: p1, key: p2, value: p3, end: p4 };
-         const findName =   settings.quoteKeys ? /(.*)(): / : /"([\w]+)": |(.*): /;
+         const findName =   settings.quoteKeys ? /(.*)(): / : /"([\w$]+)": |(.*): /;
          const indentHtml = part.indent || '';
          const keyName =    part.key && part.key.replace(findName, '$1$2');
          const keyHtml =    part.key ? '<span class=json-key>' + keyName + '</span>: ' : '';
