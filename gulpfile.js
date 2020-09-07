@@ -27,7 +27,7 @@ const babelMinifyJs =  { presets: [transpileES6, 'minify'], comments: false };
 
 // Tasks
 const task = {
-   buildDistribution: () => {
+   buildDistribution() {
       const buildCss = () =>
          gulp.src('pretty-print-json.css')
             .pipe(replace(/.*License.*\n/, ''))
@@ -49,8 +49,8 @@ const task = {
             .pipe(size({ showFiles: true, gzip: true }))
             .pipe(gulp.dest('dist'));
       return mergeStream(buildCss(), buildJs());
-      },
-   publishWebsite: () => {
+   },
+   publishWebsite() {
       const cdnUri = 'https://cdn.jsdelivr.net/npm/pretty-print-json@' + minorVersion;
       const cdnCss = 'href=' + cdnUri + '/dist/pretty-print-json.css';
       const cdnJs =  'src=' +  cdnUri + '/dist/pretty-print-json.js';
@@ -64,8 +64,8 @@ const task = {
          .pipe(replace('src=../pretty-print-json.js',   cdnJs))
          .pipe(size({ showFiles: true }))
          .pipe(gulp.dest('docs'));
-      },
-   };
+   },
+};
 
 // Gulp
 gulp.task('build-dist',      task.buildDistribution);
