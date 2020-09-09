@@ -44,7 +44,7 @@ const prettyPrintJson = {
          //    ([{}[\],]*)         p4: end     Line termination characters  ','
       const json = JSON.stringify(thing, null, settings.indent);
       return htmlEntities(json).replace(jsonLine, replacer);
-      }
+      },
 
    };
 

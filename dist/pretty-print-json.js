@@ -1,8 +1,8 @@
-//! pretty-print-json v0.2.2 ~ github.com/center-key/pretty-print-json ~ MIT License
+//! pretty-print-json v0.2.3 ~ github.com/center-key/pretty-print-json ~ MIT License
 
 const prettyPrintJson = {
 
-   version: '0.2.2',
+   version: '0.2.3',
 
    toHtml(thing, options) {
       const defaults = { indent: 3, quoteKeys: false };
@@ -44,7 +44,7 @@ const prettyPrintJson = {
          //    ([{}[\],]*)         p4: end     Line termination characters  ','
       const json = JSON.stringify(thing, null, settings.indent);
       return htmlEntities(json).replace(jsonLine, replacer);
-      }
+      },
 
    };
 
