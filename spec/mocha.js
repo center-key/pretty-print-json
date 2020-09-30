@@ -21,7 +21,7 @@ describe('Library version number', () => {
       const semVerPattern = /\d+[.]\d+[.]\d+/;
       const actual =   { version: data, valid: semVerPattern.test(data) };
       const expected = { version: data, valid: true };
-      assert.deepEqual(actual, expected);
+      assert.deepStrictEqual(actual, expected);
       });
 
    });
@@ -44,7 +44,7 @@ describe('The .toHtml() function', () => {
          ];
       const actual =   { html: prettyPrintJson.toHtml(input).split('\n') };
       const expected = { html: htmlLines };
-      assert.deepEqual(actual, expected);
+      assert.deepStrictEqual(actual, expected);
       });
 
    it('puts quotes around key names that contain special characters', () => {
@@ -66,7 +66,7 @@ describe('The .toHtml() function', () => {
          ];
       const actual =   { html: prettyPrintJson.toHtml(input).split('\n') };
       const expected = { html: htmlLines };
-      assert.deepEqual(actual, expected);
+      assert.deepStrictEqual(actual, expected);
       });
 
    it('handles a value that is an emoticon', () => {
@@ -78,7 +78,7 @@ describe('The .toHtml() function', () => {
          ];
       const actual =   { html: prettyPrintJson.toHtml(input).split('\n') };
       const expected = { html: htmlLines };
-      assert.deepEqual(actual, expected);
+      assert.deepStrictEqual(actual, expected);
       });
 
    it('handles a value that is null', () => {
@@ -90,7 +90,7 @@ describe('The .toHtml() function', () => {
          ];
       const actual =   { html: prettyPrintJson.toHtml(input).split('\n') };
       const expected = { html: htmlLines };
-      assert.deepEqual(actual, expected);
+      assert.deepStrictEqual(actual, expected);
       });
 
    it('handles a value that is an empty array', () => {
@@ -111,7 +111,7 @@ describe('The .toHtml() function', () => {
          ];
       const actual =   { html: prettyPrintJson.toHtml(input).split('\n') };
       const expected = { html: htmlLines };
-      assert.deepEqual(actual, expected);
+      assert.deepStrictEqual(actual, expected);
       });
 
    it('handles a value that is an empty object', () => {
@@ -128,7 +128,7 @@ describe('The .toHtml() function', () => {
          ];
       const actual =   { html: prettyPrintJson.toHtml(input).split('\n') };
       const expected = { html: htmlLines };
-      assert.deepEqual(actual, expected);
+      assert.deepStrictEqual(actual, expected);
       });
 
    it('handles a value that is a string containing quotes', () => {
@@ -141,7 +141,7 @@ describe('The .toHtml() function', () => {
          ];
       const actual =   { html: prettyPrintJson.toHtml(input).split('\n') };
       const expected = { html: htmlLines };
-      assert.deepEqual(actual, expected);
+      assert.deepStrictEqual(actual, expected);
       });
 
    it('outputs correct number of lines for formatting package.json', () => {
@@ -150,7 +150,7 @@ describe('The .toHtml() function', () => {
       const fileLineCount = packageJson.trim().split('\n').length;
       const actual =   { lines: lines.length,  first: lines[0], last: lines[lines.length - 1] };
       const expected = { lines: fileLineCount, first: '{',      last: '}' };
-      assert.deepEqual(actual, expected);
+      assert.deepStrictEqual(actual, expected);
       });
 
    });
@@ -173,7 +173,7 @@ describe('The "quoteKeys" option', () => {
          ];
       const actual =   { html: prettyPrintJson.toHtml(input, { quoteKeys: true }).split('\n') };
       const expected = { html: htmlLines };
-      assert.deepEqual(actual, expected);
+      assert.deepStrictEqual(actual, expected);
       });
 
    });
@@ -196,7 +196,7 @@ describe('The "indent" option', () => {
          ];
       const actual =   { html: prettyPrintJson.toHtml(input, { indent: 10 }).split('\n') };
       const expected = { html: htmlLines };
-      assert.deepEqual(actual, expected);
+      assert.deepStrictEqual(actual, expected);
       });
 
    });
