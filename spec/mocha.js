@@ -202,4 +202,23 @@ describe('The "indent" option', () => {
    });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+describe('The "linkTags" option', () => {
+
+   it('creates anchor tags for urls', () => {
+      const input = { city: 'London', url: 'http://london.com/', info: 'Visit http://london.com/ for more info' };
+      const htmlLines = [
+         '{',
+         '   <span class=json-key>city</span>: <span class=json-string>"London"</span>,',
+         '   <span class=json-key>url</span>: <span class=json-string>"<a class=json-link href=http://london.com/>http://london.com/</a>"</span>,',
+         '   <span class=json-key>info</span>: <span class=json-string>"Visit <a class=json-link href=http://london.com/>http://london.com/</a> for more info"</span>',
+         '}'
+         ];
+      const actual =   { html: prettyPrintJson.toHtml(input, { linkTags: true }).split('\n') };
+      const expected = { html: htmlLines };
+      assert.deepStrictEqual(actual, expected);
+      });
+
+   });
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
 });
