@@ -109,7 +109,8 @@
          <i data-icon=copy data-click=app.copyToClipboard></i>
          <h3>Colorized output:</h3>
          <pre><output></output></pre>
-         <label><input type=checkbox data-change=app.processJson>quote map keys</label>
+         <label><input id="quoteKeys" type=checkbox data-change=app.processJson>quote map keys</label>
+         <label><input id="linkTags" type=checkbox data-change=app.processJson>create links</label>
       </div>
    </div>
 </main>
@@ -159,11 +160,15 @@
             textarea: component.find('textarea'),
             message:  component.find('#error-message').fadeOut(),
             output:   component.find('output'),
-            checkbox: component.find('input[type=checkbox]'),
+            quoteKeys: component.find('#quoteKeys'),
+            linkTags: component.find('#linkTags'),
             };
          try {
             const data = elem.textarea.val().trim().length ? JSON.parse(elem.textarea.val()) : null;
-            const options = { quoteKeys: elem.checkbox.is(':checked') };
+            const options = { 
+               quoteKeys: elem.quoteKeys.is(':checked'),
+               linkTags: elem.linkTags.is(':checked'),
+            };
             const html = data ? prettyPrintJson.toHtml(data, options) : '[EMPTY]';
             elem.output.html(html);
             }
@@ -188,6 +193,7 @@
             year:    new Date().getFullYear(),
             ios:     library.browser.iOS(),
             space:   '🪐🚀✨',
+            repo:    'https://github.com/center-key/pretty-print-json',
             };
          component.find('textarea').val(JSON.stringify(intro)).trigger('change');
          $('.version-number').text(prettyPrintJson.version);

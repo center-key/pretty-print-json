@@ -57,6 +57,7 @@ elem.innerHTML = prettyPrintJson.toHtml(data);
 | :---------- | :---------- | :------ | :-------------------------------- |
 | `indent`    | **integer** | `3`     | Number of spaces for indentation. |
 | `quoteKeys` | **boolean** | `false` | Always double quote key names.    |
+| `linkTags`  | **boolean** | `false` | Create anchor tags for links.     |
 
 <br>
 
