@@ -1,6 +1,6 @@
 {
    "name": "pretty-print-json",
-   "version": "0.2.3",
+   "version": "0.2.4",
    "description": "JavaScript library to pretty-print JSON data to HTML for formatted color display",
    "license": "MIT",
    "main": "dist/pretty-print-json.js",
@@ -36,7 +36,7 @@
    "devDependencies": {
       "@babel/core": "~7.11",
       "@babel/preset-env": "~7.11",
-      "@fortawesome/fontawesome-free": "~5.14",
+      "@fortawesome/fontawesome-free": "~5.15",
       "babel-minify": "~0.5",
       "babel-preset-minify": "~0.5",
       "dna.js": "~1.6",
