@@ -48,7 +48,7 @@ releaseInstructions() {
    checkin=$(test -d dist && echo "dist files" || echo "package.json")
    nextActionBump() {
       echo "   === Increment version ==="
-      echo "   Edit pacakge.json to bump $version to next version number"
+      echo "   Edit package.json to bump $version to next version number"
       echo "   $projectHome/package.json"
       }
    nextActionCommit() {
