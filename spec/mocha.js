@@ -2,7 +2,7 @@
 // Mocha Specifications Cases
 
 // Imports
-const assert = require('assert').strict;
+const assert = require('assert');
 const fs =     require('fs');
 
 // Setup
@@ -53,7 +53,7 @@ describe('The .toHtml() function', () => {
          '     ':       'Spaces',
          '$':           'Money',
          '~!@#$%^&*()': 'Crazy!',
-         '🚀':          'Unicode',
+         '🚀':          'Unicode'
          };
       const htmlLines = [
          '{',
@@ -107,7 +107,7 @@ describe('The .toHtml() function', () => {
          '      ],',
          '      <span class=json-key>z</span>: []',
          '   }',
-         ']',
+         ']'
          ];
       const actual =   { html: prettyPrintJson.toHtml(input).split('\n') };
       const expected = { html: htmlLines };
