@@ -205,12 +205,20 @@ describe('The "indent" option', () => {
 describe('The "linkTags" option', () => {
 
    it('creates anchor tags for urls', () => {
-      const input = { city: 'London', url: 'http://london.com/', info: 'Visit http://london.com/ for more info' };
+      const input = {
+         city:       'London',
+         url:        'http://london.com/',
+         info:       'Visit http://london.com/ for more info',
+         local:      'http://localhost/london/',
+         characters: 'https://example.com/_.~-/%20/?x=777'
+         };
       const htmlLines = [
          '{',
          '   <span class=json-key>city</span>: <span class=json-string>"London"</span>,',
-         '   <span class=json-key>url</span>: <span class=json-string>"<a class=json-link href=http://london.com/>http://london.com/</a>"</span>,',
-         '   <span class=json-key>info</span>: <span class=json-string>"Visit <a class=json-link href=http://london.com/>http://london.com/</a> for more info"</span>',
+         '   <span class=json-key>url</span>: <span class=json-string>"<a class=json-link href="http://london.com/">http://london.com/</a>"</span>,',
+         '   <span class=json-key>info</span>: <span class=json-string>"Visit <a class=json-link href="http://london.com/">http://london.com/</a> for more info"</span>,',
+         '   <span class=json-key>local</span>: <span class=json-string>"<a class=json-link href="http://localhost/london/">http://localhost/london/</a>"</span>,',
+         '   <span class=json-key>characters</span>: <span class=json-string>"<a class=json-link href="https://example.com/_.~-/%20/?x=777">https://example.com/_.~-/%20/?x=777</a>"</span>',
          '}'
          ];
       const actual =   { html: prettyPrintJson.toHtml(input, { linkTags: true }).split('\n') };

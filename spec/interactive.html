@@ -199,7 +199,7 @@
             year:    new Date().getFullYear(),
             ios:     library.browser.iOS(),
             space:   '🪐🚀✨',
-            fancy:   'https://json5.org',
+            fancy:   'https://json5.org/?' + Date.now() % 20,
             };
          component.find('textarea').val(JSON.stringify(intro)).trigger('change');
          $('.version-number').text(prettyPrintJson.version);
