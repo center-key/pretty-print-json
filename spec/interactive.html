@@ -171,10 +171,7 @@
             };
          try {
             const data = elem.textarea.val().trim().length ? JSON.parse(elem.textarea.val()) : null;
-            const options = {
-               linkTags:  true,
-               quoteKeys: elem.checkbox.is(':checked'),
-               };
+            const options = { quoteKeys: elem.checkbox.is(':checked') };
             const html = data ? prettyPrintJson.toHtml(data, options) : '[EMPTY]';
             elem.output.html(html);
             }

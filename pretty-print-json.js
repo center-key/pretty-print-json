@@ -5,7 +5,7 @@ const prettyPrintJson = {
    version: '[VERSION]',
 
    toHtml(thing, options) {
-      const defaults = { indent: 3, linkTags: false, quoteKeys: false };
+      const defaults = { indent: 3, linkUrls: true, quoteKeys: false };
       const settings = { ...defaults, ...options };
       const htmlEntities = (string) => {
          // Makes text displayable in browsers
@@ -23,7 +23,7 @@ const prettyPrintJson = {
          const type =     boolType || nullType || strType || 'number';
          const urlRegex = /https?:\/\/[^\s"]+/g;
          const makeLink = (link) => '<a class=json-link href="' + link + '">' + link + '</a>';
-         const display =  strType && settings.linkTags ? value.replace(urlRegex, makeLink) : value;
+         const display =  strType && settings.linkUrls ? value.replace(urlRegex, makeLink) : value;
          return '<span class=json-' + type + '>' + display + '</span>';
          };
       const replacer = (match, p1, p2, p3, p4) => {

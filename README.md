@@ -56,10 +56,8 @@ elem.innerHTML = prettyPrintJson.toHtml(data);
 | Name (key)  | Type        | Default | Description                       |
 | :---------- | :---------- | :------ | :-------------------------------- |
 | `indent`    | **integer** | `3`     | Number of spaces for indentation. |
-| `linkTags`  | **boolean** | `false`* | Create anchor tags for links.     |
+| `linkUrls`  | **boolean** | `true`  | Create anchor tags for URLs.      |
 | `quoteKeys` | **boolean** | `false` | Always double quote key names.    |
-
-*The default for `linkTags` will be changed to `true` in a future release.
 
 ## 4) Contributor notes
 To be a contributor, fork the project and run the commands `npm install` and `npm test` on your

@@ -202,7 +202,7 @@ describe('The "indent" option', () => {
    });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-describe('The "linkTags" option', () => {
+describe('The "linkUrls" option', () => {
 
    it('creates anchor tags for urls', () => {
       const input = {
@@ -221,7 +221,7 @@ describe('The "linkTags" option', () => {
          '   <span class=json-key>characters</span>: <span class=json-string>"<a class=json-link href="https://example.com/_.~-/%20/?x=777">https://example.com/_.~-/%20/?x=777</a>"</span>',
          '}',
          ];
-      const actual =   { html: prettyPrintJson.toHtml(input, { linkTags: true }).split('\n') };
+      const actual =   { html: prettyPrintJson.toHtml(input, { linkUrls: true }).split('\n') };
       const expected = { html: htmlLines };
       assert.deepStrictEqual(actual, expected);
       });
