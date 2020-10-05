@@ -56,10 +56,20 @@ elem.innerHTML = prettyPrintJson.toHtml(data);
 | Name (key)  | Type        | Default | Description                       |
 | :---------- | :---------- | :------ | :-------------------------------- |
 | `indent`    | **integer** | `3`     | Number of spaces for indentation. |
+| `linkTags`  | **boolean** | `false`* | Create anchor tags for links.     |
 | `quoteKeys` | **boolean** | `false` | Always double quote key names.    |
-| `linkTags`  | **boolean** | `false` | Create anchor tags for links.     |
+*The default for `linkTags` will be changed to `true` in a future release.
+
+## 4) Contributor Notes
+To be a contributor, fork the project and run the commands `npm install` and `npm test` on your
+local clone.&nbsp; Make your edits and rerun the tests.&nbsp; Pull requests welcome.
+
+Pull requests should not update the `version` number in **package.json** or any files in the `dist` folder.&nbsp; The `version` number and `dist` files are all updated as part of the release process.
 
 <br>
 
 ---
+Feel free to submit questions at:<br>
+[github.com/center-key/pretty-print-json/issues](https://github.com/center-key/pretty-print-json/issues)
+
 [MIT License](LICENSE.txt) | [Blog post](https://blog.centerkey.com/2013/05/javascript-colorized-pretty-print-json.html)

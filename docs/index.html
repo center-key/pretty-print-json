@@ -15,7 +15,7 @@
 <title>Pretty-Print JSON &bull; Interactive online JavaScript tool to format JSON</title>
 <link rel=icon             href=https://centerkey.com/graphics/bookmark.png>
 <link rel=apple-touch-icon href=https://centerkey.com/graphics/mobile-home-screen.png>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15/css/all.min.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@1.6/dist/dna.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@1.3/dist/reset.min.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/pretty-print-json@0.2/dist/pretty-print-json.css>
@@ -70,6 +70,14 @@
       padding: 5px 10px;
       margin: 0px;
       overflow: scroll;
+      }
+   body >main >.flex-columns >div:last-child pre output a {
+      text-decoration: underline;
+      border: none;
+      outline: none;
+      }
+   body >main >.flex-columns >div:last-child pre output a:hover {
+      background-color: transparent;
       }
    body >main >.flex-columns >div:last-child label {
       text-align: right;
@@ -163,7 +171,10 @@
             };
          try {
             const data = elem.textarea.val().trim().length ? JSON.parse(elem.textarea.val()) : null;
-            const options = { quoteKeys: elem.checkbox.is(':checked') };
+            const options = {
+               linkTags:  true,
+               quoteKeys: elem.checkbox.is(':checked'),
+               };
             const html = data ? prettyPrintJson.toHtml(data, options) : '[EMPTY]';
             elem.output.html(html);
             }
@@ -188,10 +199,11 @@
             year:    new Date().getFullYear(),
             ios:     library.browser.iOS(),
             space:   '🪐🚀✨',
+            fancy:   'https://json5.org/?' + Date.now() % 20,
             };
          component.find('textarea').val(JSON.stringify(intro)).trigger('change');
          $('.version-number').text(prettyPrintJson.version);
-         }
+         },
       };
 </script>
 </body>
