@@ -63,7 +63,12 @@ elem.innerHTML = prettyPrintJson.toHtml(data);
 To be a contributor, fork the project and run the commands `npm install` and `npm test` on your
 local clone.&nbsp; Make your edits and rerun the tests.&nbsp; Pull requests welcome.
 
-Pull requests should not update the `version` number in **package.json** or any files in the `dist` folder.&nbsp; The `version` number and `dist` files are all updated as part of the release process.
+Pull requests (PRs) should not update the `version` number in **package.json** or any files in the
+`dist` folder.&nbsp; The `version` number and `dist` files are all updated as part of the release
+process.
+
+Issues labeled **"good first issue"** make it easy for first time contributors to participate.&nbsp;
+Only submit a PR for one of these issues if you're new to this project.
 
 <br>
 
