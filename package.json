@@ -26,7 +26,8 @@
       "unused": true,
       "browser": true,
       "node": true,
-      "mocha": true
+      "mocha": true,
+      "varstmt": true
    },
    "scripts": {
       "pretest": "jshint *.js spec && gulp build-dist",
