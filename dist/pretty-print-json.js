@@ -1,4 +1,5 @@
 //! pretty-print-json v0.3.0 ~ github.com/center-key/pretty-print-json ~ MIT License
+// pretty-print-json ~ MIT License
 
 const prettyPrintJson = {
 
