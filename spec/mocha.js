@@ -204,7 +204,7 @@ describe('The "indent" option', () => {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 describe('The "linkUrls" option', () => {
 
-   it('creates anchor tags for urls', () => {
+   it('creates anchor tags for URLs', () => {
       const input = {
          city:       'London',
          url:        'https://en.wikipedia.org/wiki/London',
