@@ -24,10 +24,10 @@
       "eqeqeq": true,
       "undef": true,
       "unused": true,
+      "varstmt": true,
       "browser": true,
       "node": true,
-      "mocha": true,
-      "varstmt": true
+      "mocha": true
    },
    "scripts": {
       "pretest": "jshint *.js spec && gulp build-dist",
