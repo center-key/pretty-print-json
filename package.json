@@ -6,6 +6,9 @@
    "main": "dist/pretty-print-json.js",
    "browser": "dist/pretty-print-json.min.js",
    "style": "dist/pretty-print-json.css",
+   "files": [
+      "dist"
+   ],
    "repository": "github:center-key/pretty-print-json",
    "homepage": "https://pretty-print-json.js.org",
    "bugs": "https://github.com/center-key/pretty-print-json/issues",
@@ -34,9 +37,10 @@
       "test": "mocha spec && env specMode=minified mocha spec",
       "posttest": "gulp publish-website"
    },
+   "dependencies": {},
    "devDependencies": {
-      "@babel/core": "~7.11",
-      "@babel/preset-env": "~7.11",
+      "@babel/core": "~7.12",
+      "@babel/preset-env": "~7.12",
       "@fortawesome/fontawesome-free": "~5.15",
       "babel-minify": "~0.5",
       "babel-preset-minify": "~0.5",
@@ -54,7 +58,7 @@
       "jquery": "~3.5",
       "jshint": "~2.12",
       "merge-stream": "~2.0",
-      "mocha": "~8.1",
+      "mocha": "~8.2",
       "web-ignition": "~1.3"
    }
 }
