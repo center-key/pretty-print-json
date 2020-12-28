@@ -67,9 +67,6 @@ Pull requests (PRs) should not update the `version` number in **package.json** o
 `dist` folder.&nbsp; The `version` number and `dist` files are all updated as part of the release
 process.
 
-Issues labeled **"good first issue"** make it easy for first time contributors to participate.&nbsp;
-Only submit a PR for one of these issues if you're new to this project.
-
 <br>
 
 ---
