@@ -1,6 +1,6 @@
 {
    "name": "pretty-print-json",
-   "version": "0.3.1",
+   "version": "0.4.0",
    "description": "JavaScript library to pretty-print JSON data to HTML for formatted color display",
    "license": "MIT",
    "main": "dist/pretty-print-json.js",
