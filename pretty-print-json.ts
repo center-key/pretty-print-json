@@ -1,32 +1,38 @@
 // pretty-print-json ~ MIT License
 
+type OutputOptions = {
+   indent?:    number,
+   linkUrls?:  boolean,
+   quoteKeys?: boolean;
+   };
+
 const prettyPrintJson = {
 
    version: '[VERSION]',
 
-   toHtml(thing, options) {
+   toHtml(thing: any, options?: OutputOptions) {
       const defaults = { indent: 3, linkUrls: true, quoteKeys: false };
       const settings = { ...defaults, ...options };
-      const htmlEntities = (string) => {
+      const htmlEntities = (text: string) => {
          // Makes text displayable in browsers
-         return string
+         return text
             .replace(/&/g,   '&amp;')
             .replace(/\\"/g, '&bsol;&quot;')
             .replace(/</g,   '&lt;')
             .replace(/>/g,   '&gt;');
          };
-      const buildValueHtml = (value) => {
+      const buildValueHtml = (value: string): string => {
          // Returns a string like: "<span class=json-number>3.1415</span>"
          const strType =  /^"/.test(value) && 'string';
          const boolType = ['true', 'false'].includes(value) && 'boolean';
          const nullType = value === 'null' && 'null';
          const type =     boolType || nullType || strType || 'number';
          const urlRegex = /https?:\/\/[^\s"]+/g;
-         const makeLink = (link) => '<a class=json-link href="' + link + '">' + link + '</a>';
+         const makeLink = (link: any) => '<a class=json-link href="' + link + '">' + link + '</a>';
          const display =  strType && settings.linkUrls ? value.replace(urlRegex, makeLink) : value;
          return '<span class=json-' + type + '>' + display + '</span>';
          };
-      const replacer = (match, p1, p2, p3, p4) => {
+      const replacer = (match: string, p1: string, p2: string, p3: string, p4: string): string => {
          // Converts the four parenthesized capture groups (indent, key, value, end) into HTML
          const part =       { indent: p1, key: p2, value: p3, end: p4 };
          const findName =   settings.quoteKeys ? /(.*)(): / : /"([\w$]+)": |(.*): /;
@@ -51,7 +57,4 @@ const prettyPrintJson = {
 
    };
 
-if (typeof module === 'object')
-   module.exports = prettyPrintJson;  //node module loading system (CommonJS)
-if (typeof window === 'object')
-   window.prettyPrintJson = prettyPrintJson;  //support both global and window property
+export { prettyPrintJson };

@@ -4,8 +4,10 @@
    "description": "JavaScript library to pretty-print JSON data to HTML for formatted color display",
    "license": "MIT",
    "main": "dist/pretty-print-json.js",
+   "module": "dist/pretty-print-json.es.js",
    "browser": "dist/pretty-print-json.min.js",
    "style": "dist/pretty-print-json.css",
+   "types": "dist",
    "files": [
       "dist"
    ],
@@ -33,7 +35,7 @@
       "mocha": true
    },
    "scripts": {
-      "pretest": "jshint *.js spec && gulp build-dist",
+      "pretest": "jshint *.js spec && tsc --version && tsc --project . && gulp build-dist",
       "test": "mocha spec && env specMode=minified mocha spec",
       "posttest": "gulp publish-website"
    },
@@ -59,6 +61,7 @@
       "jshint": "~2.12",
       "merge-stream": "~2.0",
       "mocha": "~8.2",
+      "typescript": "~4.1",
       "web-ignition": "~1.3"
    }
 }
