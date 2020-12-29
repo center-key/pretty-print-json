@@ -48,5 +48,4 @@ const prettyPrintJson = {
     },
 };
 
-if (typeof module === "object") module.exports = prettyPrintJson;
-if (typeof window === "object") window.prettyPrintJson = prettyPrintJson;
+module.exports = prettyPrintJson;

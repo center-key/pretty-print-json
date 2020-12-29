@@ -47,6 +47,4 @@ const prettyPrintJson = {
         return htmlEntities(json).replace(jsonLine, replacer);
     },
 };
-
-if (typeof module === "object") module.exports = prettyPrintJson;
-if (typeof window === "object") window.prettyPrintJson = prettyPrintJson;
+export { prettyPrintJson };

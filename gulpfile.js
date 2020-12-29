@@ -19,7 +19,7 @@ const minorVersion =    pkg.version.split('.').slice(0, 2).join('.');
 const home =            pkg.repository.replace('github:', 'github.com/');
 const banner =          'pretty-print-json v' + pkg.version + ' ~ ' + home + ' ~ MIT License';
 const bannerCss =       '/*! ' + banner + ' */\n';
-const bannerJs =        '//! ' + banner + '\n';
+const bannerJs =        '//! ' + banner + '\n\n';
 const htmlHintConfig =  { 'attr-value-double-quotes': false };
 const headerComments =  /^\/\/.*\n/gm;
 const transpileES6 =    ['@babel/env', { modules: false }];
@@ -30,9 +30,9 @@ const exportStatement = /^export { (.*) };/m;
 const task = {
 
    buildDistribution() {
-      const umd = `
-         if (typeof module === 'object') module.exports = $1;
-         if (typeof window === 'object') window.$1 = $1;`;
+      const umd = '\n' +
+         'if (typeof module === "object") module.exports = $1;\n' +
+         'if (typeof window === "object") window.$1 = $1;';
       const buildCss = () =>
          gulp.src('pretty-print-json.css')
             .pipe(replace(/.*License.*\n/, ''))
@@ -71,7 +71,7 @@ const task = {
             .pipe(gulp.dest('dist'))
             .pipe(babel(babelMinifyJs))
             .pipe(rename({ extname: '.min.js' }))
-            .pipe(header(bannerJs))
+            .pipe(header(bannerJs.replace('\n\n', '\n')))
             .pipe(gap.appendText('\n'))
             .pipe(size({ showFiles: true }))
             .pipe(size({ showFiles: true, gzip: true }))
@@ -89,8 +89,8 @@ const task = {
          .pipe(htmlValidator())
          .pipe(htmlValidator.reporter())
          .pipe(rename('index.html'))
-         .pipe(replace('href=../pretty-print-json.css', cdnCss))
-         .pipe(replace('src=../pretty-print-json.js',   cdnJs))
+         .pipe(replace('href=../pretty-print-json.css',    cdnCss))
+         .pipe(replace('src=../dist/pretty-print-json.js', cdnJs))
          .pipe(size({ showFiles: true }))
          .pipe(gulp.dest('docs'));
       },
