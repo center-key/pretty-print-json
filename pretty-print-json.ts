@@ -1,6 +1,6 @@
 // pretty-print-json ~ MIT License
 
-type OutputOptions = {
+type formatOptions = {
    indent?:    number,
    linkUrls?:  boolean,
    quoteKeys?: boolean;
@@ -10,7 +10,7 @@ const prettyPrintJson = {
 
    version: '[VERSION]',
 
-   toHtml(thing: any, options?: OutputOptions) {
+   toHtml(thing: unknown, options?: formatOptions): string {
       const defaults = { indent: 3, linkUrls: true, quoteKeys: false };
       const settings = { ...defaults, ...options };
       const htmlEntities = (text: string) => {
@@ -28,7 +28,7 @@ const prettyPrintJson = {
          const nullType = value === 'null' && 'null';
          const type =     boolType || nullType || strType || 'number';
          const urlRegex = /https?:\/\/[^\s"]+/g;
-         const makeLink = (link: any) => '<a class=json-link href="' + link + '">' + link + '</a>';
+         const makeLink = (link: string) => '<a class=json-link href="' + link + '">' + link + '</a>';
          const display =  strType && settings.linkUrls ? value.replace(urlRegex, makeLink) : value;
          return '<span class=json-' + type + '>' + display + '</span>';
          };

@@ -29,7 +29,7 @@ const exportStatement = /^export { (.*) };/m;
 // Tasks
 const task = {
 
-   buildDistribution() {
+   makeDistribution() {
       const umd = '\n' +
          'if (typeof module === "object") module.exports = $1;\n' +
          'if (typeof window === "object") window.$1 = $1;';
@@ -98,5 +98,5 @@ const task = {
    };
 
 // Gulp
-gulp.task('build-dist',      task.buildDistribution);
+gulp.task('make-dist',       task.makeDistribution);
 gulp.task('publish-website', task.publishWebsite);

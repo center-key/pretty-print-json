@@ -7,7 +7,7 @@
    "module": "dist/pretty-print-json.es.js",
    "browser": "dist/pretty-print-json.min.js",
    "style": "dist/pretty-print-json.css",
-   "types": "dist",
+   "types": "dist/pretty-print-json.d.ts",
    "files": [
       "dist"
    ],
@@ -18,10 +18,12 @@
    "author": "Center Key (https://centerkey.com)",
    "keywords": [
       "color",
+      "format",
+      "html",
       "javascript",
       "json",
-      "html",
-      "pretty-print"
+      "pretty-print",
+      "typescript"
    ],
    "jshintConfig": {
       "esversion": 9,
@@ -34,9 +36,25 @@
       "node": true,
       "mocha": true
    },
+   "eslintConfig": {
+      "ignorePatterns": [
+         "build",
+         "dist",
+         "node_modules"
+      ],
+      "root": true,
+      "parser": "@typescript-eslint/parser",
+      "plugins": [
+         "@typescript-eslint"
+      ],
+      "extends": [
+         "eslint:recommended",
+         "plugin:@typescript-eslint/recommended"
+      ]
+   },
    "scripts": {
-      "pretest": "jshint *.js spec && tsc --version && tsc --project . && gulp build-dist",
-      "test": "mocha spec && env specMode=minified mocha spec",
+      "pretest": "jshint *.js spec && eslint --max-warnings 0 . --ext .ts && tsc --version && tsc --project .",
+      "test": "gulp make-dist && mocha spec && env specMode=minified mocha spec",
       "posttest": "gulp publish-website"
    },
    "dependencies": {},
@@ -44,9 +62,12 @@
       "@babel/core": "~7.12",
       "@babel/preset-env": "~7.12",
       "@fortawesome/fontawesome-free": "~5.15",
+      "@typescript-eslint/eslint-plugin": "~4.11",
+      "@typescript-eslint/parser": "~4.11",
       "babel-minify": "~0.5",
       "babel-preset-minify": "~0.5",
       "dna.js": "~1.6",
+      "eslint": "~7.16",
       "gulp": "~4.0",
       "gulp-append-prepend": "~1.0",
       "gulp-babel": "~8.0",
