@@ -53,8 +53,9 @@
       ]
    },
    "scripts": {
-      "pretest": "jshint *.js spec && eslint --max-warnings 0 . --ext .ts && tsc --version && tsc --project .",
-      "test": "gulp make-dist && mocha spec && env specMode=minified mocha spec",
+      "lint": "jshint *.js spec && eslint --max-warnings 0 . --ext .ts",
+      "pretest": "npm run lint && tsc --version && tsc --project . && gulp make-dist",
+      "test": "mocha spec && env specMode=minified mocha spec",
       "posttest": "gulp publish-website"
    },
    "dependencies": {},
