@@ -64,7 +64,7 @@ The **TypeScript Declaration File** file is [pretty-print-json.d.ts](dist/pretty
 in the **dist** folder.
 
 The output of the `prettyPrintJson.toHtml(thing: unknown, options?: FormatOptions)` function is
-configured with the a `FormatOptions` object:
+configured with a `FormatOptions` object:
 ```typescript
 type FormatOptions = {
    indent?:    number,
