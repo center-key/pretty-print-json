@@ -18,15 +18,15 @@ Interactive online tool to format JSON:<br>
 https://pretty-print-json.js.org
 
 ## 2) Setup
-### Browser
+### Web browser
 Load from the [jsdelivr.com CDN](https://www.jsdelivr.com/package/npm/pretty-print-json):
 ```html
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/pretty-print-json@0.4/dist/pretty-print-json.css>
 ...
 <script src=https://cdn.jsdelivr.net/npm/pretty-print-json@0.4/dist/pretty-print-json.min.js></script>
 ```
-### node
-Install package from npm:
+### Node.js server
+Install package for node:
 ```shell
 $ npm install pretty-print-json
 ```
@@ -59,7 +59,30 @@ elem.innerHTML = prettyPrintJson.toHtml(data);
 | `linkUrls`  | **boolean** | `true`  | Create anchor tags for URLs.      |
 | `quoteKeys` | **boolean** | `false` | Always double quote key names.    |
 
-## 4) Contributor notes
+## 4) TypeScript declarations
+The **TypeScript Declaration File** file is [pretty-print-json.d.ts](dist/pretty-print-json.d.ts)
+in the **dist** folder.
+
+The output of the `prettyPrintJson.toHtml(thing: unknown, options?: FormatOptions)` function is
+configured with the a `FormatOptions` object:
+```typescript
+type FormatOptions = {
+   indent?:    number,
+   linkUrls?:  boolean,
+   quoteKeys?: boolean;
+   };
+```
+
+Example TypeScript usage with explicit types:
+```typescript
+import { prettyPrintJson, FormatOptions } from 'pretty-print-json';
+
+const data = { active: true, mode: '🚃', codes: [48348, 28923, 39080], city: 'London' };
+const options: FormatOptions = { linkUrls: true };
+const html: string = prettyPrintJson.toHtml(data, options);
+```
+
+## 5) Contributor notes
 To be a contributor, fork the project and run the commands `npm install` and `npm test` on your
 local clone.&nbsp; Make your edits and rerun the tests.&nbsp; Pull requests welcome.
 
