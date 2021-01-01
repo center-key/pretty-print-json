@@ -1,6 +1,6 @@
 // pretty-print-json ~ MIT License
 
-type formatOptions = {
+type FormatOptions = {
    indent?:    number,
    linkUrls?:  boolean,
    quoteKeys?: boolean;
@@ -10,7 +10,7 @@ const prettyPrintJson = {
 
    version: '[VERSION]',
 
-   toHtml(thing: unknown, options?: formatOptions): string {
+   toHtml(thing: unknown, options?: FormatOptions): string {
       const defaults = { indent: 3, linkUrls: true, quoteKeys: false };
       const settings = { ...defaults, ...options };
       const htmlEntities = (text: string) => {
