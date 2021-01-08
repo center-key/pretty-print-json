@@ -50,7 +50,7 @@ const task = {
             .pipe(header(bannerJs))
             .pipe(replace('[VERSION]', pkg.version))
             .pipe(size({ showFiles: true }))
-            .pipe(rename({ extname: '.es.js' }))
+            .pipe(rename({ extname: '.esm.js' }))
             .pipe(gulp.dest('dist'));
       const buildCjs = () =>
          gulp.src('build/pretty-print-json.js')
