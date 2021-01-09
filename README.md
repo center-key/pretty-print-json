@@ -83,12 +83,8 @@ const html: string = prettyPrintJson.toHtml(data, options);
 ```
 
 ## 5) Contributor notes
-To be a contributor, fork the project and run the commands `npm install` and `npm test` on your
+To be a contributor, **fork** the project and run the commands `npm install` and `npm test` on your
 local clone.&nbsp; Make your edits and rerun the tests.&nbsp; Pull requests welcome.
-
-Pull requests (PRs) should not update the `version` number in **package.json** or any files in the
-`dist` folder.&nbsp; The `version` number and `dist` files are all updated as part of the release
-process.
 
 <br>
 
