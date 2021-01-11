@@ -1,17 +1,17 @@
 // Pretty Print JSON
-// Mocha Specifications Cases
+// Mocha Specification Cases
 
 // Imports
-const assert = require('assert');
-const fs =     require('fs');
+import assert from 'assert';
+import { readFileSync } from 'fs';
 
 // Setup
-const extension =       process.env.specMode === 'minified' ? 'min.js' : 'js';
-const path =            '../dist/pretty-print-json.' + extension;
-const prettyPrintJson = require(path);
+import { prettyPrintJson } from '../dist/pretty-print-json.esm.js';
+const mode =     { type: 'ES Module', file: 'dist/pretty-print-json.esm.js' };
+const filename = import.meta.url.replace(/.*\//, '');  //jshint ignore:line
 
 // Specification suite
-describe(require('path').basename(__filename) + ': ' + path, () => {
+describe(`Specifications: ${filename} - ${mode.type} (${mode.file})`, () => {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 describe('Library version number', () => {
@@ -145,7 +145,7 @@ describe('The .toHtml() function', () => {
       });
 
    it('outputs correct number of lines for formatting package.json', () => {
-      const packageJson = fs.readFileSync('package.json', 'utf8');
+      const packageJson = readFileSync('package.json', 'utf8');
       const lines = prettyPrintJson.toHtml(JSON.parse(packageJson)).split('\n');
       const fileLineCount = packageJson.trim().split('\n').length;
       const actual =   { lines: lines.length,  first: lines[0], last: lines[lines.length - 1] };

@@ -3,7 +3,8 @@
    "version": "0.4.2",
    "description": "JavaScript library to pretty-print JSON data to HTML for formatted color display",
    "license": "MIT",
-   "main": "dist/pretty-print-json.js",
+   "type": "module",
+   "main": "dist/pretty-print-json.umd.cjs",
    "module": "dist/pretty-print-json.esm.js",
    "browser": "dist/pretty-print-json.min.js",
    "style": "dist/pretty-print-json.css",
@@ -54,9 +55,9 @@
    },
    "scripts": {
       "lint": "jshint *.js spec && eslint --max-warnings 0 . --ext .ts",
-      "pretest": "npm run lint && tsc --version && tsc --project . && gulp make-dist",
-      "test": "mocha spec && env specMode=minified mocha spec",
-      "posttest": "gulp publish-website"
+      "tsc": "tsc --version && tsc --project . --removeComments && tsc --project . --module UMD --removeComments --outDir build/umd",
+      "pretest": "npm run lint && rimraf build dist **/.DS_Store && npm run tsc && gulp make-dist",
+      "test": "mocha spec && gulp publish-website"
    },
    "dependencies": {},
    "devDependencies": {
@@ -83,6 +84,7 @@
       "jshint": "~2.12",
       "merge-stream": "~2.0",
       "mocha": "~8.2",
+      "rimraf": "~3.0",
       "typescript": "~4.1",
       "web-ignition": "~1.3"
    }
