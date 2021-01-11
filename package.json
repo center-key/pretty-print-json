@@ -81,6 +81,7 @@
       "gulp-size": "~3.0",
       "gulp-w3c-html-validator": "~2.0",
       "jquery": "~3.5",
+      "jsdom": "~16.4",
       "jshint": "~2.12",
       "merge-stream": "~2.0",
       "mocha": "~8.2",
