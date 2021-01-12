@@ -2,8 +2,8 @@
 // Mocha Specification Cases
 
 // Imports
-import assert from           'assert';
-import { JSDOM } from        'jsdom';
+import assert from 'assert';
+import { JSDOM } from 'jsdom';
 import { readFileSync } from 'fs';
 
 // Setup
