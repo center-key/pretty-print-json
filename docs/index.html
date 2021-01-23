@@ -17,7 +17,7 @@
 <link rel=apple-touch-icon href=https://centerkey.com/graphics/mobile-home-screen.png>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15/css/all.min.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@1.7/dist/dna.css>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@1.3/dist/reset.min.css>
+<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@1.4/dist/reset.min.css>
 <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/pretty-print-json@0.4/dist/pretty-print-json.css>
 <style>
    body {
@@ -158,7 +158,7 @@
 
 <script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/dna.js@1.7/dist/dna.min.js></script>
-<script src=https://cdn.jsdelivr.net/npm/web-ignition@1.3/dist/library.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/web-ignition@1.4/dist/lib-x.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/pretty-print-json@0.4/dist/pretty-print-json.js></script>
 <script>
    const app = {
@@ -183,7 +183,7 @@
          const output =    component.find('output');
          const selection = window.getSelection();
          const range =     document.createRange();
-         library.animate.jiggleIt(icon);
+         libX.animate.jiggleIt(icon);
          range.selectNode(output[0]);
          selection.empty();
          selection.addRange(range);
@@ -194,7 +194,7 @@
             message: 'Put some JSON in the text box.',
             error:   null,
             year:    new Date().getFullYear(),
-            ios:     library.browser.iOS(),
+            ios:     libX.browser.iOS(),
             space:   '🪐🚀✨',
             fancy:   'https://json5.org/?' + Date.now() % 20,
             };
