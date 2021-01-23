@@ -1,6 +1,6 @@
 // pretty-print-json ~ MIT License
 
-type FormatOptions = {
+export type FormatOptions = {
    indent?:    number,
    linkUrls?:  boolean,
    quoteKeys?: boolean;
