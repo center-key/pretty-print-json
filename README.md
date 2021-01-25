@@ -32,7 +32,7 @@ $ npm install pretty-print-json
 ```
 Import into your application:
 ```javascript
-const prettyPrintJson = require('pretty-print-json');
+import { prettyPrintJson } from 'pretty-print-json';
 ```
 
 ## 3) Usage
