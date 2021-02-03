@@ -2,15 +2,15 @@
 // gulp configuration and tasks
 
 // Imports
-import babel from         'gulp-babel';
-import gap from           'gulp-append-prepend';
-import gulp from          'gulp';
-import header from        'gulp-header';
-import htmlHint from      'gulp-htmlhint';
-import mergeStream from   'merge-stream';
-import rename from        'gulp-rename';
-import replace from       'gulp-replace';
-import size from          'gulp-size';
+import babel from       'gulp-babel';
+import gap from         'gulp-append-prepend';
+import gulp from        'gulp';
+import header from      'gulp-header';
+import htmlHint from    'gulp-htmlhint';
+import mergeStream from 'merge-stream';
+import rename from      'gulp-rename';
+import replace from     'gulp-replace';
+import size from        'gulp-size';
 import { htmlValidator } from 'gulp-w3c-html-validator';
 import { readFileSync } from 'fs';
 
@@ -78,16 +78,25 @@ const task = {
       const cdnUri = 'https://cdn.jsdelivr.net/npm/pretty-print-json@' + minorVersion;
       const cdnCss = 'href=' + cdnUri + '/dist/pretty-print-json.css';
       const cdnJs =  'src=' +  cdnUri + '/dist/pretty-print-json.js';
-      return gulp.src('spec/interactive.html')
-         .pipe(htmlHint(htmlHintConfig))
-         .pipe(htmlHint.reporter())
-         .pipe(htmlValidator.analyzer())
-         .pipe(htmlValidator.reporter())
-         .pipe(rename('index.html'))
-         .pipe(replace('href=../pretty-print-json.css',    cdnCss))
-         .pipe(replace('src=../dist/pretty-print-json.js', cdnJs))
-         .pipe(size({ showFiles: true }))
-         .pipe(gulp.dest('docs'));
+      const lint = () =>
+         gulp.src('spec/**/*.html')
+            .pipe(htmlHint(htmlHintConfig))
+            .pipe(htmlHint.reporter())
+            .pipe(htmlValidator.analyzer())
+            .pipe(htmlValidator.reporter());
+      const buildInteractive = () =>
+         gulp.src('spec/interactive.html')
+            .pipe(rename('index.html'))
+            .pipe(replace('href=../pretty-print-json.css',    cdnCss))
+            .pipe(replace('src=../dist/pretty-print-json.js', cdnJs))
+            .pipe(size({ showFiles: true }))
+            .pipe(gulp.dest('docs'));
+      const buildDynamic = () =>
+         gulp.src('spec/dynamic.html')
+            .pipe(rename('index.html'))
+            .pipe(size({ showFiles: true }))
+            .pipe(gulp.dest('docs/dynamic'));
+      return mergeStream(lint(), buildInteractive(), buildDynamic());
       },
 
    };

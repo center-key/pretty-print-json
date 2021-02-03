@@ -1,0 +1,92 @@
+<!doctype html>
+<!-- - - - - - - - - - -->
+<!-- Pretty Print JSON -->
+<!-- - - - - - - - - - -->
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport  content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Pretty-Print JSON &bull; ES Module Dynamic Loading</title>
+<link rel=icon       href=https://centerkey.com/graphics/bookmark.png>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15/css/all.min.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/dna.js@1.7/dist/dna.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/web-ignition@1.4/dist/reset.min.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/pretty-print-json@0.4/dist/pretty-print-json.css>
+<style>
+   body {
+      max-width: 700px;
+      color: whitesmoke;
+      background-color: darkslateblue;
+      }
+   body >header >figure {
+      font-size: 3rem;
+      }
+   body >main >p {
+      text-align: center;
+      }
+   body >main >pre {
+      font-size: 0.9rem;
+      color: black;
+      background-color: white;
+      border: 5px solid silver;
+      padding: 5px 10px;
+      margin: 0px;
+      }
+</style>
+</head>
+<body>
+
+<header>
+   <figure>🦋</figure>
+   <h1>Pretty-Print JSON</h1>
+   <h2>ES Module Dynamic Loading</h2>
+</header>
+
+<main>
+   <p>Page load:<br><code></code></p>
+   <p><button>Reveal JSON</button></p>
+   <pre><output></output></pre>
+</main>
+
+<footer>
+   <div>
+      <a href=https://github.com/center-key/pretty-print-json><i data-brand=github-alt></i></a>
+   </div>
+</footer>
+
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/dna.js@1.7/dist/dna.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/web-ignition@1.4/dist/lib-x.min.js></script>
+<script>
+   const app = {
+      reveal(module) {
+         const buttonClickTime = new Date();
+         const url = 'https://cdn.jsdelivr.net/npm/pretty-print-json@0.4/dist/pretty-print-json.esm.js';
+         import(url).then(module => {
+            const moduleLoadedTime = new Date();
+            const message = {
+               message: 'ES Module Dynamic Loading',
+               version: module.prettyPrintJson.version,
+               times: {
+                  pageLoaded___: $('body').data().pageLoadTime,
+                  buttonClicked: buttonClickTime,
+                  moduleLoaded_: moduleLoadedTime,
+                  },
+               loadMilliseconds: moduleLoadedTime - buttonClickTime,
+               };
+            const html = module.prettyPrintJson.toHtml(message);
+            $('main output').hide().html(html).slideDown();
+            });
+         },
+      setup() {
+         const pageLoadTime = new Date();
+         $('body').data().pageLoadTime = pageLoadTime;
+         $('main code').text(pageLoadTime.toString());
+         $('main button').on({ click: app.reveal });
+         libX.ui.autoDisableButtons();
+         },
+      };
+   app.setup();
+</script>
+</body>
+</html>
