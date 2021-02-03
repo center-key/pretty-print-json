@@ -51,7 +51,7 @@ const prettyPrintJson = {
          //    ("[^"]+": )         p2: key     Key name                     '"active": '
          //    ("[^"]*"|[\w.+-]*)  p3: value   Key value                    'true'
          //    ([{}[\],]*)         p4: end     Line termination characters  ','
-      const json = JSON.stringify(thing, null, settings.indent);
+      const json = JSON.stringify(thing, null, settings.indent) || 'undefined';
       return htmlEntities(json).replace(jsonLine, replacer);
       },
 

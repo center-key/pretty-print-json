@@ -153,6 +153,15 @@ describe('The .toHtml() function', () => {
       assert.deepStrictEqual(actual, expected);
       });
 
+   it('handles nothing (undefined)', () => {
+      const htmlLines = [
+         '<span class=json-number>undefined</span>',
+         ];
+      const actual =   { html: prettyPrintJson.toHtml().split('\n') };
+      const expected = { html: htmlLines };
+      assert.deepStrictEqual(actual, expected);
+      });
+
    });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
