@@ -1,6 +1,6 @@
-//! pretty-print-json v0.4.4 ~ github.com/center-key/pretty-print-json ~ MIT License
+//! pretty-print-json v0.4.5 ~ github.com/center-key/pretty-print-json ~ MIT License
 
-declare type FormatOptions = {
+export declare type FormatOptions = {
     indent?: number;
     linkUrls?: boolean;
     quoteKeys?: boolean;

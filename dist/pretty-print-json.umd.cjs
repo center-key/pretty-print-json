@@ -1,4 +1,4 @@
-//! pretty-print-json v0.4.4 ~ github.com/center-key/pretty-print-json ~ MIT License
+//! pretty-print-json v0.4.5 ~ github.com/center-key/pretty-print-json ~ MIT License
 
 (function (factory) {
     if (typeof module === "object" && typeof module.exports === "object") {
@@ -13,7 +13,7 @@
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.prettyPrintJson = void 0;
     const prettyPrintJson = {
-        version: '0.4.4',
+        version: '0.4.5',
         toHtml(thing, options) {
             const defaults = { indent: 3, linkUrls: true, quoteKeys: false };
             const settings = { ...defaults, ...options };
@@ -45,7 +45,7 @@
                 return indentHtml + keyHtml + valueHtml + endHtml;
             };
             const jsonLine = /^( *)("[^"]+": )?("[^"]*"|[\w.+-]*)?([{}[\],]*)?$/mg;
-            const json = JSON.stringify(thing, null, settings.indent);
+            const json = JSON.stringify(thing, null, settings.indent) || 'undefined';
             return htmlEntities(json).replace(jsonLine, replacer);
         },
     };
