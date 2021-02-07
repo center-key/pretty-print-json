@@ -60,28 +60,32 @@
 <script>
    const app = {
       loadModule(module) {
-         const buttonClickTime = new Date();
+         const buttonClicked = new Date();
          const url = 'https://cdn.jsdelivr.net/npm/pretty-print-json@0.4/dist/pretty-print-json.esm.js';
          import(url).then(module => {
-            const moduleLoadedTime = new Date();
+            const pageLoaded = $('body').data().pageLoaded;
+            const moduleLoaded = new Date();
             const message = {
                message: 'ES Module Dynamic Loading',
                version: module.prettyPrintJson.version,
                times: {
-                  pageLoaded___: $('body').data().pageLoadTime,
-                  buttonClicked: buttonClickTime,
-                  moduleLoaded_: moduleLoadedTime,
+                  pageLoaded___: pageLoaded,
+                  buttonClicked: buttonClicked,
+                  moduleLoaded_: moduleLoaded,
                   },
-               loadMilliseconds: moduleLoadedTime - buttonClickTime,
+               milliseconds: {
+                  waitForClick: buttonClicked - pageLoaded,
+                  loadModule:   moduleLoaded - buttonClicked,
+                  },
                };
             const html = module.prettyPrintJson.toHtml(message);
             $('main output').hide().html(html).slideDown();
             });
          },
       setup() {
-         const pageLoadTime = new Date();
-         $('body').data().pageLoadTime = pageLoadTime;
-         $('main code').text(pageLoadTime.toString());
+         const pageLoaded = new Date();
+         $('body').data().pageLoaded = pageLoaded;
+         $('main code').text(pageLoaded.toString());
          $('main button').on({ click: app.loadModule });
          libX.ui.autoDisableButtons();
          },
