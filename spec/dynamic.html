@@ -44,7 +44,7 @@
 
 <main>
    <p>Page load:<br><code></code></p>
-   <p><button>Reveal JSON</button></p>
+   <p><button>Load Module</button></p>
    <pre><output></output></pre>
 </main>
 
@@ -59,7 +59,7 @@
 <script src=https://cdn.jsdelivr.net/npm/web-ignition@1.4/dist/lib-x.min.js></script>
 <script>
    const app = {
-      reveal(module) {
+      loadModule(module) {
          const buttonClickTime = new Date();
          const url = 'https://cdn.jsdelivr.net/npm/pretty-print-json@0.4/dist/pretty-print-json.esm.js';
          import(url).then(module => {
@@ -82,7 +82,7 @@
          const pageLoadTime = new Date();
          $('body').data().pageLoadTime = pageLoadTime;
          $('main code').text(pageLoadTime.toString());
-         $('main button').on({ click: app.reveal });
+         $('main button').on({ click: app.loadModule });
          libX.ui.autoDisableButtons();
          },
       };
