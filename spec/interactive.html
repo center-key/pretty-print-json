@@ -70,6 +70,10 @@
       padding: 5px 10px;
       margin: 0px;
       overflow: scroll;
+      transition: background-color 400ms;
+      }
+   body >main >.flex-columns.dark-mode >div:last-child pre {
+      background-color: black;
       }
    body >main >.flex-columns >div:last-child pre output a {
       text-decoration: underline;
@@ -79,10 +83,14 @@
    body >main >.flex-columns >div:last-child pre output a:hover {
       background-color: transparent;
       }
-   body >main >.flex-columns >div:last-child label {
-      text-align: right;
+   body >main >.flex-columns >div:last-child nav {
+      display: flex;
+      justify-content: space-between;
       color: silver;
       padding-top: 3px;
+      }
+   body >main >.flex-columns >div:last-child nav label input {
+      margin-left: 0px;
       }
    body >footer b {
       font-size: 1.1rem;
@@ -117,7 +125,10 @@
          <i data-icon=copy data-click=app.copyToClipboard></i>
          <h3>Colorized output:</h3>
          <pre><output></output></pre>
-         <label><input type=checkbox data-change=app.processJson>quote map keys</label>
+         <nav>
+            <label><input type=checkbox data-change=app.processJson>quote map keys</label>
+            <label><input type=checkbox data-change=app.toggleDarkMode>dark mode</label>
+         </nav>
       </div>
    </div>
 </main>
@@ -172,7 +183,7 @@
             textarea: component.find('textarea'),
             message:  component.find('#error-message').fadeOut(),
             output:   component.find('output'),
-            checkbox: component.find('input[type=checkbox]'),
+            checkbox: component.find('input[type=checkbox]').first(),
             };
          try {
             const data = elem.textarea.val().trim().length ? JSON.parse(elem.textarea.val()) : null;
@@ -193,6 +204,9 @@
          selection.empty();
          selection.addRange(range);
          document.execCommand('copy');
+         },
+      toggleDarkMode(target, event, component) {
+         component.toggleClass('dark-mode', target.is(':checked'));
          },
       setup(component) {
          const intro = {

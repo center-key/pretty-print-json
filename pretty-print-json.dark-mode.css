@@ -1,0 +1,11 @@
+/* pretty-print-json ~ MIT License */
+.json-key           { color: indianred; }
+.json-string        { color: darkkhaki; }
+.json-number        { color: deepskyblue; }
+.json-boolean       { color: mediumseagreen; }
+.json-null          { color: darkorange; }
+.json-mark          { color: silver; }
+a.json-link         { color: mediumorchid; transition: all 400ms; }
+a.json-link:visited { color: slategray; }
+a.json-link:hover   { color: violet; }
+a.json-link:active  { color: silver; }

@@ -31,7 +31,7 @@ const task = {
 
    makeDistribution() {
       const buildCss = () =>
-         gulp.src('pretty-print-json.css')
+         gulp.src('pretty-print-json*.css')
             .pipe(replace(headerComments.css, ''))
             .pipe(header(bannerCss))
             .pipe(size({ showFiles: true }))
