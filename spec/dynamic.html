@@ -11,7 +11,7 @@
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15/css/all.min.css>
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/dna.js@1.7/dist/dna.css>
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/web-ignition@1.4/dist/reset.min.css>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/pretty-print-json@0.4/dist/pretty-print-json.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/pretty-print-json@0.5/dist/pretty-print-json.css>
 <style>
    body {
       max-width: 700px;
@@ -61,7 +61,7 @@
    const app = {
       loadModule(module) {
          const buttonClicked = new Date();
-         const url = 'https://cdn.jsdelivr.net/npm/pretty-print-json@0.4/dist/pretty-print-json.esm.js';
+         const url = 'https://cdn.jsdelivr.net/npm/pretty-print-json@0.5/dist/pretty-print-json.esm.js';
          import(url).then(module => {
             const pageLoaded = $('body').data().pageLoaded;
             const moduleLoaded = new Date();

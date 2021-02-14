@@ -11,7 +11,7 @@
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15/css/all.min.css>
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/dna.js@1.7/dist/dna.css>
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/web-ignition@1.4/dist/reset.min.css>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/pretty-print-json@0.4/dist/pretty-print-json.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/pretty-print-json@0.5/dist/pretty-print-json.css>
 <style>
    body {
       max-width: 700px;
@@ -44,7 +44,7 @@
 
 <main>
    <p>Page load:<br><code></code></p>
-   <p><button>Reveal JSON</button></p>
+   <p><button>Load Module</button></p>
    <pre><output></output></pre>
 </main>
 
@@ -59,30 +59,34 @@
 <script src=https://cdn.jsdelivr.net/npm/web-ignition@1.4/dist/lib-x.min.js></script>
 <script>
    const app = {
-      reveal(module) {
-         const buttonClickTime = new Date();
-         const url = 'https://cdn.jsdelivr.net/npm/pretty-print-json@0.4/dist/pretty-print-json.esm.js';
+      loadModule(module) {
+         const buttonClicked = new Date();
+         const url = 'https://cdn.jsdelivr.net/npm/pretty-print-json@0.5/dist/pretty-print-json.esm.js';
          import(url).then(module => {
-            const moduleLoadedTime = new Date();
+            const pageLoaded = $('body').data().pageLoaded;
+            const moduleLoaded = new Date();
             const message = {
                message: 'ES Module Dynamic Loading',
                version: module.prettyPrintJson.version,
                times: {
-                  pageLoaded___: $('body').data().pageLoadTime,
-                  buttonClicked: buttonClickTime,
-                  moduleLoaded_: moduleLoadedTime,
+                  pageLoaded___: pageLoaded,
+                  buttonClicked: buttonClicked,
+                  moduleLoaded_: moduleLoaded,
                   },
-               loadMilliseconds: moduleLoadedTime - buttonClickTime,
+               milliseconds: {
+                  waitForClick: buttonClicked - pageLoaded,
+                  loadModule:   moduleLoaded - buttonClicked,
+                  },
                };
             const html = module.prettyPrintJson.toHtml(message);
             $('main output').hide().html(html).slideDown();
             });
          },
       setup() {
-         const pageLoadTime = new Date();
-         $('body').data().pageLoadTime = pageLoadTime;
-         $('main code').text(pageLoadTime.toString());
-         $('main button').on({ click: app.reveal });
+         const pageLoaded = new Date();
+         $('body').data().pageLoaded = pageLoaded;
+         $('main code').text(pageLoaded.toString());
+         $('main button').on({ click: app.loadModule });
          libX.ui.autoDisableButtons();
          },
       };

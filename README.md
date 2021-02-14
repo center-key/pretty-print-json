@@ -9,6 +9,7 @@ _Pretty-print JSON data into HTML to indent and colorize (written in TypeScript)
 [![Vulnerabilities](https://snyk.io/test/github/center-key/pretty-print-json/badge.svg)](https://snyk.io/test/github/center-key/pretty-print-json)
 [![Hits](https://data.jsdelivr.com/v1/package/npm/pretty-print-json/badge?style=rounded)](https://www.jsdelivr.com/package/npm/pretty-print-json)
 [![Build](https://travis-ci.org/center-key/pretty-print-json.svg)](https://travis-ci.org/center-key/pretty-print-json)
+[![Build](https://github.com/center-key/pretty-print-json/workflows/build/badge.svg)](https://github.com/center-key/pretty-print-json/actions?query=workflow%3Abuild)
 
 <img width=350 alt=screenshot
    src=https://3.bp.blogspot.com/-M13HQRG7cqQ/XaQvF0Q_KyI/AAAAAAAAJeg/3_CTIgPAh5Yqa29aYPvB1aTO9VsUlksLACNcBGAsYHQ/s1600/pretty-print-json.png>
@@ -21,10 +22,11 @@ https://pretty-print-json.js.org
 ### Web browser
 Load from the [jsdelivr.com CDN](https://www.jsdelivr.com/package/npm/pretty-print-json):
 ```html
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/pretty-print-json@0.4/dist/pretty-print-json.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/pretty-print-json@0.5/dist/pretty-print-json.css>
 ...
-<script src=https://cdn.jsdelivr.net/npm/pretty-print-json@0.4/dist/pretty-print-json.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/pretty-print-json@0.5/dist/pretty-print-json.min.js></script>
 ```
+For **dark mode**, replace `pretty-print-json.css` with `pretty-print-json.dark-mode.css` in the `<link>` tag.
 ### Node.js server
 Install package for node:
 ```shell
@@ -33,6 +35,10 @@ $ npm install pretty-print-json
 Import into your application:
 ```javascript
 import { prettyPrintJson } from 'pretty-print-json';
+```
+Or for older CommonJS/UMD environments:
+```javascript
+const { prettyPrintJson } = require('pretty-print-json');  //deprecated
 ```
 
 ## 3) Usage

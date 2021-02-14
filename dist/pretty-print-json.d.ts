@@ -1,10 +1,11 @@
-//! pretty-print-json v0.4.5 ~ github.com/center-key/pretty-print-json ~ MIT License
+//! pretty-print-json v0.5.0 ~ github.com/center-key/pretty-print-json ~ MIT License
 
 export declare type FormatOptions = {
     indent?: number;
     linkUrls?: boolean;
     quoteKeys?: boolean;
 };
+export declare type JsonType = 'key' | 'string' | 'number' | 'boolean' | 'null' | 'mark';
 declare const prettyPrintJson: {
     version: string;
     toHtml(thing: unknown, options?: FormatOptions | undefined): string;
