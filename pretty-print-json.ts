@@ -5,6 +5,7 @@ export type FormatOptions = {
    linkUrls?:  boolean,
    quoteKeys?: boolean;
    };
+export type JsonType = 'key' | 'string' | 'number' | 'boolean' | 'null' | 'mark';
 
 const prettyPrintJson = {
 
@@ -21,6 +22,8 @@ const prettyPrintJson = {
             .replace(/</g,   '&lt;')
             .replace(/>/g,   '&gt;');
          };
+      const spanTag = (type: JsonType, display?: string): string =>
+         display ? '<span class=json-' + type + '>' + display + '</span>' : '';
       const buildValueHtml = (value: string): string => {
          // Returns a string like: "<span class=json-number>3.1415</span>"
          const strType =  /^"/.test(value) && 'string';
@@ -30,7 +33,7 @@ const prettyPrintJson = {
          const urlRegex = /https?:\/\/[^\s"]+/g;
          const makeLink = (link: string) => '<a class=json-link href="' + link + '">' + link + '</a>';
          const display =  strType && settings.linkUrls ? value.replace(urlRegex, makeLink) : value;
-         return '<span class=json-' + type + '>' + display + '</span>';
+         return spanTag(type, display);
          };
       const replacer = (match: string, p1: string, p2: string, p3: string, p4: string): string => {
          // Converts the four parenthesized capture groups (indent, key, value, end) into HTML
@@ -38,9 +41,9 @@ const prettyPrintJson = {
          const findName =   settings.quoteKeys ? /(.*)(): / : /"([\w$]+)": |(.*): /;
          const indentHtml = part.indent || '';
          const keyName =    part.key && part.key.replace(findName, '$1$2');
-         const keyHtml =    part.key ? '<span class=json-key>' + keyName + '</span>: ' : '';
+         const keyHtml =    part.key ? spanTag('key', keyName) + spanTag('mark', ': ') : '';
          const valueHtml =  part.value ? buildValueHtml(part.value) : '';
-         const endHtml =    part.end || '';
+         const endHtml =    spanTag('mark', part.end);
          return indentHtml + keyHtml + valueHtml + endHtml;
          };
       const jsonLine = /^( *)("[^"]+": )?("[^"]*"|[\w.+-]*)?([{}[\],]*)?$/mg;

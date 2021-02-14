@@ -32,15 +32,15 @@ describe('The .toHtml() function', () => {
    it('formats a simple object into the correct HTML', () => {
       const input = { active: true, codes: [48348, 28923, 39080], city: 'London' };
       const htmlLines = [
-         '{',
-         '   <span class=json-key>active</span>: <span class=json-boolean>true</span>,',
-         '   <span class=json-key>codes</span>: [',
-         '      <span class=json-number>48348</span>,',
-         '      <span class=json-number>28923</span>,',
+         '<span class=json-mark>{</span>',
+         '   <span class=json-key>active</span><span class=json-mark>: </span><span class=json-boolean>true</span><span class=json-mark>,</span>',
+         '   <span class=json-key>codes</span><span class=json-mark>: </span><span class=json-mark>[</span>',
+         '      <span class=json-number>48348</span><span class=json-mark>,</span>',
+         '      <span class=json-number>28923</span><span class=json-mark>,</span>',
          '      <span class=json-number>39080</span>',
-         '   ],',
-         '   <span class=json-key>city</span>: <span class=json-string>"London"</span>',
-         '}',
+         '   <span class=json-mark>],</span>',
+         '   <span class=json-key>city</span><span class=json-mark>: </span><span class=json-string>"London"</span>',
+         '<span class=json-mark>}</span>',
          ];
       const actual =   { html: prettyPrintJson.toHtml(input).split('\n') };
       const expected = { html: htmlLines };
@@ -56,13 +56,13 @@ describe('The .toHtml() function', () => {
          '🚀':          'Unicode',
          };
       const htmlLines = [
-         '{',
-         '   <span class=json-key>normal</span>: <span class=json-string>"No quotes"</span>,',
-         '   <span class=json-key>"     "</span>: <span class=json-string>"Spaces"</span>,',
-         '   <span class=json-key>$</span>: <span class=json-string>"Money"</span>,',
-         '   <span class=json-key>"~!@#$%^&amp;*()"</span>: <span class=json-string>"Crazy!"</span>,',
-         '   <span class=json-key>"🚀"</span>: <span class=json-string>"Unicode"</span>',
-         '}',
+         '<span class=json-mark>{</span>',
+         '   <span class=json-key>normal</span><span class=json-mark>: </span><span class=json-string>"No quotes"</span><span class=json-mark>,</span>',
+         '   <span class=json-key>"     "</span><span class=json-mark>: </span><span class=json-string>"Spaces"</span><span class=json-mark>,</span>',
+         '   <span class=json-key>$</span><span class=json-mark>: </span><span class=json-string>"Money"</span><span class=json-mark>,</span>',
+         '   <span class=json-key>"~!@#$%^&amp;*()"</span><span class=json-mark>: </span><span class=json-string>"Crazy!"</span><span class=json-mark>,</span>',
+         '   <span class=json-key>"🚀"</span><span class=json-mark>: </span><span class=json-string>"Unicode"</span>',
+         '<span class=json-mark>}</span>',
          ];
       const actual =   { html: prettyPrintJson.toHtml(input).split('\n') };
       const expected = { html: htmlLines };
@@ -72,9 +72,9 @@ describe('The .toHtml() function', () => {
    it('handles a value that is an emoticon', () => {
       const input = { $: '💰' };
       const htmlLines = [
-         '{',
-         '   <span class=json-key>$</span>: <span class=json-string>"💰"</span>',
-         '}',
+         '<span class=json-mark>{</span>',
+         '   <span class=json-key>$</span><span class=json-mark>: </span><span class=json-string>"💰"</span>',
+         '<span class=json-mark>}</span>',
          ];
       const actual =   { html: prettyPrintJson.toHtml(input).split('\n') };
       const expected = { html: htmlLines };
@@ -84,9 +84,9 @@ describe('The .toHtml() function', () => {
    it('handles a value that is null', () => {
       const input = { _: null };
       const htmlLines = [
-         '{',
-         '   <span class=json-key>_</span>: <span class=json-null>null</span>',
-         '}',
+         '<span class=json-mark>{</span>',
+         '   <span class=json-key>_</span><span class=json-mark>: </span><span class=json-null>null</span>',
+         '<span class=json-mark>}</span>',
          ];
       const actual =   { html: prettyPrintJson.toHtml(input).split('\n') };
       const expected = { html: htmlLines };
@@ -96,18 +96,18 @@ describe('The .toHtml() function', () => {
    it('handles a value that is an empty array', () => {
       const input = [[], { x: [], y: [true, false, []], z: [] }];
       const htmlLines = [
-         '[',
-         '   [],',
-         '   {',
-         '      <span class=json-key>x</span>: [],',
-         '      <span class=json-key>y</span>: [',
-         '         <span class=json-boolean>true</span>,',
-         '         <span class=json-boolean>false</span>,',
-         '         []',
-         '      ],',
-         '      <span class=json-key>z</span>: []',
-         '   }',
-         ']',
+         '<span class=json-mark>[</span>',
+         '   <span class=json-mark>[],</span>',
+         '   <span class=json-mark>{</span>',
+         '      <span class=json-key>x</span><span class=json-mark>: </span><span class=json-mark>[],</span>',
+         '      <span class=json-key>y</span><span class=json-mark>: </span><span class=json-mark>[</span>',
+         '         <span class=json-boolean>true</span><span class=json-mark>,</span>',
+         '         <span class=json-boolean>false</span><span class=json-mark>,</span>',
+         '         <span class=json-mark>[]</span>',
+         '      <span class=json-mark>],</span>',
+         '      <span class=json-key>z</span><span class=json-mark>: </span><span class=json-mark>[]</span>',
+         '   <span class=json-mark>}</span>',
+         '<span class=json-mark>]</span>',
          ];
       const actual =   { html: prettyPrintJson.toHtml(input).split('\n') };
       const expected = { html: htmlLines };
@@ -117,14 +117,14 @@ describe('The .toHtml() function', () => {
    it('handles a value that is an empty object', () => {
       const input = { x: {}, y: { a: true, b: false }, z: {} };
       const htmlLines = [
-         '{',
-         '   <span class=json-key>x</span>: {},',
-         '   <span class=json-key>y</span>: {',
-         '      <span class=json-key>a</span>: <span class=json-boolean>true</span>,',
-         '      <span class=json-key>b</span>: <span class=json-boolean>false</span>',
-         '   },',
-         '   <span class=json-key>z</span>: {}',
-         '}',
+         '<span class=json-mark>{</span>',
+         '   <span class=json-key>x</span><span class=json-mark>: </span><span class=json-mark>{},</span>',
+         '   <span class=json-key>y</span><span class=json-mark>: </span><span class=json-mark>{</span>',
+         '      <span class=json-key>a</span><span class=json-mark>: </span><span class=json-boolean>true</span><span class=json-mark>,</span>',
+         '      <span class=json-key>b</span><span class=json-mark>: </span><span class=json-boolean>false</span>',
+         '   <span class=json-mark>},</span>',
+         '   <span class=json-key>z</span><span class=json-mark>: </span><span class=json-mark>{}</span>',
+         '<span class=json-mark>}</span>',
          ];
       const actual =   { html: prettyPrintJson.toHtml(input).split('\n') };
       const expected = { html: htmlLines };
@@ -134,10 +134,10 @@ describe('The .toHtml() function', () => {
    it('handles a value that is a string containing quotes', () => {
       const input = { quote: 'The Terminator warned, "I\'ll be back."' };
       const htmlLines = [
-         '{',
-         '   <span class=json-key>quote</span>: <span class=json-string>' +
+         '<span class=json-mark>{</span>',
+         '   <span class=json-key>quote</span><span class=json-mark>: </span><span class=json-string>' +
             '"The Terminator warned, &bsol;&quot;I\'ll be back.&bsol;&quot;"</span>',
-         '}',
+         '<span class=json-mark>}</span>',
          ];
       const actual =   { html: prettyPrintJson.toHtml(input).split('\n') };
       const expected = { html: htmlLines };
@@ -148,8 +148,16 @@ describe('The .toHtml() function', () => {
       const packageJson = readFileSync('package.json', 'utf8');
       const lines = prettyPrintJson.toHtml(JSON.parse(packageJson)).split('\n');
       const fileLineCount = packageJson.trim().split('\n').length;
-      const actual =   { lines: lines.length,  first: lines[0], last: lines[lines.length - 1] };
-      const expected = { lines: fileLineCount, first: '{',      last: '}' };
+      const actual =   {
+         lines: lines.length,
+         first: lines[0],
+         last:  lines[lines.length - 1],
+         };
+      const expected = {
+         lines: fileLineCount,
+         first: '<span class=json-mark>{</span>',
+         last:  '<span class=json-mark>}</span>',
+         };
       assert.deepStrictEqual(actual, expected);
       });
 
@@ -170,15 +178,15 @@ describe('The "quoteKeys" option', () => {
    it('puts double quotes around all key names', () => {
       const input = { active: true, codes: [48348, 28923, 39080], city: 'London' };
       const htmlLines = [
-         '{',
-         '   <span class=json-key>"active"</span>: <span class=json-boolean>true</span>,',
-         '   <span class=json-key>"codes"</span>: [',
-         '      <span class=json-number>48348</span>,',
-         '      <span class=json-number>28923</span>,',
+         '<span class=json-mark>{</span>',
+         '   <span class=json-key>"active"</span><span class=json-mark>: </span><span class=json-boolean>true</span><span class=json-mark>,</span>',
+         '   <span class=json-key>"codes"</span><span class=json-mark>: </span><span class=json-mark>[</span>',
+         '      <span class=json-number>48348</span><span class=json-mark>,</span>',
+         '      <span class=json-number>28923</span><span class=json-mark>,</span>',
          '      <span class=json-number>39080</span>',
-         '   ],',
-         '   <span class=json-key>"city"</span>: <span class=json-string>"London"</span>',
-         '}',
+         '   <span class=json-mark>],</span>',
+         '   <span class=json-key>"city"</span><span class=json-mark>: </span><span class=json-string>"London"</span>',
+         '<span class=json-mark>}</span>',
          ];
       const actual =   { html: prettyPrintJson.toHtml(input, { quoteKeys: true }).split('\n') };
       const expected = { html: htmlLines };
@@ -193,15 +201,15 @@ describe('The "indent" option', () => {
    it('indents the correct number of spaces', () => {
       const input = { active: true, codes: [48348, 28923, 39080], city: 'London' };
       const htmlLines = [
-         '{',
-         '          <span class=json-key>active</span>: <span class=json-boolean>true</span>,',
-         '          <span class=json-key>codes</span>: [',
-         '                    <span class=json-number>48348</span>,',
-         '                    <span class=json-number>28923</span>,',
+         '<span class=json-mark>{</span>',
+         '          <span class=json-key>active</span><span class=json-mark>: </span><span class=json-boolean>true</span><span class=json-mark>,</span>',
+         '          <span class=json-key>codes</span><span class=json-mark>: </span><span class=json-mark>[</span>',
+         '                    <span class=json-number>48348</span><span class=json-mark>,</span>',
+         '                    <span class=json-number>28923</span><span class=json-mark>,</span>',
          '                    <span class=json-number>39080</span>',
-         '          ],',
-         '          <span class=json-key>city</span>: <span class=json-string>"London"</span>',
-         '}',
+         '          <span class=json-mark>],</span>',
+         '          <span class=json-key>city</span><span class=json-mark>: </span><span class=json-string>"London"</span>',
+         '<span class=json-mark>}</span>',
          ];
       const actual =   { html: prettyPrintJson.toHtml(input, { indent: 10 }).split('\n') };
       const expected = { html: htmlLines };
@@ -222,13 +230,13 @@ describe('The "linkUrls" option', () => {
          characters: 'https://example.com/_.~-/%20/?x=777',
          };
       const htmlLines = [
-         '{',
-         '   <span class=json-key>city</span>: <span class=json-string>"London"</span>,',
-         '   <span class=json-key>url</span>: <span class=json-string>"<a class=json-link href="https://en.wikipedia.org/wiki/London">https://en.wikipedia.org/wiki/London</a>"</span>,',
-         '   <span class=json-key>info</span>: <span class=json-string>"Visit <a class=json-link href="https://en.wikipedia.org/wiki/London">https://en.wikipedia.org/wiki/London</a> <a class=json-link href="https://en.wikipedia.org/wiki/United_Kingdom">https://en.wikipedia.org/wiki/United_Kingdom</a>"</span>,',
-         '   <span class=json-key>local</span>: <span class=json-string>"<a class=json-link href="http://localhost/london/">http://localhost/london/</a>"</span>,',
-         '   <span class=json-key>characters</span>: <span class=json-string>"<a class=json-link href="https://example.com/_.~-/%20/?x=777">https://example.com/_.~-/%20/?x=777</a>"</span>',
-         '}',
+         '<span class=json-mark>{</span>',
+         '   <span class=json-key>city</span><span class=json-mark>: </span><span class=json-string>"London"</span><span class=json-mark>,</span>',
+         '   <span class=json-key>url</span><span class=json-mark>: </span><span class=json-string>"<a class=json-link href="https://en.wikipedia.org/wiki/London">https://en.wikipedia.org/wiki/London</a>"</span><span class=json-mark>,</span>',
+         '   <span class=json-key>info</span><span class=json-mark>: </span><span class=json-string>"Visit <a class=json-link href="https://en.wikipedia.org/wiki/London">https://en.wikipedia.org/wiki/London</a> <a class=json-link href="https://en.wikipedia.org/wiki/United_Kingdom">https://en.wikipedia.org/wiki/United_Kingdom</a>"</span><span class=json-mark>,</span>',
+         '   <span class=json-key>local</span><span class=json-mark>: </span><span class=json-string>"<a class=json-link href="http://localhost/london/">http://localhost/london/</a>"</span><span class=json-mark>,</span>',
+         '   <span class=json-key>characters</span><span class=json-mark>: </span><span class=json-string>"<a class=json-link href="https://example.com/_.~-/%20/?x=777">https://example.com/_.~-/%20/?x=777</a>"</span>',
+         '<span class=json-mark>}</span>',
          ];
       const actual =   { html: prettyPrintJson.toHtml(input, { linkUrls: true }).split('\n') };
       const expected = { html: htmlLines };

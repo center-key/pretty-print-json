@@ -4,6 +4,7 @@
 .json-number        { color: navy; }
 .json-boolean       { color: teal; }
 .json-null          { color: dimgray; }
+.json-mark          { color: black; }
 a.json-link         { color: purple; transition: all 400ms; }
 a.json-link:visited { color: slategray; }
 a.json-link:hover   { color: blueviolet; }
