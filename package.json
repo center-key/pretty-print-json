@@ -70,7 +70,7 @@
       "babel-minify": "~0.5",
       "babel-preset-minify": "~0.5",
       "dna.js": "~1.7",
-      "eslint": "~7.20",
+      "eslint": "~7.21",
       "gulp": "~4.0",
       "gulp-append-prepend": "~1.0",
       "gulp-babel": "~8.0",
