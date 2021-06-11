@@ -21,6 +21,7 @@ const home =           pkg.repository.replace('github:', 'github.com/');
 const banner =         'pretty-print-json v' + pkg.version + ' ~ ' + home + ' ~ MIT License';
 const bannerCss =      '/*! ' + banner + ' */';
 const bannerJs =       '//! ' + banner + '\n\n';
+const setPkgVersion =  () => replace('[VERSION]', pkg.version);
 const htmlHintConfig = { 'attr-value-double-quotes': false };
 const headerComments = { css: /^\/[*].*[*]\/$/gm };
 const transpileES6 =   ['@babel/env', { modules: false }];
@@ -30,7 +31,6 @@ const babelMinifyJs =  { presets: [transpileES6, 'minify'], comments: false };
 const task = {
 
    makeDistribution() {
-      const setPkgVersion = () => replace('[VERSION]', pkg.version);
       const buildCss = () =>
          gulp.src('pretty-print-json*.css')
             .pipe(replace(headerComments.css, ''))
@@ -46,8 +46,8 @@ const task = {
          gulp.src('build/pretty-print-json.js')
             .pipe(header(bannerJs))
             .pipe(setPkgVersion())
-            .pipe(size({ showFiles: true }))
             .pipe(rename({ extname: '.esm.js' }))
+            .pipe(size({ showFiles: true }))
             .pipe(gulp.dest('dist'));
       const buildUmd = () =>
          gulp.src('build/umd/pretty-print-json.js')
