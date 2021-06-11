@@ -22,7 +22,7 @@ const banner =         'pretty-print-json v' + pkg.version + ' ~ ' + home + ' ~ 
 const bannerCss =      '/*! ' + banner + ' */';
 const bannerJs =       '//! ' + banner + '\n\n';
 const htmlHintConfig = { 'attr-value-double-quotes': false };
-const headerComments = { css: /^\/[*].*[*]\/$/gm, js: /^\/\/.*\n/gm };
+const headerComments = { css: /^\/[*].*[*]\/$/gm };
 const transpileES6 =   ['@babel/env', { modules: false }];
 const babelMinifyJs =  { presets: [transpileES6, 'minify'], comments: false };
 
@@ -30,6 +30,7 @@ const babelMinifyJs =  { presets: [transpileES6, 'minify'], comments: false };
 const task = {
 
    makeDistribution() {
+      const setPkgVersion = () => replace('[VERSION]', pkg.version);
       const buildCss = () =>
          gulp.src('pretty-print-json*.css')
             .pipe(replace(headerComments.css, ''))
@@ -43,24 +44,22 @@ const task = {
             .pipe(gulp.dest('dist'));
       const buildEsm = () =>
          gulp.src('build/pretty-print-json.js')
-            .pipe(replace(headerComments.js, ''))
             .pipe(header(bannerJs))
-            .pipe(replace('[VERSION]', pkg.version))
+            .pipe(setPkgVersion())
             .pipe(size({ showFiles: true }))
             .pipe(rename({ extname: '.esm.js' }))
             .pipe(gulp.dest('dist'));
       const buildUmd = () =>
          gulp.src('build/umd/pretty-print-json.js')
             .pipe(header(bannerJs))
-            .pipe(replace('[VERSION]', pkg.version))
+            .pipe(setPkgVersion())
             .pipe(rename({ extname: '.umd.cjs' }))
             .pipe(size({ showFiles: true }))
             .pipe(gulp.dest('dist'));
       const buildJs = () =>
          gulp.src('build/pretty-print-json.js')
-            .pipe(replace(headerComments.js, ''))
             .pipe(header(bannerJs))
-            .pipe(replace('[VERSION]', pkg.version))
+            .pipe(setPkgVersion())
             .pipe(replace(/^export { (.*) };/m, 'if (typeof window === "object") window.$1 = $1;'))
             .pipe(size({ showFiles: true }))
             .pipe(gulp.dest('dist'))
