@@ -3,7 +3,7 @@
 
 _Pretty-print JSON data into HTML to indent and colorize (written in TypeScript)_
 
-[![License:MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/center-key/pretty-print-json/blob/master/LICENSE.txt)
+[![License:MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/center-key/pretty-print-json/blob/main/LICENSE.txt)
 [![npm](https://img.shields.io/npm/v/pretty-print-json.svg)](https://www.npmjs.com/package/pretty-print-json)
 [![Size](https://badgen.net/bundlephobia/minzip/pretty-print-json)](https://bundlephobia.com/result?p=pretty-print-json)
 [![Vulnerabilities](https://snyk.io/test/github/center-key/pretty-print-json/badge.svg)](https://snyk.io/test/github/center-key/pretty-print-json)
@@ -14,7 +14,7 @@ _Pretty-print JSON data into HTML to indent and colorize (written in TypeScript)
 <img width=350 alt=screenshot
    src=https://3.bp.blogspot.com/-M13HQRG7cqQ/XaQvF0Q_KyI/AAAAAAAAJeg/3_CTIgPAh5Yqa29aYPvB1aTO9VsUlksLACNcBGAsYHQ/s1600/pretty-print-json.png>
 
-## 1) Try it out
+## 1) Try It Out
 Interactive online tool to format JSON:<br>
 https://pretty-print-json.js.org
 
@@ -65,7 +65,7 @@ elem.innerHTML = prettyPrintJson.toHtml(data);
 | `linkUrls`  | **boolean** | `true`  | Create anchor tags for URLs.      |
 | `quoteKeys` | **boolean** | `false` | Always double quote key names.    |
 
-## 4) TypeScript declarations
+## 4) TypeScript Declarations
 The **TypeScript Declaration File** file is [pretty-print-json.d.ts](dist/pretty-print-json.d.ts)
 in the **dist** folder.
 
@@ -88,7 +88,7 @@ const options: FormatOptions = { linkUrls: true };
 const html: string = prettyPrintJson.toHtml(data, options);
 ```
 
-## 5) Contributor notes
+## 5) Contributor Notes
 To be a contributor, **fork** the project and run the commands `npm install` and `npm test` on your
 local clone.&nbsp; Make your edits and rerun the tests.&nbsp; Pull requests welcome.
 

@@ -52,7 +52,10 @@
       "extends": [
          "eslint:recommended",
          "plugin:@typescript-eslint/recommended"
-      ]
+      ],
+      "rules": {
+         "@typescript-eslint/no-non-null-assertion": "off"
+      }
    },
    "scripts": {
       "lint": "   jshint *.js spec && eslint --max-warnings 0 . --ext .ts",
@@ -65,8 +68,8 @@
       "@babel/core": "~7.14",
       "@babel/preset-env": "~7.14",
       "@fortawesome/fontawesome-free": "~5.15",
-      "@typescript-eslint/eslint-plugin": "~4.26",
-      "@typescript-eslint/parser": "~4.26",
+      "@typescript-eslint/eslint-plugin": "~4.27",
+      "@typescript-eslint/parser": "~4.27",
       "babel-minify": "~0.5",
       "babel-preset-minify": "~0.5",
       "dna.js": "~1.7",
@@ -80,7 +83,7 @@
       "gulp-rename": "~2.0",
       "gulp-replace": "~1.1",
       "gulp-size": "~4.0",
-      "gulp-w3c-html-validator": "~3.0",
+      "gulp-w3c-html-validator": "~3.2",
       "jquery": "~3.6",
       "jsdom": "~16.6",
       "jshint": "~2.13",
