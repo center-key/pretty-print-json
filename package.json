@@ -1,6 +1,6 @@
 {
    "name": "pretty-print-json",
-   "version": "1.0.0",
+   "version": "1.0.1",
    "description": "Pretty-print JSON data into HTML to indent and colorize (written in TypeScript)",
    "license": "MIT",
    "type": "module",
@@ -59,7 +59,7 @@
    },
    "scripts": {
       "lint": "   jshint *.js spec && eslint --max-warnings 0 . --ext .ts",
-      "tsc": "    tsc --version && tsc --project . --removeComments && tsc --project . --module UMD --removeComments --outDir build/umd",
+      "tsc": "    tsc --version && tsc --project . && tsc --project . --module UMD --outDir build/umd",
       "pretest": "npm run lint && rimraf build dist **/.DS_Store && npm run tsc && gulp make-dist",
       "test": "   mocha spec && gulp publish-website"
    },

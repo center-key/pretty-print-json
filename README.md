@@ -8,7 +8,6 @@ _Pretty-print JSON data into HTML to indent and colorize (written in TypeScript)
 [![Size](https://badgen.net/bundlephobia/minzip/pretty-print-json)](https://bundlephobia.com/result?p=pretty-print-json)
 [![Vulnerabilities](https://snyk.io/test/github/center-key/pretty-print-json/badge.svg)](https://snyk.io/test/github/center-key/pretty-print-json)
 [![Hits](https://data.jsdelivr.com/v1/package/npm/pretty-print-json/badge?style=rounded)](https://www.jsdelivr.com/package/npm/pretty-print-json)
-[![Build](https://travis-ci.org/center-key/pretty-print-json.svg)](https://travis-ci.org/center-key/pretty-print-json)
 [![Build](https://github.com/center-key/pretty-print-json/workflows/build/badge.svg)](https://github.com/center-key/pretty-print-json/actions?query=workflow%3Abuild)
 
 <img width=350 alt=screenshot
