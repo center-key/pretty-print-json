@@ -2,7 +2,7 @@
 // Mocha Specification Cases
 
 // Imports
-import assert from 'assert';
+import { assertDeepStrictEqual } from 'assert-deep-strict-equal';
 import { readFileSync } from 'fs';
 
 // Setup
@@ -21,7 +21,7 @@ describe('Library version number', () => {
       const semVerPattern = /\d+[.]\d+[.]\d+/;
       const actual =   { version: data, valid: semVerPattern.test(data) };
       const expected = { version: data, valid: true };
-      assert.deepStrictEqual(actual, expected);
+      assertDeepStrictEqual(actual, expected);
       });
 
    });
@@ -44,7 +44,7 @@ describe('The .toHtml() function', () => {
          ];
       const actual =   { html: prettyPrintJson.toHtml(input).split('\n') };
       const expected = { html: htmlLines };
-      assert.deepStrictEqual(actual, expected);
+      assertDeepStrictEqual(actual, expected);
       });
 
    it('puts quotes around key names that contain special characters', () => {
@@ -66,7 +66,7 @@ describe('The .toHtml() function', () => {
          ];
       const actual =   { html: prettyPrintJson.toHtml(input).split('\n') };
       const expected = { html: htmlLines };
-      assert.deepStrictEqual(actual, expected);
+      assertDeepStrictEqual(actual, expected);
       });
 
    it('handles a value that is an emoticon', () => {
@@ -78,7 +78,7 @@ describe('The .toHtml() function', () => {
          ];
       const actual =   { html: prettyPrintJson.toHtml(input).split('\n') };
       const expected = { html: htmlLines };
-      assert.deepStrictEqual(actual, expected);
+      assertDeepStrictEqual(actual, expected);
       });
 
    it('handles a value that is null', () => {
@@ -90,7 +90,7 @@ describe('The .toHtml() function', () => {
          ];
       const actual =   { html: prettyPrintJson.toHtml(input).split('\n') };
       const expected = { html: htmlLines };
-      assert.deepStrictEqual(actual, expected);
+      assertDeepStrictEqual(actual, expected);
       });
 
    it('handles a value that is an empty array', () => {
@@ -111,7 +111,7 @@ describe('The .toHtml() function', () => {
          ];
       const actual =   { html: prettyPrintJson.toHtml(input).split('\n') };
       const expected = { html: htmlLines };
-      assert.deepStrictEqual(actual, expected);
+      assertDeepStrictEqual(actual, expected);
       });
 
    it('handles a value that is an empty object', () => {
@@ -128,7 +128,7 @@ describe('The .toHtml() function', () => {
          ];
       const actual =   { html: prettyPrintJson.toHtml(input).split('\n') };
       const expected = { html: htmlLines };
-      assert.deepStrictEqual(actual, expected);
+      assertDeepStrictEqual(actual, expected);
       });
 
    it('handles a value that is a string containing quotes', () => {
@@ -141,7 +141,7 @@ describe('The .toHtml() function', () => {
          ];
       const actual =   { html: prettyPrintJson.toHtml(input).split('\n') };
       const expected = { html: htmlLines };
-      assert.deepStrictEqual(actual, expected);
+      assertDeepStrictEqual(actual, expected);
       });
 
    it('outputs correct number of lines for formatting package.json', () => {
@@ -158,7 +158,7 @@ describe('The .toHtml() function', () => {
          first: '<span class=json-mark>{</span>',
          last:  '<span class=json-mark>}</span>',
          };
-      assert.deepStrictEqual(actual, expected);
+      assertDeepStrictEqual(actual, expected);
       });
 
    it('handles nothing (undefined)', () => {
@@ -167,7 +167,7 @@ describe('The .toHtml() function', () => {
          ];
       const actual =   { html: prettyPrintJson.toHtml().split('\n') };
       const expected = { html: htmlLines };
-      assert.deepStrictEqual(actual, expected);
+      assertDeepStrictEqual(actual, expected);
       });
 
    });
@@ -190,7 +190,7 @@ describe('The "quoteKeys" option', () => {
          ];
       const actual =   { html: prettyPrintJson.toHtml(input, { quoteKeys: true }).split('\n') };
       const expected = { html: htmlLines };
-      assert.deepStrictEqual(actual, expected);
+      assertDeepStrictEqual(actual, expected);
       });
 
    });
@@ -213,7 +213,7 @@ describe('The "indent" option', () => {
          ];
       const actual =   { html: prettyPrintJson.toHtml(input, { indent: 10 }).split('\n') };
       const expected = { html: htmlLines };
-      assert.deepStrictEqual(actual, expected);
+      assertDeepStrictEqual(actual, expected);
       });
 
    });
@@ -240,7 +240,7 @@ describe('The "linkUrls" option', () => {
          ];
       const actual =   { html: prettyPrintJson.toHtml(input, { linkUrls: true }).split('\n') };
       const expected = { html: htmlLines };
-      assert.deepStrictEqual(actual, expected);
+      assertDeepStrictEqual(actual, expected);
       });
 
    });
