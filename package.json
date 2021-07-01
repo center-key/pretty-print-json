@@ -4,14 +4,21 @@
    "description": "Pretty-print JSON data into HTML to indent and colorize (written in TypeScript)",
    "license": "MIT",
    "type": "module",
-   "main": "dist/pretty-print-json.umd.cjs",
    "module": "dist/pretty-print-json.esm.js",
+   "main": "dist/pretty-print-json.umd.cjs",
    "browser": "dist/pretty-print-json.min.js",
    "style": "dist/pretty-print-json.css",
    "types": "dist/pretty-print-json.d.ts",
    "files": [
       "dist"
    ],
+   "exports": {
+      ".": {
+         "import": "./dist/pretty-print-json.esm.js",
+         "require": "./dist/pretty-print-json.umd.cjs"
+      },
+      "./": "./dist/"
+   },
    "repository": "github:center-key/pretty-print-json",
    "homepage": "https://pretty-print-json.js.org",
    "bugs": "https://github.com/center-key/pretty-print-json/issues",
