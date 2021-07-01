@@ -43,7 +43,7 @@ const { prettyPrintJson } = require('pretty-print-json');  //deprecated
 ## 3) Usage
 ### API
 ```javascript
-const html = prettyPrintJson.toHtml(data[, options]);
+const html = prettyPrintJson.toHtml(data, options?);
 ```
 ### Example
 ##### HTML:
