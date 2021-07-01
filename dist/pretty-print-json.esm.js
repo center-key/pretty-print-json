@@ -1,7 +1,7 @@
-//! pretty-print-json v1.0.1 ~ github.com/center-key/pretty-print-json ~ MIT License
+//! pretty-print-json v1.0.2 ~ github.com/center-key/pretty-print-json ~ MIT License
 
 const prettyPrintJson = {
-    version: '1.0.1',
+    version: '1.0.2',
     toHtml(thing, options) {
         const defaults = { indent: 3, linkUrls: true, quoteKeys: false };
         const settings = { ...defaults, ...options };
