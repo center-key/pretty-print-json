@@ -6,7 +6,6 @@
    "type": "module",
    "module": "dist/pretty-print-json.esm.js",
    "main": "dist/pretty-print-json.umd.cjs",
-   "browser": "dist/pretty-print-json.min.js",
    "style": "dist/pretty-print-json.css",
    "types": "dist/pretty-print-json.d.ts",
    "files": [
