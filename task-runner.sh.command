@@ -35,6 +35,7 @@ releaseInstructions() {
    version=v$(grep '"version"' package.json | awk -F'"' '{print $4}')
    pushed=v$(curl --silent $package | grep '"version":' | awk -F'"' '{print $4}')
    released=$(git tag | tail -1)
+   published=v$(npm view $repository version)
    minorVersion=$(echo ${pushed:1} | awk -F"." '{ print $1 "." $2 }')
    echo "Local changes:"
    git status --short
@@ -43,7 +44,7 @@ releaseInstructions() {
    git tag | tail -5
    echo
    echo "Release progress:"
-   echo "   $version (local) --> $pushed (pushed) --> $released (released)"
+   echo "   $version (local) --> $pushed (pushed) --> $released (released) --> $published (published)"
    echo
    test "$version" ">" "$released" && mode="NOT released" || mode="RELEASED"
    echo "Current version is: $mode"
