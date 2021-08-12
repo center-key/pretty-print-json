@@ -1,13 +1,13 @@
 // Pretty Print JSON
-// Mocha Specification Cases
+// Mocha Specification Suite
 
 // Imports
 import { assertDeepStrictEqual } from 'assert-deep-strict-equal';
 import { readFileSync } from 'fs';
+import { prettyPrintJson } from '../dist/pretty-print-json.js';
 
 // Setup
-import { prettyPrintJson } from '../dist/pretty-print-json.esm.js';
-const mode =     { type: 'ES Module', file: 'dist/pretty-print-json.esm.js' };
+const mode =     { type: 'ES Module', file: 'dist/pretty-print-json.js' };
 const filename = import.meta.url.replace(/.*\//, '');  //jshint ignore:line
 
 // Specification suite

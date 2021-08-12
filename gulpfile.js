@@ -42,12 +42,19 @@ const task = {
             .pipe(header(bannerJs))
             .pipe(size({ showFiles: true }))
             .pipe(gulp.dest('dist'));
-      const buildEsm = () =>
+      const buildJs = () =>
          gulp.src('build/pretty-print-json.js')
             .pipe(header(bannerJs))
             .pipe(setPkgVersion())
-            .pipe(rename({ extname: '.esm.js' }))
             .pipe(size({ showFiles: true }))
+            .pipe(gulp.dest('dist'))
+            .pipe(replace(/^export { (.*) };/m, 'if (typeof window === "object") window.$1 = $1;'))
+            .pipe(babel(babelMinifyJs))
+            .pipe(rename({ extname: '.min.js' }))
+            .pipe(header(bannerJs.replace('\n\n', '\n')))
+            .pipe(gap.appendText('\n'))
+            .pipe(size({ showFiles: true }))
+            .pipe(size({ showFiles: true, gzip: true }))
             .pipe(gulp.dest('dist'));
       const buildUmd = () =>
          gulp.src('build/umd/pretty-print-json.js')
@@ -56,27 +63,13 @@ const task = {
             .pipe(rename({ extname: '.umd.cjs' }))
             .pipe(size({ showFiles: true }))
             .pipe(gulp.dest('dist'));
-      const buildJs = () =>
-         gulp.src('build/pretty-print-json.js')
-            .pipe(header(bannerJs))
-            .pipe(setPkgVersion())
-            .pipe(replace(/^export { (.*) };/m, 'if (typeof window === "object") window.$1 = $1;'))
-            .pipe(size({ showFiles: true }))
-            .pipe(gulp.dest('dist'))
-            .pipe(babel(babelMinifyJs))
-            .pipe(rename({ extname: '.min.js' }))
-            .pipe(header(bannerJs.replace('\n\n', '\n')))
-            .pipe(gap.appendText('\n'))
-            .pipe(size({ showFiles: true }))
-            .pipe(size({ showFiles: true, gzip: true }))
-            .pipe(gulp.dest('dist'));
-      return mergeStream(buildCss(), buildDts(), buildEsm(), buildUmd(), buildJs());
+      return mergeStream(buildCss(), buildDts(), buildJs(), buildUmd());
       },
 
    publishWebsite() {
       const cdnUri = 'https://cdn.jsdelivr.net/npm/pretty-print-json@' + minorVersion;
       const cdnCss = 'href=' + cdnUri + '/dist/pretty-print-json.css';
-      const cdnJs =  'src=' +  cdnUri + '/dist/pretty-print-json.js';
+      const cdnJs =  'src=' +  cdnUri + '/dist/pretty-print-json.min.js';
       const lint = () =>
          gulp.src('spec/**/*.html')
             .pipe(htmlHint(htmlHintConfig))
