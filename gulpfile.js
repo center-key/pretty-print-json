@@ -6,12 +6,10 @@ import babel from       'gulp-babel';
 import gap from         'gulp-append-prepend';
 import gulp from        'gulp';
 import header from      'gulp-header';
-import htmlHint from    'gulp-htmlhint';
 import mergeStream from 'merge-stream';
 import rename from      'gulp-rename';
 import replace from     'gulp-replace';
 import size from        'gulp-size';
-import { htmlValidator } from 'gulp-w3c-html-validator';
 import { readFileSync } from 'fs';
 
 // Setup
@@ -22,7 +20,6 @@ const banner =         'pretty-print-json v' + pkg.version + ' ~ ' + home + ' ~ 
 const bannerCss =      '/*! ' + banner + ' */';
 const bannerJs =       '//! ' + banner + '\n\n';
 const setPkgVersion =  () => replace('[VERSION]', pkg.version);
-const htmlHintConfig = { 'attr-value-double-quotes': false };
 const headerComments = { css: /^\/[*].*[*]\/$/gm };
 const transpileES6 =   ['@babel/env', { modules: false }];
 const babelMinifyJs =  { presets: [transpileES6, 'minify'], comments: false };
@@ -70,12 +67,6 @@ const task = {
       const cdnUri = 'https://cdn.jsdelivr.net/npm/pretty-print-json@' + minorVersion;
       const cdnCss = 'href=' + cdnUri + '/dist/pretty-print-json.css';
       const cdnJs =  'src=' +  cdnUri + '/dist/pretty-print-json.min.js';
-      const lint = () =>
-         gulp.src('spec/**/*.html')
-            .pipe(htmlHint(htmlHintConfig))
-            .pipe(htmlHint.reporter())
-            .pipe(htmlValidator.analyzer())
-            .pipe(htmlValidator.reporter());
       const buildInteractive = () =>
          gulp.src('spec/interactive.html')
             .pipe(rename('index.html'))
@@ -89,7 +80,7 @@ const task = {
             .pipe(rename('index.html'))
             .pipe(size({ showFiles: true }))
             .pipe(gulp.dest('docs/dynamic'));
-      return mergeStream(lint(), buildInteractive(), buildDynamic());
+      return mergeStream(buildInteractive(), buildDynamic());
       },
 
    };
