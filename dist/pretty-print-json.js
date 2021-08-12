@@ -1,7 +1,7 @@
-//! pretty-print-json v1.0.3 ~ github.com/center-key/pretty-print-json ~ MIT License
+//! pretty-print-json v1.1.0 ~ github.com/center-key/pretty-print-json ~ MIT License
 
 const prettyPrintJson = {
-    version: '1.0.3',
+    version: '1.1.0',
     toHtml(thing, options) {
         const defaults = { indent: 3, linkUrls: true, quoteKeys: false };
         const settings = { ...defaults, ...options };
@@ -38,4 +38,4 @@ const prettyPrintJson = {
         return htmlEntities(json).replace(jsonLine, replacer);
     },
 };
-if (typeof window === "object") window.prettyPrintJson = prettyPrintJson;
+export { prettyPrintJson };

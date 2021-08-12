@@ -70,9 +70,9 @@ const task = {
       const buildInteractive = () =>
          gulp.src('spec/interactive.html')
             .pipe(rename('index.html'))
-            .pipe(replace('href=../pretty-print-json.css',    cdnCss))
-            .pipe(replace('src=../dist/pretty-print-json.js', cdnJs))
-            .pipe(replace('dynamic.html',                     'dynamic/'))
+            .pipe(replace('href=../pretty-print-json.css',        cdnCss))
+            .pipe(replace('src=../dist/pretty-print-json.min.js', cdnJs))
+            .pipe(replace('dynamic.html',                         'dynamic/'))
             .pipe(size({ showFiles: true }))
             .pipe(gulp.dest('docs'));
       const buildDynamic = () =>
