@@ -81,7 +81,7 @@
       "assert-deep-strict-equal": "~0.0",
       "babel-minify": "~0.5",
       "babel-preset-minify": "~0.5",
-      "dna.js": "~1.8",
+      "dna.js": "~1.9",
       "eslint": "~7.32",
       "gulp": "~4.0",
       "gulp-append-prepend": "~1.0",
