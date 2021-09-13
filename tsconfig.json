@@ -8,7 +8,7 @@
       "strict": true,
       "alwaysStrict": true,
       "esModuleInterop": true,
-      "exactOptionalPropertyTypes": false,
+      "exactOptionalPropertyTypes": true,
       "forceConsistentCasingInFileNames": true,
       "noFallthroughCasesInSwitch": true,
       "noImplicitAny": true,
