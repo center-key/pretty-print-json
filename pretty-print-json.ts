@@ -9,7 +9,7 @@ export type JsonType = 'key' | 'string' | 'number' | 'boolean' | 'null' | 'mark'
 
 const prettyPrintJson = {
 
-   version: '[VERSION]',
+   version: '~~~version~~~',
 
    toHtml(thing: unknown, options?: FormatOptions): string {
       const defaults = { indent: 3, linkUrls: true, quoteKeys: false };
