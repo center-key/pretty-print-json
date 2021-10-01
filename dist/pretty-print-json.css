@@ -1,4 +1,5 @@
-/*! pretty-print-json v1.1.0 ~ github.com/center-key/pretty-print-json ~ MIT License */
+/*! pretty-print-json v1.1.1 ~ https://pretty-print-json.js.org ~ MIT License */
+
 .json-key           { color: brown; }
 .json-string        { color: olive; }
 .json-number        { color: navy; }

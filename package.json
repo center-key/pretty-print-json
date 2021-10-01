@@ -1,6 +1,6 @@
 {
    "name": "pretty-print-json",
-   "version": "1.1.0",
+   "version": "1.1.1",
    "description": "Pretty-print JSON data into HTML to indent and colorize (written in TypeScript)",
    "license": "MIT",
    "type": "module",
