@@ -1,4 +1,4 @@
-//! pretty-print-json v1.1.1 ~ https://pretty-print-json.js.org ~ MIT License
+//! pretty-print-json v1.1.1 ~~ https://pretty-print-json.js.org ~~ MIT License
 
 (function (factory) {
     if (typeof module === "object" && typeof module.exports === "object") {
