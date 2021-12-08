@@ -72,9 +72,9 @@ The output of the `prettyPrintJson.toHtml(thing: unknown, options?: FormatOption
 configured with a `FormatOptions` object:
 ```typescript
 type FormatOptions = {
-   indent?:    number,
-   linkUrls?:  boolean,
-   quoteKeys?: boolean;
+   indent?:    number,   //number of spaces for indentation
+   linkUrls?:  boolean,  //create anchor tags for URLs
+   quoteKeys?: boolean,  //always double quote key names
    };
 ```
 

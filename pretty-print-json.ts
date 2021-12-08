@@ -1,9 +1,9 @@
 // pretty-print-json ~ MIT License
 
 export type FormatOptions = {
-   indent?:    number,
-   linkUrls?:  boolean,
-   quoteKeys?: boolean;
+   indent?:    number,   //number of spaces for indentation
+   linkUrls?:  boolean,  //create anchor tags for URLs
+   quoteKeys?: boolean,  //always double quote key names
    };
 export type JsonType = 'key' | 'string' | 'number' | 'boolean' | 'null' | 'mark';
 
