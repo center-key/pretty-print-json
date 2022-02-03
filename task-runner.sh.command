@@ -83,6 +83,8 @@ buildProject() {
    cd $projectHome
    echo "Build:"
    npm test
+   echo "To see examples:"
+   echo "   node spec/examples.js"
    echo
    }
 
