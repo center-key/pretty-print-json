@@ -4,6 +4,7 @@ export type FormatOptions = {
    indent?:    number,   //number of spaces for indentation
    linkUrls?:  boolean,  //create anchor tags for URLs
    quoteKeys?: boolean,  //always double quote key names
+   lineNumbers?: boolean //add line number
    };
 export type JsonType = 'key' | 'string' | 'number' | 'boolean' | 'null' | 'mark';
 
@@ -12,7 +13,7 @@ const prettyPrintJson = {
    version: '~~~version~~~',
 
    toHtml(thing: unknown, options?: FormatOptions): string {
-      const defaults = { indent: 3, linkUrls: true, quoteKeys: false };
+      const defaults = { indent: 3, linkUrls: true, quoteKeys: false, lineNumbers: false };
       const settings = { ...defaults, ...options };
       const htmlEntities = (text: string) => text
          // Makes text displayable in browsers.
@@ -34,6 +35,11 @@ const prettyPrintJson = {
          const display =  strType && settings.linkUrls ? value.replace(urlRegex, makeLink) : value;
          return spanTag(type, display);
          };
+      // Create list item tag
+      const lineTag = (s: string): string => `<li> ${s} </li>`;
+      // Create ordered list tag
+      const orderedListTag = (s: string): string => `<ol> ${s} </ol>`;
+
       const replacer = (match: string, p1: string, p2: string, p3: string, p4: string): string => {
          // Converts the four parenthesized capture groups (indent, key, value, end) into HTML.
          const part =       { indent: p1, key: p2, value: p3, end: p4 };
@@ -43,7 +49,8 @@ const prettyPrintJson = {
          const keyHtml =    part.key ? spanTag('key', keyName) + spanTag('mark', ': ') : '';
          const valueHtml =  part.value ? buildValueHtml(part.value) : '';
          const endHtml =    spanTag('mark', part.end);
-         return indentHtml + keyHtml + valueHtml + endHtml;
+         const result = indentHtml + keyHtml + valueHtml + endHtml;
+         return settings.lineNumbers ? lineTag(result) : result;
          };
       const jsonLine = /^( *)("[^"]+": )?("[^"]*"|[\w.+-]*)?([{}[\],]*)?$/mg;
          // Regex parses each line of the JSON string into four parts:
@@ -55,7 +62,8 @@ const prettyPrintJson = {
          //    ([{}[\],]*)         p4: end     Line termination characters  ','
          // For example, '   "active": true,' is parsed into: ['   ', '"active": ', 'true', ',']
       const json = JSON.stringify(thing, null, settings.indent) || 'undefined';
-      return htmlEntities(json).replace(jsonLine, replacer);
+      const result = htmlEntities(json).replace(jsonLine, replacer);
+      return settings.lineNumbers ? orderedListTag(result) : result;
       },
 
    };

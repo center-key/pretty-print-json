@@ -10,3 +10,7 @@ a.json-link         { color: mediumorchid; transition: all 400ms; }
 a.json-link:visited { color: slategray; }
 a.json-link:hover   { color: violet; }
 a.json-link:active  { color: silver; }
+
+
+ol { line-height: 10px; }
+li::marker { color: white; }
