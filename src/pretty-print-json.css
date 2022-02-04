@@ -20,3 +20,5 @@ a.json-link:active  { color: slategray; }
 .dark-mode a.json-link:visited { color: slategray; }
 .dark-mode a.json-link:hover   { color: violet; }
 .dark-mode a.json-link:active  { color: silver; }
+
+ol { line-height: 10px; }

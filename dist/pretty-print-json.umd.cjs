@@ -15,15 +15,13 @@
     const prettyPrintJson = {
         version: '1.1.2',
         toHtml(thing, options) {
-            const defaults = { indent: 3, linkUrls: true, quoteKeys: false };
+            const defaults = { indent: 3, linkUrls: true, quoteKeys: false, lineNumbers: false };
             const settings = { ...defaults, ...options };
-            const htmlEntities = (text) => {
-                return text
-                    .replace(/&/g, '&amp;')
-                    .replace(/\\"/g, '&bsol;&quot;')
-                    .replace(/</g, '&lt;')
-                    .replace(/>/g, '&gt;');
-            };
+            const htmlEntities = (text) => text
+                .replace(/&/g, '&amp;')
+                .replace(/\\"/g, '&bsol;&quot;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
             const spanTag = (type, display) => display ? '<span class=json-' + type + '>' + display + '</span>' : '';
             const buildValueHtml = (value) => {
                 const strType = /^"/.test(value) && 'string';
@@ -35,6 +33,8 @@
                 const display = strType && settings.linkUrls ? value.replace(urlRegex, makeLink) : value;
                 return spanTag(type, display);
             };
+            const lineTag = (s) => `<li> ${s} </li>`;
+            const orderedListTag = (s) => `<ol> ${s} </ol>`;
             const replacer = (match, p1, p2, p3, p4) => {
                 const part = { indent: p1, key: p2, value: p3, end: p4 };
                 const findName = settings.quoteKeys ? /(.*)(): / : /"([\w$]+)": |(.*): /;
@@ -43,11 +43,13 @@
                 const keyHtml = part.key ? spanTag('key', keyName) + spanTag('mark', ': ') : '';
                 const valueHtml = part.value ? buildValueHtml(part.value) : '';
                 const endHtml = spanTag('mark', part.end);
-                return indentHtml + keyHtml + valueHtml + endHtml;
+                const result = indentHtml + keyHtml + valueHtml + endHtml;
+                return settings.lineNumbers ? lineTag(result) : result;
             };
             const jsonLine = /^( *)("[^"]+": )?("[^"]*"|[\w.+-]*)?([{}[\],]*)?$/mg;
             const json = JSON.stringify(thing, null, settings.indent) || 'undefined';
-            return htmlEntities(json).replace(jsonLine, replacer);
+            const result = htmlEntities(json).replace(jsonLine, replacer);
+            return settings.lineNumbers ? orderedListTag(result) : result;
         },
     };
     exports.prettyPrintJson = prettyPrintJson;

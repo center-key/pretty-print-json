@@ -4,6 +4,7 @@ export declare type FormatOptions = {
     indent?: number;
     linkUrls?: boolean;
     quoteKeys?: boolean;
+    lineNumbers?: boolean;
 };
 export declare type JsonType = 'key' | 'string' | 'number' | 'boolean' | 'null' | 'mark';
 declare const prettyPrintJson: {
