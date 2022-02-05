@@ -65,8 +65,14 @@
       color: crimson;
       padding-top: 3px;
       }
-   body >main >.flex-columns >div:last-child pre {
+   body >main >.flex-columns >div:last-child output {
+      display: block;
       min-height: 350px;
+      white-space: pre;
+      font-family: menlo, consolas, monospace;
+      font-style: normal;
+      font-weight: bold;
+      line-height: 1.3em;
       font-size: 0.9rem;
       color: black;
       background-color: white;
@@ -76,15 +82,19 @@
       overflow: scroll;
       transition: background-color 400ms;
       }
-   body >main >.flex-columns.dark-mode >div:last-child pre {
+   body >main >.flex-columns.line-numbers >div:last-child output {
+      white-space: normal;
+      padding: 0px;
+      }
+   body >main >.flex-columns.dark-mode >div:last-child output {
       background-color: black;
       }
-   body >main >.flex-columns >div:last-child pre output a {
+   body >main >.flex-columns >div:last-child output a {
       text-decoration: underline;
       border: none;
       outline: none;
       }
-   body >main >.flex-columns >div:last-child pre output a:hover {
+   body >main >.flex-columns >div:last-child output a:hover {
       background-color: transparent;
       }
    body >main >.flex-columns >div:last-child nav {
@@ -105,7 +115,7 @@
    @media (max-width: 667px) {  /* selects iPhone 6/6s/7/8/SE(2020) landscape and anything narrower */
       body >main >.flex-columns >div { max-width: none; }
       body >main >.flex-columns >div:first-child textarea { min-height: 150px; }
-      body >main >.flex-columns >div:last-child pre { min-height: 200px; }
+      body >main >.flex-columns >div:last-child output { min-height: 200px; }
       }
 </style>
 </head>
@@ -128,8 +138,9 @@
       <div>
          <i data-icon=copy data-click=app.copyToClipboard></i>
          <h3>Colorized output:</h3>
-         <pre><output></output></pre>
+         <output></output>
          <nav>
+            <label><input type=checkbox data-change=app.processJson>line numbers</label>
             <label><input type=checkbox data-change=app.processJson>quote map keys</label>
             <label><input type=checkbox data-change=app.toggleDarkMode>dark mode</label>
          </nav>
@@ -187,11 +198,16 @@
             textarea: component.find('textarea'),
             message:  component.find('#error-message').fadeOut(),
             output:   component.find('output'),
-            checkbox: component.find('input[type=checkbox]').first(),
+            options:  component.find('input[type=checkbox]'),
             };
+         const options = {
+            lineNumbers: elem.options.eq(0).is(':checked'),
+            quoteKeys:   elem.options.eq(1).is(':checked'),
+            };
+         console.log(target, event, component, options);
+         component.toggleClass('line-numbers', options.lineNumbers);
          try {
             const data = elem.textarea.val().trim().length ? JSON.parse(elem.textarea.val()) : null;
-            const options = { quoteKeys: elem.checkbox.is(':checked') };
             const html = data ? prettyPrintJson.toHtml(data, options) : '[EMPTY]';
             elem.output.html(html);
             }

@@ -58,12 +58,15 @@ const elem = document.getElementById('account');
 elem.innerHTML = prettyPrintJson.toHtml(data);
 ```
 ### Options
-| Name (key)    | Type        | Default | Description                                        |
-| :------------ | :---------- | :------ | :------------------------------------------------- |
-| `indent`      | **integer** | `3`     | Number of spaces for indentation.                  |
-| `lineNumbers` | **boolean** | `false` | Wrap HTML in a `<ol>` tag to support line numbers. |
-| `linkUrls`    | **boolean** | `true`  | Create anchor tags for URLs.                       |
-| `quoteKeys`   | **boolean** | `false` | Always double quote key names.                     |
+| Name (key)    | Type        | Default | Description                                         |
+| :------------ | :---------- | :------ | :-------------------------------------------------- |
+| `indent`      | **integer** | `3`     | Number of spaces for indentation.                   |
+| `lineNumbers` | **boolean** | `false` | Wrap HTML in a `<ol>` tag to support line numbers.* |
+| `linkUrls`    | **boolean** | `true`  | Create anchor tags for URLs.                        |
+| `quoteKeys`   | **boolean** | `false` | Always double quote key names.                      |
+
+*When setting `lineNumbers` to `true`, do not use the `<pre>` tag as the `white-space: pre;` styling
+is applied to each line (`<li>`).
 
 ## 4) TypeScript Declarations
 The **TypeScript Declaration File** file is [pretty-print-json.d.ts](dist/pretty-print-json.d.ts)
@@ -73,9 +76,10 @@ The output of the `prettyPrintJson.toHtml(thing: unknown, options?: FormatOption
 configured with a `FormatOptions` object:
 ```typescript
 type FormatOptions = {
-   indent?:    number,   //number of spaces for indentation
-   linkUrls?:  boolean,  //create anchor tags for URLs
-   quoteKeys?: boolean,  //always double quote key names
+   indent?:      number,   //number of spaces for indentation
+   lineNumbers?: boolean,  //add line numbers
+   linkUrls?:    boolean,  //create anchor tags for URLs
+   quoteKeys?:   boolean,  //always double quote key names
    };
 ```
 
