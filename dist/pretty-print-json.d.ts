@@ -1,10 +1,10 @@
-//! pretty-print-json v1.1.2 ~~ https://pretty-print-json.js.org ~~ MIT License
+//! pretty-print-json v1.2.0 ~~ https://pretty-print-json.js.org ~~ MIT License
 
 export declare type FormatOptions = {
     indent?: number;
+    lineNumbers?: boolean;
     linkUrls?: boolean;
     quoteKeys?: boolean;
-    lineNumbers?: boolean;
 };
 export declare type JsonType = 'key' | 'string' | 'number' | 'boolean' | 'null' | 'mark';
 declare const prettyPrintJson: {

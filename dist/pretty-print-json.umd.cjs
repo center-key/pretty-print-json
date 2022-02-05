@@ -1,4 +1,4 @@
-//! pretty-print-json v1.1.2 ~~ https://pretty-print-json.js.org ~~ MIT License
+//! pretty-print-json v1.2.0 ~~ https://pretty-print-json.js.org ~~ MIT License
 
 (function (factory) {
     if (typeof module === "object" && typeof module.exports === "object") {
@@ -13,9 +13,9 @@
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.prettyPrintJson = void 0;
     const prettyPrintJson = {
-        version: '1.1.2',
+        version: '1.2.0',
         toHtml(thing, options) {
-            const defaults = { indent: 3, linkUrls: true, quoteKeys: false, lineNumbers: false };
+            const defaults = { indent: 3, lineNumbers: false, linkUrls: true, quoteKeys: false };
             const settings = { ...defaults, ...options };
             const htmlEntities = (text) => text
                 .replace(/&/g, '&amp;')
@@ -33,8 +33,8 @@
                 const display = strType && settings.linkUrls ? value.replace(urlRegex, makeLink) : value;
                 return spanTag(type, display);
             };
-            const lineTag = (s) => `<li> ${s} </li>`;
-            const orderedListTag = (s) => `<ol> ${s} </ol>`;
+            const lineTag = (s) => `   <li>${s}</li>`;
+            const orderedListTag = (s) => ['<ol class=json-lines>', s, '</ol>'].join('\n');
             const replacer = (match, p1, p2, p3, p4) => {
                 const part = { indent: p1, key: p2, value: p3, end: p4 };
                 const findName = settings.quoteKeys ? /(.*)(): / : /"([\w$]+)": |(.*): /;
