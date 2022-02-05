@@ -17,12 +17,12 @@ const runExamples = () => {
    console.log(catInABox);
    console.log(prettyPrintJson.toHtml(catInABox));
 
-   // Cat in a Big Box
-   const catInABigBox = ['🐈'];
-   const catInABigBoxOptions = { indent: 8 };
+   // Striped
+   const striped = { striped: ['🦓', '🐅', '🦨'] };
+   const stripedOptions = { indent: 8, lineNumbers: true };
    console.log(divider);
-   console.log(catInABigBox, '👉', catInABigBoxOptions);
-   console.log(prettyPrintJson.toHtml(catInABigBox, catInABigBoxOptions));
+   console.log(striped, '👉', stripedOptions);
+   console.log(prettyPrintJson.toHtml(striped, stripedOptions));
 
    // Railway Car
    const railwayCar = { active: true, mode: '🚃', codes: [48348, 28923, 39080], city: 'London' };

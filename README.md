@@ -58,11 +58,12 @@ const elem = document.getElementById('account');
 elem.innerHTML = prettyPrintJson.toHtml(data);
 ```
 ### Options
-| Name (key)  | Type        | Default | Description                       |
-| :---------- | :---------- | :------ | :-------------------------------- |
-| `indent`    | **integer** | `3`     | Number of spaces for indentation. |
-| `linkUrls`  | **boolean** | `true`  | Create anchor tags for URLs.      |
-| `quoteKeys` | **boolean** | `false` | Always double quote key names.    |
+| Name (key)    | Type        | Default | Description                                        |
+| :------------ | :---------- | :------ | :------------------------------------------------- |
+| `indent`      | **integer** | `3`     | Number of spaces for indentation.                  |
+| `lineNumbers` | **boolean** | `false` | Wrap HTML in a `<ol>` tag to support line numbers. |
+| `linkUrls`    | **boolean** | `true`  | Create anchor tags for URLs.                       |
+| `quoteKeys`   | **boolean** | `false` | Always double quote key names.                     |
 
 ## 4) TypeScript Declarations
 The **TypeScript Declaration File** file is [pretty-print-json.d.ts](dist/pretty-print-json.d.ts)
