@@ -69,13 +69,6 @@
       display: block;
       min-height: 350px;
       white-space: pre;
-      font-family: menlo, consolas, monospace;
-      font-style: normal;
-      font-weight: bold;
-      line-height: 1.3em;
-      font-size: 0.9rem;
-      color: black;
-      background-color: white;
       border: 5px solid silver;
       padding: 5px 10px;
       margin: 0px;
@@ -138,7 +131,7 @@
       <div>
          <i data-icon=copy data-click=app.copyToClipboard></i>
          <h3>Colorized output:</h3>
-         <output></output>
+         <output class=json-container></output>
          <nav>
             <label><input type=checkbox data-change=app.processJson>line numbers</label>
             <label><input type=checkbox data-change=app.processJson>quote map keys</label>
