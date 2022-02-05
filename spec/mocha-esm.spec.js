@@ -219,6 +219,31 @@ describe('The "indent" option', () => {
    });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+describe('The "lineNumbers" option', () => {
+
+   it('correclty wraps the HTML in an <ol> tag', () => {
+      const input = { active: true, codes: [48348, 28923, 39080], city: 'London' };
+      const htmlLines = [
+         '<ol class=json-lines>',
+         '   <li><span class=json-mark>{</span></li>',
+         '   <li>   <span class=json-key>active</span><span class=json-mark>: </span><span class=json-boolean>true</span><span class=json-mark>,</span></li>',
+         '   <li>   <span class=json-key>codes</span><span class=json-mark>: </span><span class=json-mark>[</span></li>',
+         '   <li>      <span class=json-number>48348</span><span class=json-mark>,</span></li>',
+         '   <li>      <span class=json-number>28923</span><span class=json-mark>,</span></li>',
+         '   <li>      <span class=json-number>39080</span></li>',
+         '   <li>   <span class=json-mark>],</span></li>',
+         '   <li>   <span class=json-key>city</span><span class=json-mark>: </span><span class=json-string>"London"</span></li>',
+         '   <li><span class=json-mark>}</span></li>',
+         '</ol>',
+         ];
+      const actual =   { html: prettyPrintJson.toHtml(input, { lineNumbers: true }).split('\n') };
+      const expected = { html: htmlLines };
+      assertDeepStrictEqual(actual, expected);
+      });
+
+   });
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
 describe('The "linkUrls" option', () => {
 
    it('creates anchor tags for URLs', () => {

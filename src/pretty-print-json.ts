@@ -1,9 +1,9 @@
 // pretty-print-json ~ MIT License
 
 export type FormatOptions = {
-   indent?:    number,   //number of spaces for indentation
-   linkUrls?:  boolean,  //create anchor tags for URLs
-   quoteKeys?: boolean,  //always double quote key names
+   indent?:      number,   //number of spaces for indentation
+   linkUrls?:    boolean,  //create anchor tags for URLs
+   quoteKeys?:   boolean,  //always double quote key names
    lineNumbers?: boolean //add line number
    };
 export type JsonType = 'key' | 'string' | 'number' | 'boolean' | 'null' | 'mark';
@@ -36,9 +36,9 @@ const prettyPrintJson = {
          return spanTag(type, display);
          };
       // Create list item tag
-      const lineTag = (s: string): string => `<li> ${s} </li>`;
+      const lineTag = (s: string): string => `   <li>${s}</li>`;
       // Create ordered list tag
-      const orderedListTag = (s: string): string => `<ol> ${s} </ol>`;
+      const orderedListTag = (s: string): string => ['<ol class=json-lines>', s, '</ol>'].join('\n');
 
       const replacer = (match: string, p1: string, p2: string, p3: string, p4: string): string => {
          // Converts the four parenthesized capture groups (indent, key, value, end) into HTML.
@@ -49,7 +49,7 @@ const prettyPrintJson = {
          const keyHtml =    part.key ? spanTag('key', keyName) + spanTag('mark', ': ') : '';
          const valueHtml =  part.value ? buildValueHtml(part.value) : '';
          const endHtml =    spanTag('mark', part.end);
-         const result = indentHtml + keyHtml + valueHtml + endHtml;
+         const result =     indentHtml + keyHtml + valueHtml + endHtml;
          return settings.lineNumbers ? lineTag(result) : result;
          };
       const jsonLine = /^( *)("[^"]+": )?("[^"]*"|[\w.+-]*)?([{}[\],]*)?$/mg;
