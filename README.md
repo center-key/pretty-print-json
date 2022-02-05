@@ -58,12 +58,15 @@ const elem = document.getElementById('account');
 elem.innerHTML = prettyPrintJson.toHtml(data);
 ```
 ### Options
-| Name (key)    | Type        | Default | Description                                         |
-| :------------ | :---------- | :------ | :-------------------------------------------------- |
-| `indent`      | **integer** | `3`     | Number of spaces for indentation.                   |
-| `lineNumbers` | **boolean** | `false` | Wrap HTML in a `<ol>` tag to support line numbers.* |
-| `linkUrls`    | **boolean** | `true`  | Create anchor tags for URLs.                        |
-| `quoteKeys`   | **boolean** | `false` | Always double quote key names.                      |
+| Name (key)    | Type        | Default | Description                                          |
+| :------------ | :---------- | :------ | :--------------------------------------------------- |
+| `indent`      | **integer** | `3`     | Number of spaces for indentation.                    |
+| `lineNumbers` | **boolean** | `false` | Wrap HTML in an `<ol>` tag to support line numbers.* |
+| `linkUrls`    | **boolean** | `true`  | Create anchor tags for URLs.                         |
+| `quoteKeys`   | **boolean** | `false` | Always double quote key names.                       |
+
+<img width=450 alt=screenshot
+   src=https://user-images.githubusercontent.com/119555/152635151-1eb34300-8acb-477d-b3d2-80b4fc3233fa.png>
 
 *When setting `lineNumbers` to `true`, do not use the `<pre>` tag as the `white-space: pre;` styling
 is applied to each line (`<li>`).
