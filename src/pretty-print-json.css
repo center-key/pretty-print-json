@@ -1,11 +1,11 @@
 /* pretty-print-json ~ MIT License */
 
 /* Layout */
-.json-container           { font-family: menlo, consolas, monospace; font-style: normal; font-weight: bold; line-height: 1.4em; font-size: 0.9rem; }
+.json-container           { font-family: menlo, consolas, monospace; font-style: normal; font-weight: bold; line-height: 1.4em; font-size: 0.9rem; transition: background-color 400ms; }
 ol.json-lines             { white-space: normal; padding-inline-start: 3em; margin: 0px; }
 ol.json-lines >li         { white-space: pre; text-indent: 0.7em; line-height: 1.5em; padding: 0px; }
 ol.json-lines >li::marker { font-family: system-ui, sans-serif; font-weight: normal; }
-.json-container, .json-key, .json-string, .json-number, .json-boolean, .json-null, .json-mark, a.json-link, ol.json-lines >li { transition: all 400ms; }
+.json-key, .json-string, .json-number, .json-boolean, .json-null, .json-mark, a.json-link, ol.json-lines >li { transition: all 400ms; }
 
 /* Colors */
 .json-container                   { background-color: white; }
