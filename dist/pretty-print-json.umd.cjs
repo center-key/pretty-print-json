@@ -1,4 +1,4 @@
-//! pretty-print-json v1.2.1 ~~ https://pretty-print-json.js.org ~~ MIT License
+//! pretty-print-json v1.2.2 ~~ https://pretty-print-json.js.org ~~ MIT License
 
 (function (factory) {
     if (typeof module === "object" && typeof module.exports === "object") {
@@ -13,7 +13,7 @@
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.prettyPrintJson = void 0;
     const prettyPrintJson = {
-        version: '1.2.1',
+        version: '1.2.2',
         toHtml(thing, options) {
             const defaults = { indent: 3, lineNumbers: false, linkUrls: true, quoteKeys: false };
             const settings = { ...defaults, ...options };

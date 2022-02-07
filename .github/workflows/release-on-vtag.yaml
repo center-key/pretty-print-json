@@ -5,6 +5,7 @@ on:
       - 'v*'
 jobs:
   build:
+    name: Create Release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
