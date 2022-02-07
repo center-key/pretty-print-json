@@ -2,6 +2,7 @@ name: build
 on: [push]
 jobs:
   build:
+    name: Run Specifications
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

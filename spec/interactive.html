@@ -193,7 +193,6 @@
             lineNumbers: elem.options.eq(0).is(':checked'),
             quoteKeys:   elem.options.eq(1).is(':checked'),
             };
-         console.log(target, event, component, options);
          component.toggleClass('line-numbers', options.lineNumbers);
          try {
             const data = elem.textarea.val().trim().length ? JSON.parse(elem.textarea.val()) : null;
