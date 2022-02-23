@@ -35,11 +35,6 @@ const prettyPrintJson = {
          const display =  strType && settings.linkUrls ? value.replace(urlRegex, makeLink) : value;
          return spanTag(type, display);
          };
-      // Create list item tag
-      const lineTag = (s: string): string => `   <li>${s}</li>`;
-      // Create ordered list tag
-      const orderedListTag = (s: string): string => ['<ol class=json-lines>', s, '</ol>'].join('\n');
-
       const replacer = (match: string, p1: string, p2: string, p3: string, p4: string): string => {
          // Converts the four parenthesized capture groups (indent, key, value, end) into HTML.
          const part =       { indent: p1, key: p2, value: p3, end: p4 };
@@ -49,8 +44,7 @@ const prettyPrintJson = {
          const keyHtml =    part.key ? spanTag('key', keyName) + spanTag('mark', ': ') : '';
          const valueHtml =  part.value ? buildValueHtml(part.value) : '';
          const endHtml =    spanTag('mark', part.end);
-         const result =     indentHtml + keyHtml + valueHtml + endHtml;
-         return settings.lineNumbers ? lineTag(result) : result;
+         return indentHtml + keyHtml + valueHtml + endHtml;
          };
       const jsonLine = /^( *)("[^"]+": )?("[^"]*"|[\w.+-]*)?([{}[\],]*)?$/mg;
          // Regex parses each line of the JSON string into four parts:
@@ -62,8 +56,11 @@ const prettyPrintJson = {
          //    ([{}[\],]*)         p4: end     Line termination characters  ','
          // For example, '   "active": true,' is parsed into: ['   ', '"active": ', 'true', ',']
       const json = JSON.stringify(thing, null, settings.indent) || 'undefined';
-      const result = htmlEntities(json).replace(jsonLine, replacer);
-      return settings.lineNumbers ? orderedListTag(result) : result;
+      const html = htmlEntities(json).replace(jsonLine, replacer);
+      const makeLine = (line: string): string => `   <li>${line}</li>`;
+      const addLineNumbers = (html: string): string =>  //wrap html in an <ol> tag
+         ['<ol class=json-lines>', ...html.split('\n').map(makeLine), '</ol>'].join('\n');
+      return settings.lineNumbers ? addLineNumbers(html) : html;
       },
 
    };
