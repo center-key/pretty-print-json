@@ -1,6 +1,6 @@
 {
    "name": "pretty-print-json",
-   "version": "1.2.2",
+   "version": "1.2.3",
    "description": "Pretty-print JSON data into HTML to indent and colorize (written in TypeScript)",
    "license": "MIT",
    "type": "module",
@@ -110,6 +110,6 @@
       "rimraf": "~3.0",
       "typescript": "~4.5",
       "w3c-html-validator": "~1.0",
-      "web-ignition": "~1.4"
+      "web-ignition": "~1.5"
    }
 }

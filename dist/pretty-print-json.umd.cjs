@@ -1,4 +1,4 @@
-//! pretty-print-json v1.2.2 ~~ https://pretty-print-json.js.org ~~ MIT License
+//! pretty-print-json v1.2.3 ~~ https://pretty-print-json.js.org ~~ MIT License
 
 (function (factory) {
     if (typeof module === "object" && typeof module.exports === "object") {
@@ -13,7 +13,7 @@
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.prettyPrintJson = void 0;
     const prettyPrintJson = {
-        version: '1.2.2',
+        version: '1.2.3',
         toHtml(thing, options) {
             const defaults = { indent: 3, lineNumbers: false, linkUrls: true, quoteKeys: false };
             const settings = { ...defaults, ...options };
@@ -33,8 +33,6 @@
                 const display = strType && settings.linkUrls ? value.replace(urlRegex, makeLink) : value;
                 return spanTag(type, display);
             };
-            const lineTag = (s) => `   <li>${s}</li>`;
-            const orderedListTag = (s) => ['<ol class=json-lines>', s, '</ol>'].join('\n');
             const replacer = (match, p1, p2, p3, p4) => {
                 const part = { indent: p1, key: p2, value: p3, end: p4 };
                 const findName = settings.quoteKeys ? /(.*)(): / : /"([\w$]+)": |(.*): /;
@@ -43,13 +41,14 @@
                 const keyHtml = part.key ? spanTag('key', keyName) + spanTag('mark', ': ') : '';
                 const valueHtml = part.value ? buildValueHtml(part.value) : '';
                 const endHtml = spanTag('mark', part.end);
-                const result = indentHtml + keyHtml + valueHtml + endHtml;
-                return settings.lineNumbers ? lineTag(result) : result;
+                return indentHtml + keyHtml + valueHtml + endHtml;
             };
             const jsonLine = /^( *)("[^"]+": )?("[^"]*"|[\w.+-]*)?([{}[\],]*)?$/mg;
             const json = JSON.stringify(thing, null, settings.indent) || 'undefined';
-            const result = htmlEntities(json).replace(jsonLine, replacer);
-            return settings.lineNumbers ? orderedListTag(result) : result;
+            const html = htmlEntities(json).replace(jsonLine, replacer);
+            const makeLine = (line) => `   <li>${line}</li>`;
+            const addLineNumbers = (html) => ['<ol class=json-lines>', ...html.split('\n').map(makeLine), '</ol>'].join('\n');
+            return settings.lineNumbers ? addLineNumbers(html) : html;
         },
     };
     exports.prettyPrintJson = prettyPrintJson;
