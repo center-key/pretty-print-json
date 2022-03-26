@@ -38,7 +38,7 @@ import { prettyPrintJson } from 'pretty-print-json';
 ```
 Or for older CommonJS/UMD environments:
 ```javascript
-const { prettyPrintJson } = require('pretty-print-json');  //deprecated
+const { prettyPrintJson } = require('pretty-print-json');  //deprecated -- use ES modules instead
 ```
 
 ## 3) Usage
@@ -52,7 +52,7 @@ const html = prettyPrintJson.toHtml(data, options?);
 <pre id=account class=json-container></pre>
 ```
 ##### JavaScript:
-Pass data into `prettyPrintJson.toHtml()` and display the results.
+Pass data into `prettyPrintJson.toHtml(data, options)` and display the results.
 ```javascript
 const data = { active: true, mode: '🚃', codes: [48348, 28923, 39080], city: 'London' };
 const elem = document.getElementById('account');
