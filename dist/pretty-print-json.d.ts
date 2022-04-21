@@ -1,4 +1,4 @@
-//! pretty-print-json v1.2.3 ~~ https://pretty-print-json.js.org ~~ MIT License
+//! pretty-print-json v1.2.4 ~~ https://pretty-print-json.js.org ~~ MIT License
 
 export declare type FormatOptions = {
     indent?: number;

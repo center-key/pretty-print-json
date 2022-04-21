@@ -1,7 +1,7 @@
 # pretty-print-json
 <img src=https://centerkey.com/graphics/center-key-logo.svg align=right width=200 alt=logo>
 
-_Pretty-print JSON data into HTML to indent and colorize (written in TypeScript)_
+_Pretty-print JSON data into HTML to indent and colorize (written in functional TypeScript)_
 
 [![License:MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/center-key/pretty-print-json/blob/main/LICENSE.txt)
 [![npm](https://img.shields.io/npm/v/pretty-print-json.svg)](https://www.npmjs.com/package/pretty-print-json)
