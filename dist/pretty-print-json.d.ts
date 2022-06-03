@@ -1,4 +1,4 @@
-//! pretty-print-json v1.2.4 ~~ https://pretty-print-json.js.org ~~ MIT License
+//! pretty-print-json v1.2.5 ~~ https://pretty-print-json.js.org ~~ MIT License
 
 export declare type FormatOptions = {
     indent?: number;
@@ -9,6 +9,6 @@ export declare type FormatOptions = {
 export declare type JsonType = 'key' | 'string' | 'number' | 'boolean' | 'null' | 'mark';
 declare const prettyPrintJson: {
     version: string;
-    toHtml(thing: unknown, options?: FormatOptions | undefined): string;
+    toHtml(thing: unknown, options?: FormatOptions): string;
 };
 export { prettyPrintJson };
