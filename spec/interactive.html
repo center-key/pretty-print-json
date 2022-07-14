@@ -4,110 +4,164 @@
 <!-- - - - - - - - - - -->
 <html lang=en>
 <head>
-<meta charset=utf-8>
-<meta name=viewport                   content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name=robots                     content="index, follow">
-<meta name=description                content="Pretty-Print JSON -- Interactive online JavaScript tool to format JSON">
-<meta name=apple-mobile-web-app-title content="JSON">
-<meta property=og:title               content="Pretty Print JSON">
-<meta property=og:description         content="Pretty-print JSON data into HTML to indent and colorize (written in functional TypeScript)">
-<meta property=og:type                content="website">
-<meta property=og:image               content="https://centerkey.com/graphics/center-key-logo-card.png">
-<meta property=og:image:alt           content="Logo">
-<title>Pretty-Print JSON &bull; Interactive online JavaScript tool to format JSON</title>
-<link rel=icon             href=https://centerkey.com/graphics/bookmark.png>
-<link rel=apple-touch-icon href=https://centerkey.com/graphics/mobile-home-screen.png>
-<link rel=preconnect       href=https://fonts.googleapis.com>
-<link rel=preconnect       href=https://fonts.gstatic.com crossorigin>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1/css/all.min.css>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@2.0/dist/dna.css>
-<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@1.5/dist/reset.min.css>
-<link rel=stylesheet       href=../src/pretty-print-json.css>
-<style>
-   body {
-      max-width: 1200px;
-      color: whitesmoke;
-      background-color: black;
-      }
-   body >header {
-      margin-bottom: 40px;
-      }
-   body >header >figure {
-      font-size: 3rem;
-      }
-   [data-component=pretty-print] >section {
-      position: relative;
-      max-width: 50%;
-      }
-   [data-component=pretty-print] >section i.font-icon {
-      position: absolute;
-      top: -15px;
-      right: -12px;
-      font-size: 1.4rem;
-      color: lightskyblue;
-      padding: 15px;  /* enlarge click target */
-      transition: opacity 400ms;
-      }
-   [data-component=pretty-print] >section:first-child >textarea {
-      max-width: none;
-      min-height: 300px;
-      font-family: monospace;
-      color: navy;
-      background-color: white;
-      padding: 10px 15px;
-      margin: 0px;
-      }
-   [data-component=pretty-print] >section:first-child #error-message {
-      font-size: 1.2rem;
-      font-weight: bold;
-      text-align: center;
-      text-shadow: 0px 0px 0.1em white;
-      color: crimson;
-      padding-top: 3px;
-      }
-   [data-component=pretty-print] >section:last-child >div {
-      min-height: 350px;
-      background-color: white;
-      border: 5px solid silver;
-      padding: 5px 10px;
-      transition: background-color 400ms;
-      overflow: scroll;
-      }
-   [data-component=pretty-print].line-numbers >section:last-child >div {
-      padding: 0px;
-      }
-   [data-component=pretty-print].dark-mode >section:last-child >div {
-      background-color: black;
-      }
-   [data-component=pretty-print] >section:last-child >div >output {
-      display: block;
-      white-space: pre;  /* replaces <pre> in order to support toggling line numbers */
-      margin: 0px;
-      }
-   [data-component=pretty-print].line-numbers >section:last-child >div >output {
-      white-space: normal;
-      }
-   [data-component=pretty-print] >section:last-child >nav {
-      display: flex;
-      justify-content: space-between;
-      color: silver;
-      padding-top: 3px;
-      }
-   [data-component=pretty-print] >section:last-child >nav >label >input {
-      margin-left: 0px;
-      }
-   body >footer b {
-      font-size: 1.1rem;
-      }
-   body >footer p a+a {
-      margin-left: 10px;
-      }
-   @media (max-width: 667px) {  /* selects iPhone 6/6s/7/8/SE(2020) landscape and anything narrower */
-      [data-component=pretty-print] >section { max-width: none; }
-      [data-component=pretty-print] >section:first-child >textarea { min-height: 150px; }
-      [data-component=pretty-print] >section:last-child >div { min-height: 200px; }
-      }
-</style>
+   <meta charset=utf-8>
+   <meta name=viewport                   content="width=device-width, initial-scale=1, maximum-scale=1">
+   <meta name=robots                     content="index, follow">
+   <meta name=description                content="Pretty-Print JSON -- Interactive online JavaScript tool to format JSON">
+   <meta name=apple-mobile-web-app-title content="JSON">
+   <meta property=og:title               content="Pretty Print JSON">
+   <meta property=og:description         content="Pretty-print JSON data into HTML to indent and colorize (written in functional TypeScript)">
+   <meta property=og:type                content="website">
+   <meta property=og:image               content="https://centerkey.com/graphics/center-key-logo-card.png">
+   <meta property=og:image:alt           content="Logo">
+   <title>Pretty-Print JSON &bull; Interactive online JavaScript tool to format JSON</title>
+   <link rel=icon             href=https://centerkey.com/graphics/bookmark.png>
+   <link rel=apple-touch-icon href=https://centerkey.com/graphics/mobile-home-screen.png>
+   <link rel=preconnect       href=https://fonts.googleapis.com>
+   <link rel=preconnect       href=https://fonts.gstatic.com crossorigin>
+   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1/css/all.min.css>
+   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@2.0/dist/dna.css>
+   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@1.5/dist/reset.min.css>
+   <link rel=stylesheet       href=../src/pretty-print-json.css>
+   <style>
+      body {
+         max-width: 1200px;
+         color: whitesmoke;
+         background-color: black;
+         }
+      body >header {
+         margin-bottom: 40px;
+         }
+      body >header >figure {
+         font-size: 3rem;
+         }
+      [data-component=pretty-print] >section {
+         position: relative;
+         max-width: 50%;
+         }
+      [data-component=pretty-print] >section i.font-icon {
+         position: absolute;
+         top: -15px;
+         right: -12px;
+         font-size: 1.4rem;
+         color: lightskyblue;
+         padding: 15px;  /* enlarge click target */
+         transition: opacity 400ms;
+         }
+      [data-component=pretty-print] >section:first-child >textarea {
+         max-width: none;
+         min-height: 300px;
+         font-family: monospace;
+         color: navy;
+         background-color: white;
+         padding: 10px 15px;
+         margin: 0px;
+         }
+      [data-component=pretty-print] >section:first-child #error-message {
+         font-size: 1.2rem;
+         font-weight: bold;
+         text-align: center;
+         text-shadow: 0px 0px 0.1em white;
+         color: crimson;
+         padding-top: 3px;
+         }
+      [data-component=pretty-print] >section:last-child >div {
+         min-height: 350px;
+         background-color: white;
+         border: 5px solid silver;
+         padding: 5px 10px;
+         transition: background-color 400ms;
+         overflow: scroll;
+         }
+      [data-component=pretty-print].line-numbers >section:last-child >div {
+         padding: 0px;
+         }
+      [data-component=pretty-print].dark-mode >section:last-child >div {
+         background-color: black;
+         }
+      [data-component=pretty-print] >section:last-child >div >output {
+         display: block;
+         white-space: pre;  /* replaces <pre> in order to support toggling line numbers */
+         margin: 0px;
+         }
+      [data-component=pretty-print].line-numbers >section:last-child >div >output {
+         white-space: normal;
+         }
+      [data-component=pretty-print] >section:last-child >nav {
+         display: flex;
+         justify-content: space-between;
+         color: silver;
+         padding-top: 3px;
+         }
+      [data-component=pretty-print] >section:last-child >nav >label >input {
+         margin-left: 0px;
+         }
+      body >footer b {
+         font-size: 1.1rem;
+         }
+      body >footer p a+a {
+         margin-left: 10px;
+         }
+      @media (max-width: 667px) {  /* selects iPhone 6/6s/7/8/SE(2020) landscape and anything narrower */
+         [data-component=pretty-print] >section { max-width: none; }
+         [data-component=pretty-print] >section:first-child >textarea { min-height: 150px; }
+         [data-component=pretty-print] >section:last-child >div { min-height: 200px; }
+         }
+   </style>
+   <script defer src=https://cdn.jsdelivr.net/npm/jquery@3.6/dist/jquery.min.js></script>
+   <script defer src=https://cdn.jsdelivr.net/npm/dna.js@2.0/dist/dna.min.js></script>
+   <script defer src=https://cdn.jsdelivr.net/npm/web-ignition@1.5/dist/lib-x.min.js></script>
+   <script defer src=../dist/pretty-print-json.min.js></script>
+   <script>
+      const app = {
+         processJson(target, event, component) {
+            const elem = {
+               textarea: component.find('textarea'),
+               message:  component.find('#error-message').fadeOut(),
+               output:   component.find('output'),
+               options:  component.find('input[type=checkbox]'),
+               };
+            const options = {
+               lineNumbers: elem.options.eq(0).is(':checked'),
+               quoteKeys:   elem.options.eq(1).is(':checked'),
+               };
+            component.toggleClass('line-numbers', options.lineNumbers);
+            try {
+               const data = elem.textarea.val().trim().length ? JSON.parse(elem.textarea.val()) : null;
+               const html = data ? prettyPrintJson.toHtml(data, options) : '[EMPTY]';
+               elem.output.html(html);
+               }
+            catch(e) {
+               elem.message.text('Invalid JSON').finish().fadeIn();
+               }
+            },
+         copyToClipboard(icon, event, component) {
+            const output =    component.find('output');
+            const selection = window.getSelection();
+            const range =     document.createRange();
+            libX.animate.jiggleIt(icon);
+            range.selectNode(output[0]);
+            selection.empty();
+            selection.addRange(range);
+            document.execCommand('copy');
+            },
+         toggleDarkMode(target, event, component) {
+            component.toggleClass('dark-mode', target.is(':checked'));
+            },
+         setup(component) {
+            const intro = {
+               message: 'Put some JSON in the text box.',
+               error:   null,
+               year:    new Date().getFullYear(),
+               ios:     libX.browser.iOS(),
+               space:   '🪐🚀✨',
+               fancy:   'https://json5.org/?' + Date.now() % 20,
+               };
+            component.find('textarea').val(JSON.stringify(intro)).trigger('change');
+            $('.version-number').text(prettyPrintJson.version);
+            },
+         };
+   </script>
 </head>
 <body>
 
@@ -179,59 +233,5 @@
    </div>
 </footer>
 
-<script src=https://cdn.jsdelivr.net/npm/jquery@3.6/dist/jquery.min.js></script>
-<script src=https://cdn.jsdelivr.net/npm/dna.js@2.0/dist/dna.min.js></script>
-<script src=https://cdn.jsdelivr.net/npm/web-ignition@1.5/dist/lib-x.min.js></script>
-<script src=../dist/pretty-print-json.min.js></script>
-<script>
-   const app = {
-      processJson(target, event, component) {
-         const elem = {
-            textarea: component.find('textarea'),
-            message:  component.find('#error-message').fadeOut(),
-            output:   component.find('output'),
-            options:  component.find('input[type=checkbox]'),
-            };
-         const options = {
-            lineNumbers: elem.options.eq(0).is(':checked'),
-            quoteKeys:   elem.options.eq(1).is(':checked'),
-            };
-         component.toggleClass('line-numbers', options.lineNumbers);
-         try {
-            const data = elem.textarea.val().trim().length ? JSON.parse(elem.textarea.val()) : null;
-            const html = data ? prettyPrintJson.toHtml(data, options) : '[EMPTY]';
-            elem.output.html(html);
-            }
-         catch(e) {
-            elem.message.text('Invalid JSON').finish().fadeIn();
-            }
-         },
-      copyToClipboard(icon, event, component) {
-         const output =    component.find('output');
-         const selection = window.getSelection();
-         const range =     document.createRange();
-         libX.animate.jiggleIt(icon);
-         range.selectNode(output[0]);
-         selection.empty();
-         selection.addRange(range);
-         document.execCommand('copy');
-         },
-      toggleDarkMode(target, event, component) {
-         component.toggleClass('dark-mode', target.is(':checked'));
-         },
-      setup(component) {
-         const intro = {
-            message: 'Put some JSON in the text box.',
-            error:   null,
-            year:    new Date().getFullYear(),
-            ios:     libX.browser.iOS(),
-            space:   '🪐🚀✨',
-            fancy:   'https://json5.org/?' + Date.now() % 20,
-            };
-         component.find('textarea').val(JSON.stringify(intro)).trigger('change');
-         $('.version-number').text(prettyPrintJson.version);
-         },
-      };
-</script>
 </body>
 </html>

@@ -4,39 +4,76 @@
 <!-- - - - - - - - - - -->
 <html lang=en>
 <head>
-<meta charset=utf-8>
-<meta name=viewport    content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name=robots      content="index, follow">
-<meta name=description content="Example of ES module dynamic loading of pretty-print-json">
-<title>Pretty-Print JSON &bull; ES Module Dynamic Loading</title>
-<link rel=icon       href=https://centerkey.com/graphics/bookmark.png>
-<link rel=preconnect href=https://fonts.googleapis.com>
-<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1/css/all.min.css>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/dna.js@2.0/dist/dna.css>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/web-ignition@1.5/dist/reset.min.css>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/pretty-print-json@1.2/dist/pretty-print-json.css>
-<style>
-   body {
-      max-width: 700px;
-      color: whitesmoke;
-      background-color: darkslateblue;
-      }
-   body >header >figure {
-      font-size: 3rem;
-      }
-   body >main >p {
-      text-align: center;
-      }
-   body >main >pre {
-      font-size: 0.9rem;
-      color: black;
-      background-color: white;
-      border: 5px solid silver;
-      padding: 5px 10px;
-      margin: 0px;
-      }
-</style>
+   <meta charset=utf-8>
+   <meta name=viewport    content="width=device-width, initial-scale=1, maximum-scale=1">
+   <meta name=robots      content="index, follow">
+   <meta name=description content="Example of ES module dynamic loading of pretty-print-json">
+   <title>Pretty-Print JSON &bull; ES Module Dynamic Loading</title>
+   <link rel=icon       href=https://centerkey.com/graphics/bookmark.png>
+   <link rel=preconnect href=https://fonts.googleapis.com>
+   <link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+   <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1/css/all.min.css>
+   <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/dna.js@2.0/dist/dna.css>
+   <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/web-ignition@1.5/dist/reset.min.css>
+   <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/pretty-print-json@1.2/dist/pretty-print-json.css>
+   <style>
+      body {
+         max-width: 700px;
+         color: whitesmoke;
+         background-color: darkslateblue;
+         }
+      body >header >figure {
+         font-size: 3rem;
+         }
+      body >main >p {
+         text-align: center;
+         }
+      body >main >pre {
+         font-size: 0.9rem;
+         color: black;
+         background-color: white;
+         border: 5px solid silver;
+         padding: 5px 10px;
+         margin: 0px;
+         }
+   </style>
+   <script defer src=https://cdn.jsdelivr.net/npm/jquery@3.6/dist/jquery.min.js></script>
+   <script defer src=https://cdn.jsdelivr.net/npm/dna.js@2.0/dist/dna.min.js></script>
+   <script defer src=https://cdn.jsdelivr.net/npm/web-ignition@1.5/dist/lib-x.min.js></script>
+   <script data-on-load=app.setup>
+      const app = {
+         loadModule(module) {
+            const buttonClicked = new Date();
+            const url = 'https://cdn.jsdelivr.net/npm/pretty-print-json@1.2/dist/pretty-print-json.js';
+            import(url).then(module => {
+               const pageLoaded = $('body').data().pageLoaded;
+               const moduleLoaded = new Date();
+               const message = {
+                  message: 'ES Module Dynamic Loading',
+                  version: module.prettyPrintJson.version,
+                  times: {
+                     pageLoaded___: pageLoaded,
+                     buttonClicked: buttonClicked,
+                     moduleLoaded_: moduleLoaded,
+                     },
+                  milliseconds: {
+                     waitForClick: buttonClicked - pageLoaded,
+                     loadModule:   moduleLoaded - buttonClicked,
+                     },
+                  };
+               const html = module.prettyPrintJson.toHtml(message);
+               $('main output').hide().html(html).slideDown();
+               });
+            },
+         setup() {
+            const pageLoaded = new Date();
+            $('body').data().pageLoaded = pageLoaded;
+            $('main code').text(pageLoaded.toString());
+            $('main button').on({ click: app.loadModule });
+            libX.ui.autoDisableButtons();
+            },
+         };
+   </script>
 </head>
 <body>
 
@@ -58,43 +95,5 @@
    </div>
 </footer>
 
-<script src=https://cdn.jsdelivr.net/npm/jquery@3.6/dist/jquery.min.js></script>
-<script src=https://cdn.jsdelivr.net/npm/dna.js@2.0/dist/dna.min.js></script>
-<script src=https://cdn.jsdelivr.net/npm/web-ignition@1.5/dist/lib-x.min.js></script>
-<script>
-   const app = {
-      loadModule(module) {
-         const buttonClicked = new Date();
-         const url = 'https://cdn.jsdelivr.net/npm/pretty-print-json@1.2/dist/pretty-print-json.js';
-         import(url).then(module => {
-            const pageLoaded = $('body').data().pageLoaded;
-            const moduleLoaded = new Date();
-            const message = {
-               message: 'ES Module Dynamic Loading',
-               version: module.prettyPrintJson.version,
-               times: {
-                  pageLoaded___: pageLoaded,
-                  buttonClicked: buttonClicked,
-                  moduleLoaded_: moduleLoaded,
-                  },
-               milliseconds: {
-                  waitForClick: buttonClicked - pageLoaded,
-                  loadModule:   moduleLoaded - buttonClicked,
-                  },
-               };
-            const html = module.prettyPrintJson.toHtml(message);
-            $('main output').hide().html(html).slideDown();
-            });
-         },
-      setup() {
-         const pageLoaded = new Date();
-         $('body').data().pageLoaded = pageLoaded;
-         $('main code').text(pageLoaded.toString());
-         $('main button').on({ click: app.loadModule });
-         libX.ui.autoDisableButtons();
-         },
-      };
-   app.setup();
-</script>
 </body>
 </html>
