@@ -5,6 +5,7 @@
       "moduleResolution": "node",
       "declaration": true,
       "outDir": "build",
+      "newLine": "lf",
       "strict": true,
       "alwaysStrict": true,
       "esModuleInterop": true,

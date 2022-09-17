@@ -11,7 +11,7 @@ const mode =       { type: 'Minified', file: 'dist/pretty-print-json.min.js' };
 const filename =   import.meta.url.replace(/.*\//, '');  //jshint ignore:line
 const dom =        new JSDOM('', { runScripts: 'outside-only' });
 const scripts =    [mode.file];
-const loadScript = (file) => dom.window.eval(readFileSync(file).toString());  //jshint ignore:line
+const loadScript = (file) => dom.window.eval(readFileSync(file, 'utf8'));
 scripts.forEach(loadScript);
 const { prettyPrintJson } = dom.window;
 
