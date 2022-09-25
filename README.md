@@ -13,12 +13,12 @@ _Pretty-print JSON data into HTML to indent and colorize (written in functional 
 <img width=350 alt=screenshot
    src=https://3.bp.blogspot.com/-M13HQRG7cqQ/XaQvF0Q_KyI/AAAAAAAAJeg/3_CTIgPAh5Yqa29aYPvB1aTO9VsUlksLACNcBGAsYHQ/s1600/pretty-print-json.png>
 
-## 1) Try It Out
+## A) Try It Out
 Interactive online tool to format JSON:<br>
 https://pretty-print-json.js.org
 
-## 2) Setup
-### Web browser
+## B) Setup
+### 1. Web browser
 Load from the [jsdelivr.com CDN](https://www.jsdelivr.com/package/npm/pretty-print-json):
 ```html
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/pretty-print-json@1.2/dist/pretty-print-json.css>
@@ -27,7 +27,7 @@ Load from the [jsdelivr.com CDN](https://www.jsdelivr.com/package/npm/pretty-pri
 ```
 For **dark mode**, replace `pretty-print-json.css` with `pretty-print-json.dark-mode.css` in
 the `<link>` tag.
-### Node.js server
+### 2. Node.js server
 Install package for node:
 ```shell
 $ npm install pretty-print-json
@@ -41,12 +41,12 @@ Or for older CommonJS/UMD environments:
 const { prettyPrintJson } = require('pretty-print-json');  //deprecated -- use ES modules instead
 ```
 
-## 3) Usage
-### API
+## C) Usage
+### 1. API
 ```javascript
 const html = prettyPrintJson.toHtml(data, options?);
 ```
-### Example
+### 2. Example
 ##### HTML:
 ```html
 <pre id=account class=json-container></pre>
@@ -58,7 +58,7 @@ const data = { active: true, mode: '🚃', codes: [48348, 28923, 39080], city: '
 const elem = document.getElementById('account');
 elem.innerHTML = prettyPrintJson.toHtml(data);
 ```
-### Options
+### 3. Options
 | Name (key)    | Type        | Default | Description                                                 |
 | :------------ | :---------- | :------ | :---------------------------------------------------------- |
 | `indent`      | **integer** | `3`     | Number of spaces for indentation.                           |
@@ -72,7 +72,7 @@ elem.innerHTML = prettyPrintJson.toHtml(data);
 <b>*</b>When setting `lineNumbers` to `true`, do not use the `<pre>` tag as the `white-space: pre;`
 styling is applied to each line (`<li>`).
 
-## 4) TypeScript Declarations
+## D) TypeScript Declarations
 The **TypeScript Declaration File** file is [pretty-print-json.d.ts](dist/pretty-print-json.d.ts)
 in the **dist** folder.
 
@@ -96,7 +96,7 @@ const options: FormatOptions = { linkUrls: true };
 const html: string = prettyPrintJson.toHtml(data, options);
 ```
 
-## 5) Contributor Notes
+## E) Contributor Notes
 To be a contributor, **fork** the project and run the commands `npm install` and `npm test` on your
 local clone.&nbsp;
 To see some example HTML results, run `node spec/examples.js`.&nbsp;
