@@ -54,8 +54,12 @@
          font-family: monospace;
          color: navy;
          background-color: white;
+         transition: background-color 400ms;
          padding: 10px 15px;
          margin: 0px;
+         }
+      [data-component=pretty-print].dark-mode >section:first-child >textarea {
+         background-color: gainsboro;
          }
       [data-component=pretty-print] >section:first-child #error-message {
          font-size: 1.2rem;
