@@ -145,7 +145,7 @@ describe('The .toHtml() function', () => {
       });
 
    it('outputs correct number of lines for formatting package.json', () => {
-      const packageJson = readFileSync('package.json', 'utf8');
+      const packageJson = readFileSync('package.json', 'utf-8');
       const lines = prettyPrintJson.toHtml(JSON.parse(packageJson)).split('\n');
       const fileLineCount = packageJson.trim().split('\n').length;
       const actual =   {
@@ -222,15 +222,15 @@ describe('The "lineNumbers" option', () => {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 describe('The "linkUrls" option', () => {
+   const input = {
+      city:       'London',
+      url:        'https://en.wikipedia.org/wiki/London',
+      info:       'Visit https://en.wikipedia.org/wiki/London https://en.wikipedia.org/wiki/United_Kingdom',
+      local:      'http://localhost/london/',
+      characters: 'https://example.com/_.~-/%20/?x=777',
+      };
 
    it('creates anchor tags for URLs', () => {
-      const input = {
-         city:       'London',
-         url:        'https://en.wikipedia.org/wiki/London',
-         info:       'Visit https://en.wikipedia.org/wiki/London https://en.wikipedia.org/wiki/United_Kingdom',
-         local:      'http://localhost/london/',
-         characters: 'https://example.com/_.~-/%20/?x=777',
-         };
       const htmlLines = [
          '<span class=json-mark>{</span>',
          '   <span class=json-key>city</span><span class=json-mark>: </span><span class=json-string>"London"</span><span class=json-mark>,</span>',
@@ -240,7 +240,24 @@ describe('The "linkUrls" option', () => {
          '   <span class=json-key>characters</span><span class=json-mark>: </span><span class=json-string>"<a class=json-link href="https://example.com/_.~-/%20/?x=777">https://example.com/_.~-/%20/?x=777</a>"</span>',
          '<span class=json-mark>}</span>',
          ];
-      const actual =   { html: prettyPrintJson.toHtml(input, { linkUrls: true }).split('\n') };
+      const options =  { linkUrls: true, linksNewTab: false };
+      const actual =   { html: prettyPrintJson.toHtml(input, options).split('\n') };
+      const expected = { html: htmlLines };
+      assertDeepStrictEqual(actual, expected);
+      });
+
+   it('creates anchor tags for new tabs when "linksNewTab" is enabled', () => {
+      const htmlLines = [
+         '<span class=json-mark>{</span>',
+         '   <span class=json-key>city</span><span class=json-mark>: </span><span class=json-string>"London"</span><span class=json-mark>,</span>',
+         '   <span class=json-key>url</span><span class=json-mark>: </span><span class=json-string>"<a class=json-link href="https://en.wikipedia.org/wiki/London" target=_blank>https://en.wikipedia.org/wiki/London</a>"</span><span class=json-mark>,</span>',
+         '   <span class=json-key>info</span><span class=json-mark>: </span><span class=json-string>"Visit <a class=json-link href="https://en.wikipedia.org/wiki/London" target=_blank>https://en.wikipedia.org/wiki/London</a> <a class=json-link href="https://en.wikipedia.org/wiki/United_Kingdom" target=_blank>https://en.wikipedia.org/wiki/United_Kingdom</a>"</span><span class=json-mark>,</span>',
+         '   <span class=json-key>local</span><span class=json-mark>: </span><span class=json-string>"<a class=json-link href="http://localhost/london/" target=_blank>http://localhost/london/</a>"</span><span class=json-mark>,</span>',
+         '   <span class=json-key>characters</span><span class=json-mark>: </span><span class=json-string>"<a class=json-link href="https://example.com/_.~-/%20/?x=777" target=_blank>https://example.com/_.~-/%20/?x=777</a>"</span>',
+         '<span class=json-mark>}</span>',
+         ];
+      const options =  { linkUrls: true, linksNewTab: true };
+      const actual =   { html: prettyPrintJson.toHtml(input, options).split('\n') };
       const expected = { html: htmlLines };
       assertDeepStrictEqual(actual, expected);
       });

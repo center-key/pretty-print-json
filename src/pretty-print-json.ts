@@ -4,7 +4,7 @@ export type FormatSettings = {
    indent:      number,   //number of spaces for indentation
    lineNumbers: boolean,  //add line numbers
    linkUrls:    boolean,  //create anchor tags for URLs
-   linksOpenNewTab:    boolean,  //create target=_blank on anchor tags
+   linksNewTab: boolean,  //create target=_blank on anchor tags
    quoteKeys:   boolean,  //always double quote key names
    };
 export type FormatOptions = Partial<FormatSettings>;
@@ -19,7 +19,7 @@ const prettyPrintJson = {
          indent:      3,
          lineNumbers: false,
          linkUrls:    true,
-         linksOpenNewTab: false,
+         linksNewTab: true,
          quoteKeys:   false,
          };
       const settings = { ...defaults, ...options };
@@ -39,7 +39,7 @@ const prettyPrintJson = {
          const nullType = value === 'null' && 'null';
          const type =     boolType || nullType || strType || 'number';
          const urlRegex = /https?:\/\/[^\s"]+/g;
-         const makeLink = (link: string) => '<a class=json-link href="' + link + '"' + (linksOpenNewTab ? ' target="_blank"' : '') + '>' + link + '</a>';
+         const makeLink = (link: string) => '<a class=json-link href="' + link + '"' + (settings.linksNewTab ? ' target=_blank' : '') + '>' + link + '</a>';
          const display =  strType && settings.linkUrls ? value.replace(urlRegex, makeLink) : value;
          return spanTag(type, display);
          };
