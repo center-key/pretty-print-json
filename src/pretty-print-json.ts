@@ -1,11 +1,12 @@
 // pretty-print-json ~ MIT License
 
-export type FormatOptions = {
-   indent?:      number,   //number of spaces for indentation
-   lineNumbers?: boolean,  //add line numbers
-   linkUrls?:    boolean,  //create anchor tags for URLs
-   quoteKeys?:   boolean,  //always double quote key names
+export type FormatSettings = {
+   indent:      number,   //number of spaces for indentation
+   lineNumbers: boolean,  //add line numbers
+   linkUrls:    boolean,  //create anchor tags for URLs
+   quoteKeys:   boolean,  //always double quote key names
    };
+export type FormatOptions = Partial<FormatSettings>;
 export type JsonType = 'key' | 'string' | 'number' | 'boolean' | 'null' | 'mark';
 
 const prettyPrintJson = {
@@ -13,7 +14,12 @@ const prettyPrintJson = {
    version: '~~~version~~~',
 
    toHtml(thing: unknown, options?: FormatOptions): string {
-      const defaults = { indent: 3, lineNumbers: false, linkUrls: true, quoteKeys: false };
+      const defaults = {
+         indent:      3,
+         lineNumbers: false,
+         linkUrls:    true,
+         quoteKeys:   false,
+         };
       const settings = { ...defaults, ...options };
       const htmlEntities = (text: string) => text
          // Makes text displayable in browsers.
