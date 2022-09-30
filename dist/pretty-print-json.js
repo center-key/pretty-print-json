@@ -1,9 +1,15 @@
-//! pretty-print-json v1.2.6 ~~ https://pretty-print-json.js.org ~~ MIT License
+//! pretty-print-json v1.3.0 ~~ https://pretty-print-json.js.org ~~ MIT License
 
 const prettyPrintJson = {
-    version: '1.2.6',
+    version: '1.3.0',
     toHtml(thing, options) {
-        const defaults = { indent: 3, lineNumbers: false, linkUrls: true, quoteKeys: false };
+        const defaults = {
+            indent: 3,
+            lineNumbers: false,
+            linkUrls: true,
+            linksNewTab: true,
+            quoteKeys: false,
+        };
         const settings = Object.assign(Object.assign({}, defaults), options);
         const htmlEntities = (text) => text
             .replace(/&/g, '&amp;')
@@ -17,7 +23,7 @@ const prettyPrintJson = {
             const nullType = value === 'null' && 'null';
             const type = boolType || nullType || strType || 'number';
             const urlRegex = /https?:\/\/[^\s"]+/g;
-            const makeLink = (link) => '<a class=json-link href="' + link + '">' + link + '</a>';
+            const makeLink = (link) => '<a class=json-link href="' + link + '"' + (settings.linksNewTab ? ' target=_blank' : '') + '>' + link + '</a>';
             const display = strType && settings.linkUrls ? value.replace(urlRegex, makeLink) : value;
             return spanTag(type, display);
         };

@@ -12,7 +12,7 @@ import size        from 'gulp-size';
 import { readFileSync } from 'fs';
 
 // Setup
-const pkg =           JSON.parse(readFileSync('./package.json', 'utf8'));
+const pkg =           JSON.parse(readFileSync('package.json', 'utf-8'));
 const minorVersion =  pkg.version.split('.').slice(0, 2).join('.');
 const transpileES6 =  ['@babel/env', { modules: false }];
 const babelMinifyJs = { presets: [transpileES6, 'minify'], comments: false };

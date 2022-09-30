@@ -22,7 +22,7 @@
    <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2/css/all.min.css>
    <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna.js@2.0/dist/dna.css>
    <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@1.5/dist/reset.min.css>
-   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/pretty-print-json@1.2/dist/pretty-print-json.css>
+   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/pretty-print-json@1.3/dist/pretty-print-json.css>
    <style>
       body {
          max-width: 1200px;
@@ -54,8 +54,12 @@
          font-family: monospace;
          color: navy;
          background-color: white;
+         transition: background-color 400ms;
          padding: 10px 15px;
          margin: 0px;
+         }
+      [data-component=pretty-print].dark-mode >section:first-child >textarea {
+         background-color: gainsboro;
          }
       [data-component=pretty-print] >section:first-child #error-message {
          font-size: 1.2rem;
@@ -111,7 +115,7 @@
    <script defer src=https://cdn.jsdelivr.net/npm/jquery@3.6/dist/jquery.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/dna.js@2.0/dist/dna.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/web-ignition@1.5/dist/lib-x.min.js></script>
-   <script defer src=https://cdn.jsdelivr.net/npm/pretty-print-json@1.2/dist/pretty-print-json.min.js></script>
+   <script defer src=https://cdn.jsdelivr.net/npm/pretty-print-json@1.3/dist/pretty-print-json.min.js></script>
    <script>
       const app = {
          processJson(target, event, component) {

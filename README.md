@@ -64,6 +64,7 @@ elem.innerHTML = prettyPrintJson.toHtml(data);
 | `indent`      | **integer** | `3`     | Number of spaces for indentation.                           |
 | `lineNumbers` | **boolean** | `false` | Wrap HTML in an `<ol>` tag to support line numbers.<b>*</b> |
 | `linkUrls`    | **boolean** | `true`  | Create anchor tags for URLs.                                |
+| `linksNewTab` | **boolean** | `true`  | Create target=_blank on anchor tags.                        |
 | `quoteKeys`   | **boolean** | `false` | Always double quote key names.                              |
 
 <img width=450 alt=screenshot
@@ -83,6 +84,7 @@ type FormatOptions = {
    indent?:      number,   //number of spaces for indentation
    lineNumbers?: boolean,  //add line numbers
    linkUrls?:    boolean,  //create anchor tags for URLs
+   linksNewTab?: boolean,  //create target=_blank on anchor tags
    quoteKeys?:   boolean,  //always double quote key names
    };
 ```

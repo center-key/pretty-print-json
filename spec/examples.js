@@ -15,6 +15,7 @@ const runExamples = () => {
    const catInABox = ['🐈'];
    console.log(divider);
    console.log(catInABox);
+   console.log('HTML:');
    console.log(prettyPrintJson.toHtml(catInABox));
 
    // Striped
@@ -22,13 +23,22 @@ const runExamples = () => {
    const stripedOptions = { indent: 8, lineNumbers: true };
    console.log(divider);
    console.log(striped, '👉', stripedOptions);
+   console.log('HTML:');
    console.log(prettyPrintJson.toHtml(striped, stripedOptions));
 
    // Railway Car
-   const railwayCar = { active: true, mode: '🚃', codes: [48348, 28923, 39080], city: 'London' };
+   const railwayCar = {
+      active: true,
+      mode:   '🚃',
+      codes:  [48348, 28923, 39080],
+      city:   'London',
+      web:    'https://london.gov.uk',
+      };
+   const railwayCarOptions = {  };
    console.log(divider);
    console.log(railwayCar);
-   console.log(prettyPrintJson.toHtml(railwayCar));
+   console.log('HTML:');
+   console.log(prettyPrintJson.toHtml(railwayCar, railwayCarOptions));
    };
 
 console.log('Examples');
