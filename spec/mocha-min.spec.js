@@ -4,14 +4,14 @@
 // Imports
 import { assertDeepStrictEqual } from 'assert-deep-strict-equal';
 import { JSDOM } from 'jsdom';
-import { readFileSync } from 'fs';
+import fs from 'fs';
 
 // Setup
 const mode =       { type: 'Minified', file: 'dist/pretty-print-json.min.js' };
 const filename =   import.meta.url.replace(/.*\//, '');  //jshint ignore:line
 const dom =        new JSDOM('', { runScripts: 'outside-only' });
 const scripts =    [mode.file];
-const loadScript = (file) => dom.window.eval(readFileSync(file, 'utf-8'));
+const loadScript = (file) => dom.window.eval(fs.readFileSync(file, 'utf-8'));
 scripts.forEach(loadScript);
 const { prettyPrintJson } = dom.window;
 
@@ -150,7 +150,7 @@ describe('The .toHtml() function', () => {
       });
 
    it('outputs correct number of lines for formatting package.json', () => {
-      const packageJson = readFileSync('package.json', 'utf-8');
+      const packageJson = fs.readFileSync('package.json', 'utf-8');
       const lines = prettyPrintJson.toHtml(JSON.parse(packageJson)).split('\n');
       const fileLineCount = packageJson.trim().split('\n').length;
       const actual =   {

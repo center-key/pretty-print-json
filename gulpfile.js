@@ -2,15 +2,15 @@
 // gulp configuration and tasks
 
 // Imports
+import fs          from 'fs';
 import gulp        from 'gulp';
 import mergeStream from 'merge-stream';
 import rename      from 'gulp-rename';
 import replace     from 'gulp-replace';
 import size        from 'gulp-size';
-import { readFileSync } from 'fs';
 
 // Setup
-const pkg =          JSON.parse(readFileSync('package.json', 'utf-8'));
+const pkg =          JSON.parse(fs.readFileSync('package.json', 'utf-8'));
 const minorVersion = pkg.version.split('.').slice(0, 2).join('.');
 
 // Tasks

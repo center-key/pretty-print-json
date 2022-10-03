@@ -3,8 +3,8 @@
 
 // Imports
 import { assertDeepStrictEqual } from 'assert-deep-strict-equal';
-import { readFileSync } from 'fs';
 import { prettyPrintJson } from '../dist/pretty-print-json.js';
+import fs from 'fs';
 
 // Setup
 const mode =     { type: 'ES Module', file: 'dist/pretty-print-json.js' };
@@ -145,7 +145,7 @@ describe('The .toHtml() function', () => {
       });
 
    it('outputs correct number of lines for formatting package.json', () => {
-      const packageJson = readFileSync('package.json', 'utf-8');
+      const packageJson = fs.readFileSync('package.json', 'utf-8');
       const lines = prettyPrintJson.toHtml(JSON.parse(packageJson)).split('\n');
       const fileLineCount = packageJson.trim().split('\n').length;
       const actual =   {
