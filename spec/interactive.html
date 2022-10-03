@@ -141,7 +141,7 @@
             },
          copyToClipboard(icon, event, component) {
             const output =    component.find('output');
-            const selection = window.getSelection();
+            const selection = globalThis.getSelection();
             const range =     document.createRange();
             libX.animate.jiggleIt(icon);
             range.selectNode(output[0]);
