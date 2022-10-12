@@ -1,7 +1,7 @@
-//! pretty-print-json v1.3.0 ~~ https://pretty-print-json.js.org ~~ MIT License
+//! pretty-print-json v1.3.1 ~~ https://pretty-print-json.js.org ~~ MIT License
 
 const prettyPrintJson = {
-    version: '1.3.0',
+    version: '1.3.1',
     toHtml(thing, options) {
         const defaults = {
             indent: 3,
@@ -22,9 +22,10 @@ const prettyPrintJson = {
             const boolType = ['true', 'false'].includes(value) && 'boolean';
             const nullType = value === 'null' && 'null';
             const type = boolType || nullType || strType || 'number';
-            const urlRegex = /https?:\/\/[^\s"]+/g;
-            const makeLink = (link) => '<a class=json-link href="' + link + '"' + (settings.linksNewTab ? ' target=_blank' : '') + '>' + link + '</a>';
-            const display = strType && settings.linkUrls ? value.replace(urlRegex, makeLink) : value;
+            const urlPattern = /https?:\/\/[^\s"]+/g;
+            const target = settings.linksNewTab ? ' target=_blank' : '';
+            const makeLink = (link) => `<a class=json-link href="${link}"${target}>${link}</a>`;
+            const display = strType && settings.linkUrls ? value.replace(urlPattern, makeLink) : value;
             return spanTag(type, display);
         };
         const replacer = (match, p1, p2, p3, p4) => {

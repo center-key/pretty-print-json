@@ -21,9 +21,9 @@ https://pretty-print-json.js.org
 ### 1. Web browser
 Load from the [jsdelivr.com CDN](https://www.jsdelivr.com/package/npm/pretty-print-json):
 ```html
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/pretty-print-json@1.2/dist/pretty-print-json.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/pretty-print-json@1.3/dist/pretty-print-json.css>
 ...
-<script src=https://cdn.jsdelivr.net/npm/pretty-print-json@1.2/dist/pretty-print-json.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/pretty-print-json@1.3/dist/pretty-print-json.min.js></script>
 ```
 For **dark mode**, replace `pretty-print-json.css` with `pretty-print-json.dark-mode.css` in
 the `<link>` tag.
@@ -64,7 +64,7 @@ elem.innerHTML = prettyPrintJson.toHtml(data);
 | `indent`      | **integer** | `3`     | Number of spaces for indentation.                           |
 | `lineNumbers` | **boolean** | `false` | Wrap HTML in an `<ol>` tag to support line numbers.<b>*</b> |
 | `linkUrls`    | **boolean** | `true`  | Create anchor tags for URLs.                                |
-| `linksNewTab` | **boolean** | `true`  | Create target=_blank on anchor tags.                        |
+| `linksNewTab` | **boolean** | `true`  | Create `target=_blank` attribute on anchor tags.            |
 | `quoteKeys`   | **boolean** | `false` | Always double quote key names.                              |
 
 <img width=450 alt=screenshot
@@ -84,7 +84,7 @@ type FormatOptions = {
    indent?:      number,   //number of spaces for indentation
    lineNumbers?: boolean,  //add line numbers
    linkUrls?:    boolean,  //create anchor tags for URLs
-   linksNewTab?: boolean,  //create target=_blank on anchor tags
+   linksNewTab?: boolean,  //create target=_blank attribute on anchor tags
    quoteKeys?:   boolean,  //always double quote key names
    };
 ```

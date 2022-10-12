@@ -4,7 +4,7 @@ export type FormatSettings = {
    indent:      number,   //number of spaces for indentation
    lineNumbers: boolean,  //add line numbers
    linkUrls:    boolean,  //create anchor tags for URLs
-   linksNewTab: boolean,  //create target=_blank on anchor tags
+   linksNewTab: boolean,  //create target=_blank attribute on anchor tags
    quoteKeys:   boolean,  //always double quote key names
    };
 export type FormatOptions = Partial<FormatSettings>;
@@ -34,13 +34,14 @@ const prettyPrintJson = {
          display ? '<span class=json-' + type + '>' + display + '</span>' : '';
       const buildValueHtml = (value: string): string => {
          // Analyzes a value and returns HTML like: "<span class=json-number>3.1415</span>"
-         const strType =  /^"/.test(value) && 'string';
-         const boolType = ['true', 'false'].includes(value) && 'boolean';
-         const nullType = value === 'null' && 'null';
-         const type =     boolType || nullType || strType || 'number';
-         const urlRegex = /https?:\/\/[^\s"]+/g;
-         const makeLink = (link: string) => '<a class=json-link href="' + link + '"' + (settings.linksNewTab ? ' target=_blank' : '') + '>' + link + '</a>';
-         const display =  strType && settings.linkUrls ? value.replace(urlRegex, makeLink) : value;
+         const strType =    /^"/.test(value) && 'string';
+         const boolType =   ['true', 'false'].includes(value) && 'boolean';
+         const nullType =   value === 'null' && 'null';
+         const type =       boolType || nullType || strType || 'number';
+         const urlPattern = /https?:\/\/[^\s"]+/g;
+         const target =     settings.linksNewTab ? ' target=_blank' : '';
+         const makeLink =   (link: string) => `<a class=json-link href="${link}"${target}>${link}</a>`;
+         const display =    strType && settings.linkUrls ? value.replace(urlPattern, makeLink) : value;
          return spanTag(type, display);
          };
       const replacer = (match: string, p1: string, p2: string, p3: string, p4: string): string => {
