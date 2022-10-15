@@ -35,7 +35,7 @@
       "typescript"
    ],
    "jshintConfig": {
-      "esversion": 9,
+      "esversion": 11,
       "strict": "implied",
       "eqeqeq": true,
       "undef": true,
@@ -108,7 +108,7 @@
       "rimraf": "~3.0",
       "typescript": "~4.8",
       "uglify-js": "~3.17",
-      "w3c-html-validator": "~1.1",
+      "w3c-html-validator": "~1.2",
       "web-ignition": "~1.5"
    }
 }
