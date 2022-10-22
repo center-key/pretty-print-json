@@ -79,8 +79,9 @@
          "csso src/pretty-print-json.dark-mode.css --output build/pretty-print-json.dark-mode.min.css",
          "add-dist-header build dist",
          "replacer spec/interactive.html build/docs1 --find=dynamic.html --replacement=dynamic/",
-         "replacer build/docs1 build/docs2 --find=../dist --replacement='https://cdn.jsdelivr.net/npm/pretty-print-json@{{pkg.version|minor-version}}/dist' --pkg",
-         "copy-file build/docs2/interactive.html docs/index.html",
+         "replacer build/docs1 build/docs2 --find=../dist --replacement=https://cdn.jsdelivr.net/npm/pretty-print-json@{{pkg.version}}/dist --pkg",
+         "replacer build/docs2 build/docs3 --regex=/[.][0-9][/]dist[/]pretty-print-json/gm --replacement=/dist/pretty-print-json",
+         "copy-file build/docs3/interactive.html docs/index.html",
          "copy-file spec/dynamic.html docs/dynamic/index.html",
          "html-validator docs"
       ]
