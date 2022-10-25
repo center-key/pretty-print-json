@@ -79,9 +79,8 @@
          "csso src/pretty-print-json.dark-mode.css --output build/pretty-print-json.dark-mode.min.css",
          "add-dist-header build dist",
          "replacer spec/interactive.html build/docs1 --find=dynamic.html --replacement=dynamic/",
-         "replacer build/docs1 build/docs2 --find=../dist --replacement=https://cdn.jsdelivr.net/npm/pretty-print-json@{{pkg.version}}/dist --pkg",
-         "replacer build/docs2 build/docs3 --regex=/[.][0-9][/]dist[/]pretty-print-json/gm --replacement=/dist/pretty-print-json",
-         "copy-file build/docs3/interactive.html docs/index.html",
+         "replacer build/docs1 build/docs2 --find=../dist --replacement=https://cdn.jsdelivr.net/npm/pretty-print-json@{{pkg.version{{pipe}}minor-version}}/dist --pkg",
+         "copy-file build/docs2/interactive.html docs/index.html",
          "copy-file spec/dynamic.html docs/dynamic/index.html",
          "html-validator docs"
       ]
@@ -94,8 +93,8 @@
    "devDependencies": {
       "@fortawesome/fontawesome-free": "~6.2",
       "@types/node": "~18.11",
-      "@typescript-eslint/eslint-plugin": "~5.40",
-      "@typescript-eslint/parser": "~5.40",
+      "@typescript-eslint/eslint-plugin": "~5.41",
+      "@typescript-eslint/parser": "~5.41",
       "add-dist-header": "~0.3",
       "assert-deep-strict-equal": "~1.0",
       "copy-file-util": "~0.1",
@@ -114,6 +113,6 @@
       "typescript": "~4.8",
       "uglify-js": "~3.17",
       "w3c-html-validator": "~1.2",
-      "web-ignition": "~1.5"
+      "web-ignition": "~1.6"
    }
 }
