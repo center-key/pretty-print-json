@@ -12,7 +12,7 @@ export type JsonType = 'key' | 'string' | 'number' | 'boolean' | 'null' | 'mark'
 
 const prettyPrintJson = {
 
-   version: '~~~version~~~',
+   version: '{{pkg.version}}',
 
    toHtml(thing: unknown, options?: FormatOptions): string {
       const defaults = {
