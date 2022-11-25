@@ -116,7 +116,7 @@
    <script defer src=../dist/pretty-print-json.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/dna-engine@2.2/dist/dna-engine.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/web-ignition@1.6/dist/lib-x.min.js></script>
-   <script>
+   <script data-on-load=app.setup>
       const app = {
          processJson(target, event, component) {
             const elem = {
@@ -152,7 +152,8 @@
          toggleDarkMode(target, event, component) {
             component.toggleClass('dark-mode', target.is(':checked'));
             },
-         setup(component) {
+         setup() {
+            const component = $('[data-component=pretty-print]');
             const intro = {
                message:  'Put some JSON in the text box.',
                error:    null,
@@ -178,7 +179,7 @@
 </header>
 
 <main>
-   <div data-component=pretty-print data-on-load=app.setup class=flex-columns>
+   <div data-component=pretty-print class=flex-columns>
       <section>
          <h3>JSON input:</h3>
          <textarea data-smart-update=app.processJson placeholder="Enter some JSON" autofocus></textarea>
