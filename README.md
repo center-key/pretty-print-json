@@ -74,8 +74,8 @@ elem.innerHTML = prettyPrintJson.toHtml(data);
 styling is applied to each line (`<li>`).
 
 ## D) TypeScript Declarations
-The **TypeScript Declaration File** file is [pretty-print-json.d.ts](dist/pretty-print-json.d.ts)
-in the **dist** folder.
+See the TypeScript declarations at the top of the
+[pretty-print-json.ts](dist/pretty-print-json.ts) file.
 
 The output of the `prettyPrintJson.toHtml(thing: unknown, options?: FormatOptions)` function is
 configured with a `FormatOptions` object:
