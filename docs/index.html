@@ -40,13 +40,7 @@
          max-width: 50%;
          }
       [data-component=pretty-print] >section i.font-icon {
-         position: absolute;
-         top: -15px;
-         right: -12px;
-         font-size: 1.4rem;
          color: lightskyblue;
-         padding: 15px;  /* enlarge click target */
-         transition: opacity 400ms;
          }
       [data-component=pretty-print] >section:first-child >textarea {
          max-width: none;
@@ -61,6 +55,11 @@
       [data-component=pretty-print].dark-mode >section:first-child >textarea {
          background-color: gainsboro;
          }
+      [data-component=pretty-print] >section:first-child i.font-icon {
+         float: right;
+         font-size: 1.4rem;
+         margin-top: -6px;
+         }
       [data-component=pretty-print] >section:first-child #error-message {
          font-size: 1.2rem;
          font-weight: bold;
@@ -68,6 +67,25 @@
          text-shadow: 0px 0px 0.1em white;
          color: crimson;
          padding-top: 3px;
+         opacity: 0;
+         transition: opacity 800ms;
+         }
+      [data-component=pretty-print].invalid-json >section:first-child #error-message {
+         opacity: 1;
+         }
+      [data-component=pretty-print] >section:first-child >fieldset {
+         display: flex;
+         gap: 15px;
+         max-width: none;
+         margin-bottom: 5px;
+         }
+      [data-component=pretty-print] >section:first-child >fieldset >input {
+         flex: 1;
+         max-width: none;
+         margin: 0px;
+         }
+      [data-component=pretty-print] >section:first-child >a {
+         font-size: 0.9rem;
          }
       [data-component=pretty-print] >section:last-child >div {
          min-height: 350px;
@@ -82,6 +100,14 @@
          }
       [data-component=pretty-print].dark-mode >section:last-child >div {
          background-color: black;
+         }
+      [data-component=pretty-print] >section:last-child i.font-icon {
+         position: absolute;
+         top: -15px;
+         right: -12px;
+         font-size: 1.4rem;
+         padding: 15px;  /* enlarge click target */
+         transition: opacity 400ms;
          }
       [data-component=pretty-print] >section:last-child >div >output {
          display: block;
@@ -114,37 +140,64 @@
    </style>
    <script defer src=https://cdn.jsdelivr.net/npm/jquery@3.6/dist/jquery.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/pretty-print-json@1.3/dist/pretty-print-json.min.js></script>
+   <script defer src=https://cdn.jsdelivr.net/npm/fetch-json@3.0/dist/fetch-json.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/dna-engine@2.2/dist/dna-engine.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/web-ignition@1.6/dist/lib-x.min.js></script>
    <script data-on-load=app.setup>
       const app = {
          processJson(target, event, component) {
-            const elem = {
-               textarea: component.find('textarea'),
-               message:  component.find('#error-message').fadeOut(),
-               output:   component.find('output'),
-               options:  component.find('input[type=checkbox]'),
-               };
+            const elem = component.data().elem;
             const options = {
                lineNumbers: elem.options.eq(0).is(':checked'),
                quoteKeys:   elem.options.eq(1).is(':checked'),
                };
             component.toggleClass('line-numbers', options.lineNumbers);
+            component.removeClass('invalid-json');
             try {
                const data = elem.textarea.val().trim().length ? JSON.parse(elem.textarea.val()) : null;
                const html = data ? prettyPrintJson.toHtml(data, options) : '[EMPTY]';
                elem.output.html(html);
                }
             catch(e) {
-               elem.message.text('Invalid JSON').finish().fadeIn();
+               globalThis.setTimeout(() => component.addClass('invalid-json'), 400);
                }
             },
+         showExampleUrl(icon, event, component) {
+            const exampleUrls = [
+               'https://dna-engine.org/api/books/',
+               'https://yesno.wtf/api',
+               'https://api.plos.org/search?q=title:DNA',
+               'https://httpbin.org/get',
+               'https://swapi.py4e.com/api/starships/',
+               'https://www.googleapis.com/books/v1/volumes?q=spacex',
+               'https://official-joke-api.appspot.com/random_joke',
+               'https://api.github.com/repos/center-key/pretty-print-json/contributors',
+               ];
+            component.data().currentExample = ((component.data().currentExample ?? -1) + 1) % exampleUrls.length;
+            const elem = component.data().elem;
+            libX.animate.jiggleIt(icon);
+            elem.url.val(exampleUrls[component.data().currentExample]);
+            },
+         fetchData(target, event, component) {
+            const elem = component.data().elem;
+            const url =  elem.url.val().trim();
+            const link = 'https://pretty-print-json.js.org/?url=' + url;
+            elem.fetch.disable();
+            const handleData = (data) => {
+               elem.link.attr('href', link).text(link);
+               elem.textarea.val(JSON.stringify(data, null, 3)).trigger('change');
+               elem.fetch.enable();
+               };
+            globalThis.fetchJson.get(url)
+               .then(handleData)
+               .catch(error => handleData({ url: url, error: error.message }));
+            },
          copyToClipboard(icon, event, component) {
-            const output =    component.find('output');
+            const elem =      component.data().elem;
             const selection = globalThis.getSelection();
             const range =     document.createRange();
             libX.animate.jiggleIt(icon);
-            range.selectNode(output[0]);
+            range.selectNode(elem.output[0]);
             selection.empty();
             selection.addRange(range);
             document.execCommand('copy');
@@ -154,6 +207,16 @@
             },
          setup() {
             const component = $('[data-component=pretty-print]');
+            const elem = {
+               textarea: component.find('>section >textarea'),
+               message:  component.find('>section >#error-message'),
+               url:      component.find('>section >fieldset >input'),
+               fetch:    component.find('>section >fieldset >button'),
+               link:     component.find('>section >a'),
+               output:   component.find('>section >div >output'),
+               options:  component.find('>section >nav input[type=checkbox]'),
+               };
+            component.data().elem = elem;
             const intro = {
                message:  'Put some JSON in the text box.',
                error:    null,
@@ -163,7 +226,12 @@
                space:    '🪐🚀✨',
                fancy:    'https://json5.org/?' + Date.now() % 20,
                };
-            component.find('textarea').val(JSON.stringify(intro)).trigger('change');
+            const url = new URLSearchParams(globalThis.location.search).get('url');
+            elem.url.val(url);
+            if (url)
+               elem.fetch.click();
+            else
+               elem.textarea.val(JSON.stringify(intro)).trigger('change');
             $('.version-number').text(prettyPrintJson.version);
             },
          };
@@ -183,7 +251,14 @@
       <section>
          <h3>JSON input:</h3>
          <textarea data-smart-update=app.processJson placeholder="Enter some JSON" autofocus></textarea>
-         <p id=error-message></p>
+         <p id=error-message>Invalid JSON</p>
+         <i data-icon=wand-magic-sparkles data-click=app.showExampleUrl></i>
+         <h3>JSON REST endpoint URL:</h3>
+         <fieldset>
+            <input type=text>
+            <button data-click=app.fetchData>Fetch Data</button>
+         </fieldset>
+         <a href=#></a>&nbsp;
       </section>
       <section>
          <h3>Color output:</h3>

@@ -1,6 +1,6 @@
 {
    "name": "pretty-print-json",
-   "version": "1.3.2",
+   "version": "1.3.3",
    "description": "Pretty-print JSON data into HTML to indent and colorize (written in functional TypeScript)",
    "license": "MIT",
    "type": "module",
@@ -107,7 +107,7 @@
       "esm-to-plain-js": "~0.1",
       "fetch-json": "~3.0",
       "jquery": "~3.6",
-      "jsdom": "~20.0",
+      "jsdom": "~21.0",
       "jshint": "~2.13",
       "mocha": "~10.2",
       "replacer-util": "~0.3",
