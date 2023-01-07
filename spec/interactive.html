@@ -68,6 +68,21 @@
          text-shadow: 0px 0px 0.1em white;
          color: crimson;
          padding-top: 3px;
+         opacity: 0;
+         transition: opacity 800ms;
+         }
+      [data-component=pretty-print].invalid-json >section:first-child #error-message {
+         opacity: 1;
+         }
+      [data-component=pretty-print] >section:first-child >fieldset {
+         display: flex;
+         gap: 15px;
+         max-width: none;
+         }
+      [data-component=pretty-print] >section:first-child >fieldset >input {
+         flex: 1;
+         max-width: none;
+         margin: 0px;
          }
       [data-component=pretty-print] >section:last-child >div {
          min-height: 350px;
@@ -114,30 +129,37 @@
    </style>
    <script defer src=https://cdn.jsdelivr.net/npm/jquery@3.6/dist/jquery.min.js></script>
    <script defer src=../dist/pretty-print-json.min.js></script>
+   <script defer src=https://cdn.jsdelivr.net/npm/fetch-json@3.0/dist/fetch-json.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/dna-engine@2.2/dist/dna-engine.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/web-ignition@1.6/dist/lib-x.min.js></script>
    <script data-on-load=app.setup>
       const app = {
          processJson(target, event, component) {
-            const elem = {
-               textarea: component.find('textarea'),
-               message:  component.find('#error-message').fadeOut(),
-               output:   component.find('output'),
-               options:  component.find('input[type=checkbox]'),
-               };
+            const elem = component.data().elem;
             const options = {
                lineNumbers: elem.options.eq(0).is(':checked'),
                quoteKeys:   elem.options.eq(1).is(':checked'),
                };
             component.toggleClass('line-numbers', options.lineNumbers);
+            component.removeClass('invalid-json');
             try {
                const data = elem.textarea.val().trim().length ? JSON.parse(elem.textarea.val()) : null;
                const html = data ? prettyPrintJson.toHtml(data, options) : '[EMPTY]';
                elem.output.html(html);
                }
             catch(e) {
-               elem.message.text('Invalid JSON').finish().fadeIn();
+               globalThis.setTimeout(() => component.addClass('invalid-json'), 400);
                }
+            },
+         fetchData(target, event, component) {
+            const elem = component.data().elem;
+            const url =  elem.url.val().trim();
+            const handleData = (data) => {
+               elem.textarea.val(JSON.stringify(data, null, 3)).trigger('change');
+               };
+            globalThis.fetchJson.get(url)
+               .then(handleData)
+               .catch(error => handleData({ url: url, error: error.message }));
             },
          copyToClipboard(icon, event, component) {
             const output =    component.find('output');
@@ -154,6 +176,14 @@
             },
          setup() {
             const component = $('[data-component=pretty-print]');
+            const elem = {
+               textarea: component.find('textarea'),
+               message:  component.find('#error-message'),
+               url:      component.find('fieldset >input'),
+               output:   component.find('output'),
+               options:  component.find('input[type=checkbox]'),
+               };
+            component.data().elem = elem;
             const intro = {
                message:  'Put some JSON in the text box.',
                error:    null,
@@ -163,7 +193,7 @@
                space:    '🪐🚀✨',
                fancy:    'https://json5.org/?' + Date.now() % 20,
                };
-            component.find('textarea').val(JSON.stringify(intro)).trigger('change');
+            elem.textarea.val(JSON.stringify(intro)).trigger('change');
             $('.version-number').text(prettyPrintJson.version);
             },
          };
@@ -183,7 +213,12 @@
       <section>
          <h3>JSON input:</h3>
          <textarea data-smart-update=app.processJson placeholder="Enter some JSON" autofocus></textarea>
-         <p id=error-message></p>
+         <p id=error-message>Invalid JSON</p>
+         <h3>JSON REST endpoint URL:</h3>
+         <fieldset>
+            <input type=text>
+            <button data-click=app.fetchData>Fetch Data</button>
+         </fieldset>
       </section>
       <section>
          <h3>Color output:</h3>
