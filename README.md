@@ -21,12 +21,13 @@ https://pretty-print-json.js.org
 ### 1. Web browser
 Load from the [jsdelivr.com CDN](https://www.jsdelivr.com/package/npm/pretty-print-json):
 ```html
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/pretty-print-json@1.3/dist/pretty-print-json.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/pretty-print-json@1.3/dist/css/pretty-print-json.css>
 ...
 <script src=https://cdn.jsdelivr.net/npm/pretty-print-json@1.3/dist/pretty-print-json.min.js></script>
 ```
 For **dark mode**, replace `pretty-print-json.css` with `pretty-print-json.dark-mode.css` in
 the `<link>` tag.
+Or to automatically sense **dark mode** using the `prefers-color-scheme` CSS media feature, use `pretty-print-json.prefers-color.css` instead.
 ### 2. Node.js server
 Install package for node:
 ```shell

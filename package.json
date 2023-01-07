@@ -7,7 +7,7 @@
    "module": "dist/pretty-print-json.js",
    "jsdelivr": "dist/pretty-print-json.min.js",
    "main": "dist/pretty-print-json.umd.cjs",
-   "style": "dist/pretty-print-json.css",
+   "style": "dist/css/pretty-print-json.css",
    "types": "dist/pretty-print-json.d.ts",
    "files": [
       "dist"
@@ -74,10 +74,11 @@
          "copy-file build/umd/pretty-print-json.js build/pretty-print-json.umd.cjs",
          "esm-to-plain-js --cd=build pretty-print-json.js pretty-print-json.dev.js",
          "uglifyjs build/pretty-print-json.dev.js --output build/pretty-print-json.min.js",
-         "copy-folder src --ext=.css build",
-         "csso src/pretty-print-json.css --output build/pretty-print-json.min.css",
-         "csso src/pretty-print-json.dark-mode.css --output build/pretty-print-json.dark-mode.min.css",
-         "add-dist-header build dist"
+         "copy-folder src --ext=.css build/css",
+         "csso src/pretty-print-json.css           --output build/css/pretty-print-json.min.css",
+         "csso src/pretty-print-json.dark-mode.css --output build/css/pretty-print-json.dark-mode.min.css",
+         "add-dist-header build dist",
+         "add-dist-header build/css dist/css"
       ],
       "docs": [
          "replacer spec/interactive.html build/docs1 --find=dynamic.html --replacement=dynamic/",
