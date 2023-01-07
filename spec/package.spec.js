@@ -28,6 +28,8 @@ describe('The "dist" folder', () => {
          'pretty-print-json.dark-mode.css',
          'pretty-print-json.dark-mode.min.css',
          'pretty-print-json.min.css',
+         'pretty-print-json.prefers.css',
+         'pretty-print-json.prefers.min.css',
          ];
       assertDeepStrictEqual(actual, expected);
       });

@@ -27,7 +27,7 @@ Load from the [jsdelivr.com CDN](https://www.jsdelivr.com/package/npm/pretty-pri
 ```
 For **dark mode**, replace `pretty-print-json.css` with `pretty-print-json.dark-mode.css` in
 the `<link>` tag.
-Or to automatically sense **dark mode** using the `prefers-color-scheme` CSS media feature, use `pretty-print-json.prefers-color.css` instead.
+Or to automatically sense **dark mode** using the `prefers-color-scheme` CSS media feature, use `pretty-print-json.prefers.css` instead.
 ### 2. Node.js server
 Install package for node:
 ```shell

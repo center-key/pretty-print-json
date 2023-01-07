@@ -77,6 +77,7 @@
          "copy-folder src --ext=.css build/css",
          "csso src/pretty-print-json.css           --output build/css/pretty-print-json.min.css",
          "csso src/pretty-print-json.dark-mode.css --output build/css/pretty-print-json.dark-mode.min.css",
+         "csso src/pretty-print-json.prefers.css   --output build/css/pretty-print-json.prefers.min.css",
          "add-dist-header build dist",
          "add-dist-header build/css dist/css"
       ],
