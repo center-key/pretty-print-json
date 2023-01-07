@@ -78,11 +78,15 @@
          display: flex;
          gap: 15px;
          max-width: none;
+         margin-bottom: 5px;
          }
       [data-component=pretty-print] >section:first-child >fieldset >input {
          flex: 1;
          max-width: none;
          margin: 0px;
+         }
+      [data-component=pretty-print] >section:first-child >a {
+         font-size: 0.9rem;
          }
       [data-component=pretty-print] >section:last-child >div {
          min-height: 350px;
@@ -154,7 +158,9 @@
          fetchData(target, event, component) {
             const elem = component.data().elem;
             const url =  elem.url.val().trim();
+            const link = 'https://pretty-print-json.js.org/?url=' + url;
             const handleData = (data) => {
+               elem.link.attr('href', link).text(link);
                elem.textarea.val(JSON.stringify(data, null, 3)).trigger('change');
                };
             globalThis.fetchJson.get(url)
@@ -177,11 +183,13 @@
          setup() {
             const component = $('[data-component=pretty-print]');
             const elem = {
-               textarea: component.find('textarea'),
-               message:  component.find('#error-message'),
-               url:      component.find('fieldset >input'),
-               output:   component.find('output'),
-               options:  component.find('input[type=checkbox]'),
+               textarea: component.find('>section >textarea'),
+               message:  component.find('>section >#error-message'),
+               url:      component.find('>section >fieldset >input'),
+               fetch:    component.find('>section >fieldset >button'),
+               link:     component.find('>section >a'),
+               output:   component.find('>section >div >output'),
+               options:  component.find('>section >nav input[type=checkbox]'),
                };
             component.data().elem = elem;
             const intro = {
@@ -193,7 +201,12 @@
                space:    '🪐🚀✨',
                fancy:    'https://json5.org/?' + Date.now() % 20,
                };
-            elem.textarea.val(JSON.stringify(intro)).trigger('change');
+            const url = new URLSearchParams(globalThis.location.search).get('url');
+            elem.url.val(url);
+            if (url)
+               elem.fetch.click();
+            else
+               elem.textarea.val(JSON.stringify(intro)).trigger('change');
             $('.version-number').text(prettyPrintJson.version);
             },
          };
@@ -219,6 +232,7 @@
             <input type=text>
             <button data-click=app.fetchData>Fetch Data</button>
          </fieldset>
+         <a href=#></a>&nbsp;
       </section>
       <section>
          <h3>Color output:</h3>
