@@ -40,13 +40,7 @@
          max-width: 50%;
          }
       [data-component=pretty-print] >section i.font-icon {
-         position: absolute;
-         top: -15px;
-         right: -12px;
-         font-size: 1.4rem;
          color: lightskyblue;
-         padding: 15px;  /* enlarge click target */
-         transition: opacity 400ms;
          }
       [data-component=pretty-print] >section:first-child >textarea {
          max-width: none;
@@ -60,6 +54,11 @@
          }
       [data-component=pretty-print].dark-mode >section:first-child >textarea {
          background-color: gainsboro;
+         }
+      [data-component=pretty-print] >section:first-child i.font-icon {
+         float: right;
+         font-size: 1.4rem;
+         margin-top: -6px;
          }
       [data-component=pretty-print] >section:first-child #error-message {
          font-size: 1.2rem;
@@ -101,6 +100,14 @@
          }
       [data-component=pretty-print].dark-mode >section:last-child >div {
          background-color: black;
+         }
+      [data-component=pretty-print] >section:last-child i.font-icon {
+         position: absolute;
+         top: -15px;
+         right: -12px;
+         font-size: 1.4rem;
+         padding: 15px;  /* enlarge click target */
+         transition: opacity 400ms;
          }
       [data-component=pretty-print] >section:last-child >div >output {
          display: block;
@@ -155,24 +162,42 @@
                globalThis.setTimeout(() => component.addClass('invalid-json'), 400);
                }
             },
+         showExampleUrl(icon, event, component) {
+            const exampleUrls = [
+               'https://dna-engine.org/api/books/',
+               'https://yesno.wtf/api',
+               'https://api.plos.org/search?q=title:DNA',
+               'https://httpbin.org/get',
+               'https://swapi.py4e.com/api/starships/',
+               'https://www.googleapis.com/books/v1/volumes?q=spacex',
+               'https://official-joke-api.appspot.com/random_joke',
+               'https://api.github.com/repos/center-key/pretty-print-json/contributors',
+               ];
+            component.data().currentExample = ((component.data().currentExample ?? -1) + 1) % exampleUrls.length;
+            const elem = component.data().elem;
+            libX.animate.jiggleIt(icon);
+            elem.url.val(exampleUrls[component.data().currentExample]);
+            },
          fetchData(target, event, component) {
             const elem = component.data().elem;
             const url =  elem.url.val().trim();
             const link = 'https://pretty-print-json.js.org/?url=' + url;
+            elem.fetch.disable();
             const handleData = (data) => {
                elem.link.attr('href', link).text(link);
                elem.textarea.val(JSON.stringify(data, null, 3)).trigger('change');
+               elem.fetch.enable();
                };
             globalThis.fetchJson.get(url)
                .then(handleData)
                .catch(error => handleData({ url: url, error: error.message }));
             },
          copyToClipboard(icon, event, component) {
-            const output =    component.find('output');
+            const elem =      component.data().elem;
             const selection = globalThis.getSelection();
             const range =     document.createRange();
             libX.animate.jiggleIt(icon);
-            range.selectNode(output[0]);
+            range.selectNode(elem.output[0]);
             selection.empty();
             selection.addRange(range);
             document.execCommand('copy');
@@ -227,6 +252,7 @@
          <h3>JSON input:</h3>
          <textarea data-smart-update=app.processJson placeholder="Enter some JSON" autofocus></textarea>
          <p id=error-message>Invalid JSON</p>
+         <i data-icon=wand-magic-sparkles data-click=app.showExampleUrl></i>
          <h3>JSON REST endpoint URL:</h3>
          <fieldset>
             <input type=text>
