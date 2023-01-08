@@ -124,11 +124,12 @@
       [data-component=pretty-print] >section:last-child >nav {
          display: flex;
          justify-content: space-between;
+         column-gap: 10px;
          color: silver;
          padding-top: 3px;
          }
       [data-component=pretty-print] >section:last-child >nav >label >input {
-         margin-left: 0px;
+         margin: 0px 8px 0px 0px;
          }
       body >footer b {
          font-size: 1.1rem;
@@ -236,6 +237,8 @@
                elem.fetch.click();
             else
                elem.textarea.val(JSON.stringify(intro)).trigger('change');
+            if (globalThis.matchMedia('(prefers-color-scheme: dark)').matches)
+               elem.options.last().click();  //turn on dark mode
             $('.version-number').text(prettyPrintJson.version);
             },
          };
