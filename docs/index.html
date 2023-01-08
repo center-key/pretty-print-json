@@ -237,7 +237,7 @@
                elem.fetch.click();
             else
                elem.textarea.val(JSON.stringify(intro)).trigger('change');
-            if (globalThis.matchMedia('(prefers-color-scheme: dark)').matches)
+            if (globalThis.matchMedia?.('(prefers-color-scheme: dark)').matches)
                elem.options.last().click();  //turn on dark mode
             $('.version-number').text(prettyPrintJson.version);
             },
