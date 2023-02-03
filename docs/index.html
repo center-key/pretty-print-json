@@ -21,7 +21,7 @@
    <link rel=preconnect       href=https://fonts.gstatic.com crossorigin>
    <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2/css/all.min.css>
    <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/pretty-print-json@1.4/dist/css/pretty-print-json.css>
-   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna-engine@2.2/dist/dna-engine.css>
+   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna-engine@2.3/dist/dna-engine.css>
    <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@1.6/dist/reset.min.css>
    <style>
       body {
@@ -147,7 +147,7 @@
    <script defer src=https://cdn.jsdelivr.net/npm/jquery@3.6/dist/jquery.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/pretty-print-json@1.4/dist/pretty-print-json.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/fetch-json@3.0/dist/fetch-json.min.js></script>
-   <script defer src=https://cdn.jsdelivr.net/npm/dna-engine@2.2/dist/dna-engine.min.js></script>
+   <script defer src=https://cdn.jsdelivr.net/npm/dna-engine@2.3/dist/dna-engine.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/web-ignition@1.6/dist/lib-x.min.js></script>
    <script data-on-load=app.setup>
       const app = {
@@ -170,13 +170,13 @@
             },
          showExampleUrl(icon, event, component) {
             const exampleUrls = [
-               'https://dna-engine.org/api/books/',
+               'https://official-joke-api.appspot.com/random_joke',
                'https://yesno.wtf/api',
+               'https://dna-engine.org/api/books/',
                'https://api.plos.org/search?q=title:DNA',
                'https://httpbin.org/get',
                'https://swapi.py4e.com/api/starships/',
                'https://www.googleapis.com/books/v1/volumes?q=spacex',
-               'https://official-joke-api.appspot.com/random_joke',
                'https://api.github.com/repos/center-key/pretty-print-json/contributors',
                ];
             component.data().currentExample = ((component.data().currentExample ?? -1) + 1) % exampleUrls.length;
