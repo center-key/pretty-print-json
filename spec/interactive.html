@@ -149,7 +149,7 @@
    <script defer src=https://cdn.jsdelivr.net/npm/fetch-json@3.0/dist/fetch-json.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/dna-engine@2.3/dist/dna-engine.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/web-ignition@1.6/dist/lib-x.min.js></script>
-   <script data-on-load=app.setup>
+   <script data-on-load=app.setup data-wait-for=libX>
       const app = {
          processJson(target, event, component) {
             const elem = component.data().elem;

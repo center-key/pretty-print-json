@@ -40,7 +40,7 @@
    <script defer src=https://cdn.jsdelivr.net/npm/jquery@3.6/dist/jquery.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/dna-engine@2.3/dist/dna-engine.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/web-ignition@1.6/dist/lib-x.min.js></script>
-   <script data-on-load=app.setup>
+   <script data-on-load=app.setup data-wait-for=libX>
       const app = {
          loadModule(module) {
             const buttonClicked = new Date();
