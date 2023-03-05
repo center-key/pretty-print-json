@@ -10,7 +10,7 @@ export type FormatSettings = {
 export type FormatOptions = Partial<FormatSettings>;
 export type JsonType = 'key' | 'string' | 'number' | 'boolean' | 'null' | 'mark';
 
-const prettyPrintJson = {
+export const prettyPrintJson = {
 
    version: '{{pkg.version}}',
 
@@ -25,10 +25,22 @@ const prettyPrintJson = {
       const settings = { ...defaults, ...options };
       const htmlEntities = (text: string) => text
          // Makes text displayable in browsers.
-         .replace(/&/g,   '&amp;')
-         .replace(/\\"/g, '&bsol;&quot;')
-         .replace(/</g,   '&lt;')
-         .replace(/>/g,   '&gt;');
+         .replace(/[&\\"<>']/g, (char: string) => {
+            switch (char) {
+               case '&':
+                  return '&amp;'
+               case '\\':
+                  return '&bsol;'
+               case '"':
+                  return '&quot;'
+               case '<':
+                  return '&lt;'
+               case '>':
+                  return '&gt;'
+               default:
+                  return '&apos;'
+            }
+         })
       const spanTag = (type: JsonType, display?: string): string =>
          // Creates HTML to display a value like: like "<span class=json-boolean>true</span>"
          display ? '<span class=json-' + type + '>' + display + '</span>' : '';
@@ -73,5 +85,3 @@ const prettyPrintJson = {
       },
 
    };
-
-export { prettyPrintJson };
