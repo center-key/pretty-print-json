@@ -22,7 +22,7 @@
    <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.3/css/all.min.css>
    <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/pretty-print-json@1.4/dist/css/pretty-print-json.css>
    <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna-engine@2.3/dist/dna-engine.css>
-   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@1.6/dist/reset.min.css>
+   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@1.7/dist/reset.min.css>
    <style>
       body {
          max-width: 1200px;
@@ -138,7 +138,7 @@
       body >footer p a+a {
          margin-left: 10px;
          }
-      @media (max-width: 667px) {  /* selects iPhone 6/6s/7/8/SE(2020) landscape and anything narrower */
+      @media (max-width: 667px) {  /* selects iPhone 6/6s/7/8/SE2/SE3 landscape and anything narrower */
          [data-component=pretty-print] >section { max-width: none; }
          [data-component=pretty-print] >section:first-child >textarea { min-height: 150px; }
          [data-component=pretty-print] >section:last-child >div { min-height: 200px; }
@@ -146,9 +146,9 @@
    </style>
    <script defer src=https://cdn.jsdelivr.net/npm/jquery@3.6/dist/jquery.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/pretty-print-json@1.4/dist/pretty-print-json.min.js></script>
-   <script defer src=https://cdn.jsdelivr.net/npm/fetch-json@3.0/dist/fetch-json.min.js></script>
+   <script defer src=https://cdn.jsdelivr.net/npm/fetch-json@3.1/dist/fetch-json.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/dna-engine@2.3/dist/dna-engine.min.js></script>
-   <script defer src=https://cdn.jsdelivr.net/npm/web-ignition@1.6/dist/lib-x.min.js></script>
+   <script defer src=https://cdn.jsdelivr.net/npm/web-ignition@1.7/dist/lib-x.min.js></script>
    <script data-on-load=app.setup data-wait-for=libX>
       const app = {
          processJson(target, event, component) {
