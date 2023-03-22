@@ -17,7 +17,6 @@
       "noImplicitThis": true,
       "noUncheckedIndexedAccess": true,
       "noUnusedLocals": true,
-      "removeComments": true,
-      "suppressImplicitAnyIndexErrors": true
+      "removeComments": true
    }
 }
