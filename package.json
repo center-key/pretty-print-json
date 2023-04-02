@@ -65,10 +65,15 @@
       }
    },
    "runScriptsConfig": {
-      "build": [
-         "rimraf build dist",
+      "clean": [
+         "rimraf build",
+         "rimraf dist"
+      ],
+      "lint": [
          "jshint . --exclude-path .gitignore",
-         "eslint --max-warnings 0 src --ext .ts",
+         "eslint --max-warnings 0 src --ext .ts"
+      ],
+      "build": [
          "tsc",
          "tsc --module UMD --outDir build/umd",
          "copy-file build/umd/pretty-print-json.js build/pretty-print-json.umd.cjs",
@@ -77,7 +82,9 @@
          "copy-folder src --ext=.css build/css",
          "csso src/pretty-print-json.css           --output build/css/pretty-print-json.min.css",
          "csso src/pretty-print-json.dark-mode.css --output build/css/pretty-print-json.dark-mode.min.css",
-         "csso src/pretty-print-json.prefers.css   --output build/css/pretty-print-json.prefers.min.css",
+         "csso src/pretty-print-json.prefers.css   --output build/css/pretty-print-json.prefers.min.css"
+      ],
+      "dist": [
          "add-dist-header build dist",
          "add-dist-header build/css dist/css"
       ],
@@ -90,22 +97,22 @@
       ]
    },
    "scripts": {
-      "pretest": "run-scripts build docs",
+      "pretest": "run-scripts clean lint build dist docs --verbose",
       "test": "mocha spec/*.spec.js",
       "examples": "npm test && node spec/examples.js"
    },
    "devDependencies": {
-      "@fortawesome/fontawesome-free": "~6.3",
+      "@fortawesome/fontawesome-free": "~6.4",
       "@types/node": "~18.15",
-      "@typescript-eslint/eslint-plugin": "~5.56",
-      "@typescript-eslint/parser": "~5.56",
+      "@typescript-eslint/eslint-plugin": "~5.57",
+      "@typescript-eslint/parser": "~5.57",
       "add-dist-header": "~1.0",
       "assert-deep-strict-equal": "~1.0",
       "copy-file-util": "~1.0",
       "copy-folder-util": "~1.0",
       "csso-cli": "~4.0",
       "dna-engine": "~2.3",
-      "eslint": "~8.36",
+      "eslint": "~8.37",
       "esm-to-plain-js": "~1.0",
       "fetch-json": "~3.1",
       "jquery": "~3.6",
@@ -114,7 +121,7 @@
       "mocha": "~10.2",
       "replacer-util": "~1.0",
       "rimraf": "~4.4",
-      "run-scripts-util": "~1.0",
+      "run-scripts-util": "~1.1",
       "typescript": "~5.0",
       "uglify-js": "~3.17",
       "w3c-html-validator": "~1.3",
