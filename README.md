@@ -10,8 +10,7 @@ _Pretty-print JSON data into HTML to indent and colorize (written in functional 
 [![Hits](https://data.jsdelivr.com/v1/package/npm/pretty-print-json/badge?style=rounded)](https://www.jsdelivr.com/package/npm/pretty-print-json)
 [![Build](https://github.com/center-key/pretty-print-json/workflows/build/badge.svg)](https://github.com/center-key/pretty-print-json/actions/workflows/run-spec-on-push.yaml)
 
-<img width=350 alt=screenshot
-   src=https://3.bp.blogspot.com/-M13HQRG7cqQ/XaQvF0Q_KyI/AAAAAAAAJeg/3_CTIgPAh5Yqa29aYPvB1aTO9VsUlksLACNcBGAsYHQ/s1600/pretty-print-json.png>
+![Screenshot](docs/screenshot.png)
 
 ## A) Try It Out
 Interactive online tool to format JSON:<br>
@@ -70,12 +69,12 @@ elem.innerHTML = prettyPrintJson.toHtml(data);
 | `quoteKeys`     | **boolean** | `false` | Always double quote key names.                                  |
 | `trailingComma` | **boolean** | `false` | Add a comma after the last item in arrays and objects.<b>**</b> |
 
-![Screenshot](docs/screenshot-dark.png)
-
 <b>*</b>When setting `lineNumbers` to `true`, do not use the `<pre>` tag as the `white-space: pre;`
 styling is applied to each line (`<li>`).
 
 <b>**</b>HEADS UP: In a future release, the default for `trailingComma` will be switched to `true`.
+
+![Screenshot](docs/screenshot-dark.png)
 
 ## D) TypeScript Declarations
 See the TypeScript declarations at the top of the

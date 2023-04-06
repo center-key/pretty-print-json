@@ -30,7 +30,7 @@ ol.json-lines >li:hover           { background-color: lemonchiffon; }
 @media (prefers-color-scheme: dark) {
    .json-container                   { background-color: black; }
    .json-key                         { color: indianred; }
-   .json-string                      { color: darkkhaki; }
+   .json-string                      { color: khaki; }
    .json-number                      { color: deepskyblue; }
    .json-boolean                     { color: mediumseagreen; }
    .json-null                        { color: darkorange; }

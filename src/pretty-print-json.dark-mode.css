@@ -12,7 +12,7 @@ ol.json-lines >li::marker { font-family: system-ui, sans-serif; font-weight: nor
 /* Dark Mode */
 .json-container                   { background-color: black; }
 .json-key                         { color: indianred; }
-.json-string                      { color: darkkhaki; }
+.json-string                      { color: khaki; }
 .json-number                      { color: deepskyblue; }
 .json-boolean                     { color: mediumseagreen; }
 .json-null                        { color: darkorange; }
