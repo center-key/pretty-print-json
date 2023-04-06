@@ -61,19 +61,21 @@ const elem = document.getElementById('account');
 elem.innerHTML = prettyPrintJson.toHtml(data);
 ```
 ### 3. Options
-| Name (key)    | Type        | Default | Description                                                 |
-| :------------ | :---------- | :------ | :---------------------------------------------------------- |
-| `indent`      | **integer** | `3`     | Number of spaces for indentation.                           |
-| `lineNumbers` | **boolean** | `false` | Wrap HTML in an `<ol>` tag to support line numbers.<b>*</b> |
-| `linkUrls`    | **boolean** | `true`  | Create anchor tags for URLs.                                |
-| `linksNewTab` | **boolean** | `true`  | Create `target=_blank` attribute on anchor tags.            |
-| `quoteKeys`   | **boolean** | `false` | Always double quote key names.                              |
+| Name (key)      | Type        | Default | Description                                                     |
+| :-------------- | :---------- | :------ | :-------------------------------------------------------------- |
+| `indent`        | **integer** | `3`     | Number of spaces for indentation.                               |
+| `lineNumbers`   | **boolean** | `false` | Wrap HTML in an `<ol>` tag to support line numbers.<b>*</b>     |
+| `linkUrls`      | **boolean** | `true`  | Create anchor tags for URLs.                                    |
+| `linksNewTab`   | **boolean** | `true`  | Create `target=_blank` attribute on anchor tags.                |
+| `quoteKeys`     | **boolean** | `false` | Always double quote key names.                                  |
+| `trailingComma` | **boolean** | `false` | Add a comma after the last item in arrays and objects.<b>**</b> |
 
-<img width=450 alt=screenshot
-   src=https://user-images.githubusercontent.com/119555/152635151-1eb34300-8acb-477d-b3d2-80b4fc3233fa.png>
+![Screenshot](docs/screenshot-dark.png)
 
 <b>*</b>When setting `lineNumbers` to `true`, do not use the `<pre>` tag as the `white-space: pre;`
 styling is applied to each line (`<li>`).
+
+<b>**</b>HEADS UP: In a future release, the default for `trailingComma` will be switched to `true`.
 
 ## D) TypeScript Declarations
 See the TypeScript declarations at the top of the
@@ -83,11 +85,12 @@ The output of the `prettyPrintJson.toHtml(thing: unknown, options?: FormatOption
 configured with a `FormatOptions` object:
 ```typescript
 type FormatOptions = {
-   indent?:      number,   //number of spaces for indentation
-   lineNumbers?: boolean,  //add line numbers
-   linkUrls?:    boolean,  //create anchor tags for URLs
-   linksNewTab?: boolean,  //create target=_blank attribute on anchor tags
-   quoteKeys?:   boolean,  //always double quote key names
+   indent?:        number,   //number of spaces for indentation
+   lineNumbers?:   boolean,  //add line numbers
+   linkUrls?:      boolean,  //create anchor tags for URLs
+   linksNewTab?:   boolean,  //create target=_blank attribute on anchor tags
+   quoteKeys?:     boolean,  //always double quote key names
+   trailingComma?: boolean,  //add a comma after the last item in arrays and objects
    };
 ```
 
@@ -99,16 +102,11 @@ const data = { active: true, mode: '🚃', codes: [48348, 28923, 39080], city: '
 const options: FormatOptions = { linkUrls: true };
 const html: string = prettyPrintJson.toHtml(data, options);
 ```
-
-## E) Contributor Notes
-To be a contributor, **fork** the project and run the commands `npm install` and `npm test` on your
-local clone.&nbsp;
-To see some example HTML results, run `node spec/examples.js`.&nbsp;
-Make your edits and rerun the tests.&nbsp; Pull requests welcome.
-
 <br>
 
 ---
+To see some example HTML results, run `npm install`, `npm test`, and then `node spec/examples.js`.
+
 Feel free to submit questions at:<br>
 [github.com/center-key/pretty-print-json/issues](https://github.com/center-key/pretty-print-json/issues)
 

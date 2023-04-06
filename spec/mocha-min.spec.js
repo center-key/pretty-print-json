@@ -293,4 +293,27 @@ describe('The "quoteKeys" option', () => {
    });
 
 ////////////////////////////////////////////////////////////////////////////////
+describe('The "trailingComma" option', () => {
+
+   it('add a comma after the last item in arrays and objects', () => {
+      const input = { active: true, codes: [48348, 28923, 39080], city: 'London' };
+      const htmlLines = [
+         '<span class=json-mark>{</span>',
+         '   <span class=json-key>active</span><span class=json-mark>: </span><span class=json-boolean>true</span><span class=json-mark>,</span>',
+         '   <span class=json-key>codes</span><span class=json-mark>: </span><span class=json-mark>[</span>',
+         '      <span class=json-number>48348</span><span class=json-mark>,</span>',
+         '      <span class=json-number>28923</span><span class=json-mark>,</span>',
+         '      <span class=json-number>39080</span><span class=json-mark>,</span>',
+         '   <span class=json-mark>],</span>',
+         '   <span class=json-key>city</span><span class=json-mark>: </span><span class=json-string>"London"</span><span class=json-mark>,</span>',
+         '<span class=json-mark>}</span>',
+         ];
+      const actual =   { html: prettyPrintJson.toHtml(input, { trailingComma: true }).split('\n') };
+      const expected = { html: htmlLines };
+      assertDeepStrictEqual(actual, expected);
+      });
+
+   });
+
+////////////////////////////////////////////////////////////////////////////////
 });

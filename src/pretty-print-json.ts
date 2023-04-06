@@ -1,11 +1,12 @@
 // pretty-print-json ~ MIT License
 
 export type FormatSettings = {
-   indent:      number,   //number of spaces for indentation
-   lineNumbers: boolean,  //add line numbers
-   linkUrls:    boolean,  //create anchor tags for URLs
-   linksNewTab: boolean,  //create target=_blank attribute on anchor tags
-   quoteKeys:   boolean,  //always double quote key names
+   indent:        number,   //number of spaces for indentation
+   lineNumbers:   boolean,  //add line numbers
+   linkUrls:      boolean,  //create anchor tags for URLs
+   linksNewTab:   boolean,  //create target=_blank attribute on anchor tags
+   quoteKeys:     boolean,  //always double quote key names
+   trailingComma: boolean,  //add a comma after the last item in arrays and objects
    };
 export type FormatOptions = Partial<FormatSettings>;
 export type JsonType = 'key' | 'string' | 'number' | 'boolean' | 'null' | 'mark';
@@ -16,11 +17,12 @@ const prettyPrintJson = {
 
    toHtml(thing: unknown, options?: FormatOptions): string {
       const defaults = {
-         indent:      3,
-         lineNumbers: false,
-         linkUrls:    true,
-         linksNewTab: true,
-         quoteKeys:   false,
+         indent:        3,
+         lineNumbers:   false,
+         linkUrls:      true,
+         linksNewTab:   true,
+         quoteKeys:     false,
+         trailingComma: false,  //NOTE: Will be changed to true in a future release
          };
       const settings = { ...defaults, ...options };
       const htmlEntities = (text: string) => text
@@ -52,7 +54,9 @@ const prettyPrintJson = {
          const keyName =    part.key && part.key.replace(findName, '$1$2');
          const keyHtml =    part.key ? spanTag('key', keyName) + spanTag('mark', ': ') : '';
          const valueHtml =  part.value ? buildValueHtml(part.value) : '';
-         const endHtml =    spanTag('mark', part.end);
+         const noComma =    !part.end || [']', '}'].includes(match.at(-1)!);
+         const addComma =   settings.trailingComma && match.at(0) === ' ' && noComma;
+         const endHtml =    spanTag('mark', addComma ? (part.end ?? '') + ',' : part.end);
          return indentHtml + keyHtml + valueHtml + endHtml;
          };
       const jsonLine = /^( *)("[^"]+": )?("[^"]*"|[\w.+-]*)?([{}[\],]*)?$/mg;
