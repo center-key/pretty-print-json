@@ -166,6 +166,21 @@ describe('The .toHtml() function', () => {
       assertDeepStrictEqual(actual, expected);
       });
 
+   it('handles single values', () => {
+      const input = ['String cheese!', Math.PI, true, null, [], {}];
+      const htmlLines = [
+         '<span class=json-string>"String cheese!"</span>',
+         '<span class=json-number>3.141592653589793</span>',
+         '<span class=json-boolean>true</span>',
+         '<span class=json-null>null</span>',
+         '<span class=json-mark>[]</span>',
+         '<span class=json-mark>{}</span>',
+         ];
+      const actual =   { html: input.map(prettyPrintJson.toHtml) };
+      const expected = { html: htmlLines };
+      assertDeepStrictEqual(actual, expected);
+      });
+
    it('handles nothing (undefined)', () => {
       const htmlLines = [
          '<span class=json-number>undefined</span>',
@@ -295,7 +310,7 @@ describe('The "quoteKeys" option', () => {
 ////////////////////////////////////////////////////////////////////////////////
 describe('The "trailingComma" option', () => {
 
-   it('add a comma after the last item in arrays and objects', () => {
+   it('adds a comma after the last item in arrays and objects', () => {
       const input = { active: true, codes: [48348, 28923, 39080], city: 'London' };
       const htmlLines = [
          '<span class=json-mark>{</span>',
