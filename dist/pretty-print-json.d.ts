@@ -1,4 +1,4 @@
-//! pretty-print-json v1.4.1 ~~ https://pretty-print-json.js.org ~~ MIT License
+//! pretty-print-json v1.5.0 ~~ https://pretty-print-json.js.org ~~ MIT License
 
 export type FormatSettings = {
     indent: number;
@@ -6,6 +6,7 @@ export type FormatSettings = {
     linkUrls: boolean;
     linksNewTab: boolean;
     quoteKeys: boolean;
+    trailingComma: boolean;
 };
 export type FormatOptions = Partial<FormatSettings>;
 export type JsonType = 'key' | 'string' | 'number' | 'boolean' | 'null' | 'mark';

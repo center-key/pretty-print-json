@@ -20,7 +20,7 @@
    <link rel=preconnect       href=https://fonts.googleapis.com>
    <link rel=preconnect       href=https://fonts.gstatic.com crossorigin>
    <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4/css/all.min.css>
-   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/pretty-print-json@1.4/dist/css/pretty-print-json.css>
+   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/pretty-print-json@1.5/dist/css/pretty-print-json.css>
    <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna-engine@2.3/dist/dna-engine.css>
    <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@1.7/dist/reset.min.css>
    <style>
@@ -145,7 +145,7 @@
          }
    </style>
    <script defer src=https://cdn.jsdelivr.net/npm/jquery@3.6/dist/jquery.min.js></script>
-   <script defer src=https://cdn.jsdelivr.net/npm/pretty-print-json@1.4/dist/pretty-print-json.min.js></script>
+   <script defer src=https://cdn.jsdelivr.net/npm/pretty-print-json@1.5/dist/pretty-print-json.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/fetch-json@3.1/dist/fetch-json.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/dna-engine@2.3/dist/dna-engine.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/web-ignition@1.7/dist/lib-x.min.js></script>
@@ -154,8 +154,9 @@
          processJson(target, event, component) {
             const elem = component.data().elem;
             const options = {
-               lineNumbers: elem.options.eq(0).is(':checked'),
-               quoteKeys:   elem.options.eq(1).is(':checked'),
+               lineNumbers:   elem.option.numbers.is(':checked'),
+               quoteKeys:     elem.option.keys.is(':checked'),
+               trailingComma: elem.option.commas.is(':checked'),
                };
             component.toggleClass('line-numbers', options.lineNumbers);
             component.removeClass('invalid-json');
@@ -220,7 +221,12 @@
                fetch:    component.find('>section >fieldset >button'),
                link:     component.find('>section >a'),
                output:   component.find('>section >div >output'),
-               options:  component.find('>section >nav input[type=checkbox]'),
+               option: {
+                  numbers: component.find('>section >nav input[type=checkbox]#numbers'),
+                  keys:    component.find('>section >nav input[type=checkbox]#keys'),
+                  commas:  component.find('>section >nav input[type=checkbox]#commas'),
+                  dark:    component.find('>section >nav input[type=checkbox]#dark'),
+                  },
                };
             component.data().elem = elem;
             const intro = {
@@ -238,8 +244,9 @@
                elem.fetch.click();
             else
                elem.textarea.val(JSON.stringify(intro)).trigger('change');
+            elem.option.commas.click();  //turn on trailing commas
             if (globalThis.matchMedia?.('(prefers-color-scheme: dark)').matches)
-               elem.options.last().click();  //turn on dark mode
+               elem.option.dark.click();  //turn on dark mode
             $('.version-number').text(prettyPrintJson.version);
             },
          };
@@ -275,9 +282,10 @@
             <output class=json-container></output>
          </div>
          <nav>
-            <label><input type=checkbox data-change=app.processJson>line numbers</label>
-            <label><input type=checkbox data-change=app.processJson>quote map keys</label>
-            <label><input type=checkbox data-change=app.toggleDarkMode>dark mode</label>
+            <label><input id=numbers type=checkbox data-change=app.processJson>line numbers</label>
+            <label><input id=keys    type=checkbox data-change=app.processJson>quote keys</label>
+            <label><input id=commas  type=checkbox data-change=app.processJson>trailing commas</label>
+            <label><input id=dark    type=checkbox data-change=app.toggleDarkMode>dark mode</label>
          </nav>
       </section>
    </div>
