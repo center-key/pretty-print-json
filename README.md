@@ -20,9 +20,9 @@ https://pretty-print-json.js.org
 ### 1. Web browser
 Load from the [jsdelivr.com CDN](https://www.jsdelivr.com/package/npm/pretty-print-json):
 ```html
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/pretty-print-json@1.5/dist/css/pretty-print-json.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/pretty-print-json@2.0/dist/css/pretty-print-json.css>
 ...
-<script src=https://cdn.jsdelivr.net/npm/pretty-print-json@1.5/dist/pretty-print-json.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/pretty-print-json@2.0/dist/pretty-print-json.min.js></script>
 ```
 For **dark mode**, replace `pretty-print-json.css` with `pretty-print-json.dark-mode.css` in
 the `<link>` tag.
@@ -102,6 +102,7 @@ const html: string = prettyPrintJson.toHtml(data, options);
 
 ## E) Build Environment
 Check out the [package.json](package.json) file for an interesting approach to managing build tasks.
+
 **CLI Build Tools**
    - 🎋 [add-dist-header](https://github.com/center-key/add-dist-header):&nbsp; _Prepend a one-line banner comment (with license notice) to distribution files_
    - 📄 [copy-file-util](https://github.com/center-key/copy-file-util):&nbsp; _Copy or rename a file with optional package version number_
