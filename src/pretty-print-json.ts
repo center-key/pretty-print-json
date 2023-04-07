@@ -22,7 +22,7 @@ const prettyPrintJson = {
          linkUrls:      true,
          linksNewTab:   true,
          quoteKeys:     false,
-         trailingComma: false,  //NOTE: Will be changed to true in a future release
+         trailingComma: true,
          };
       const settings = { ...defaults, ...options };
       const htmlEntities = (text: string) => text

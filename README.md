@@ -60,19 +60,17 @@ const elem = document.getElementById('account');
 elem.innerHTML = prettyPrintJson.toHtml(data);
 ```
 ### 3. Options
-| Name (key)      | Type        | Default | Description                                                     |
-| :-------------- | :---------- | :------ | :-------------------------------------------------------------- |
-| `indent`        | **integer** | `3`     | Number of spaces for indentation.                               |
-| `lineNumbers`   | **boolean** | `false` | Wrap HTML in an `<ol>` tag to support line numbers.<b>*</b>     |
-| `linkUrls`      | **boolean** | `true`  | Create anchor tags for URLs.                                    |
-| `linksNewTab`   | **boolean** | `true`  | Create `target=_blank` attribute on anchor tags.                |
-| `quoteKeys`     | **boolean** | `false` | Always double quote key names.                                  |
-| `trailingComma` | **boolean** | `false` | Add a comma after the last item in arrays and objects.<b>**</b> |
+| Name (key)      | Type        | Default | Description                                                 |
+| :-------------- | :---------- | :------ | :---------------------------------------------------------- |
+| `indent`        | **integer** | `3`     | Number of spaces for indentation.                           |
+| `lineNumbers`   | **boolean** | `false` | Wrap HTML in an `<ol>` tag to support line numbers.<b>*</b> |
+| `linkUrls`      | **boolean** | `true`  | Create anchor tags for URLs.                                |
+| `linksNewTab`   | **boolean** | `true`  | Create `target=_blank` attribute on anchor tags.            |
+| `quoteKeys`     | **boolean** | `false` | Always double quote key names.                              |
+| `trailingComma` | **boolean** | `true`  | Add a comma after the last item in arrays and objects.      |
 
 <b>*</b>When setting `lineNumbers` to `true`, do not use the `<pre>` tag as the `white-space: pre;`
 styling is applied to each line (`<li>`).
-
-<b>**</b>HEADS UP: In a future release, the default for `trailingComma` will be switched to `true`.
 
 ![Screenshot](docs/screenshot-dark.png)
 
@@ -101,6 +99,18 @@ const data = { active: true, mode: '🚃', codes: [48348, 28923, 39080], city: '
 const options: FormatOptions = { linkUrls: true };
 const html: string = prettyPrintJson.toHtml(data, options);
 ```
+
+## E) Build Environment
+Check out the [package.json](package.json) file for an interesting approach to managing build tasks.
+**CLI Build Tools**
+   - 🎋 [add-dist-header](https://github.com/center-key/add-dist-header):&nbsp; _Prepend a one-line banner comment (with license notice) to distribution files_
+   - 📄 [copy-file-util](https://github.com/center-key/copy-file-util):&nbsp; _Copy or rename a file with optional package version number_
+   - 📂 [copy-folder-util](https://github.com/center-key/copy-folder-util):&nbsp; _Recursively copy files from one folder to another folder_
+   - 🔍 [replacer-util](https://github.com/center-key/replacer-util):&nbsp; _Find and replace strings or template outputs in text files_
+   - 🔢 [rev-web-assets](https://github.com/center-key/rev-web-assets):&nbsp; _Revision web asset filenames with cache busting content hash fingerprints_
+   - 🚆 [run-scripts-util](https://github.com/center-key/run-scripts-util):&nbsp; _Organize npm scripts into named groups of easy to manage commands_
+   - 🚦 [w3c-html-validator](https://github.com/center-key/w3c-html-validator):&nbsp; _Check the markup validity of HTML files using the W3C validator_
+
 <br>
 
 ---
