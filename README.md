@@ -61,13 +61,13 @@ elem.innerHTML = prettyPrintJson.toHtml(data);
 ```
 ### 3. Options
 | Name (key)      | Type        | Default | Description                                                 |
-| :-------------- | :---------- | :------ | :---------------------------------------------------------- |
+| :-------------- | :---------- | :-----: | :---------------------------------------------------------- |
 | `indent`        | **integer** | `3`     | Number of spaces for indentation.                           |
 | `lineNumbers`   | **boolean** | `false` | Wrap HTML in an `<ol>` tag to support line numbers.<b>*</b> |
 | `linkUrls`      | **boolean** | `true`  | Create anchor tags for URLs.                                |
-| `linksNewTab`   | **boolean** | `true`  | Create `target=_blank` attribute on anchor tags.            |
+| `linksNewTab`   | **boolean** | `true`  | Add a `target=_blank` attribute setting to anchor tags.     |
 | `quoteKeys`     | **boolean** | `false` | Always double quote key names.                              |
-| `trailingComma` | **boolean** | `true`  | Add a comma after the last item in arrays and objects.      |
+| `trailingComma` | **boolean** | `true`  | Append a comma after the last item in arrays and objects.   |
 
 <b>*</b>When setting `lineNumbers` to `true`, do not use the `<pre>` tag as the `white-space: pre;`
 styling is applied to each line (`<li>`).
@@ -85,9 +85,9 @@ type FormatOptions = {
    indent?:        number,   //number of spaces for indentation
    lineNumbers?:   boolean,  //add line numbers
    linkUrls?:      boolean,  //create anchor tags for URLs
-   linksNewTab?:   boolean,  //create target=_blank attribute on anchor tags
+   linksNewTab?:   boolean,  //add a target=_blank attribute setting to anchor tags
    quoteKeys?:     boolean,  //always double quote key names
-   trailingComma?: boolean,  //add a comma after the last item in arrays and objects
+   trailingComma?: boolean,  //append a comma after the last item in arrays and objects
    };
 ```
 

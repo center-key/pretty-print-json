@@ -25,16 +25,21 @@
       body >header >figure {
          font-size: 3rem;
          }
-      body >main >p {
+      main >p {
          text-align: center;
          }
-      body >main >pre {
+      main >pre {
          font-size: 0.9rem;
          color: black;
          background-color: white;
          border: 5px solid silver;
          padding: 5px 10px;
          margin: 0px;
+         opacity: 0;
+         transition: opacity 1s;
+         }
+      main >pre.active {
+         opacity: 1;
          }
    </style>
    <script defer src=https://cdn.jsdelivr.net/npm/jquery@3.6/dist/jquery.min.js></script>
@@ -45,6 +50,7 @@
          loadModule(module) {
             const buttonClicked = new Date();
             const url = 'https://cdn.jsdelivr.net/npm/pretty-print-json@2.0/dist/pretty-print-json.js';
+            $('main pre').addClass('active');
             import(url).then(module => {
                const pageLoaded = $('body').data().pageLoaded;
                const moduleLoaded = new Date();

@@ -4,9 +4,9 @@ export type FormatSettings = {
    indent:        number,   //number of spaces for indentation
    lineNumbers:   boolean,  //add line numbers
    linkUrls:      boolean,  //create anchor tags for URLs
-   linksNewTab:   boolean,  //create target=_blank attribute on anchor tags
+   linksNewTab:   boolean,  //add a target=_blank attribute setting to anchor tags
    quoteKeys:     boolean,  //always double quote key names
-   trailingComma: boolean,  //add a comma after the last item in arrays and objects
+   trailingComma: boolean,  //append a comma after the last item in arrays and objects
    };
 export type FormatOptions = Partial<FormatSettings>;
 export type JsonType = 'key' | 'string' | 'number' | 'boolean' | 'null' | 'mark';
@@ -25,19 +25,12 @@ const prettyPrintJson = {
          trailingComma: true,
          };
       const settings = { ...defaults, ...options };
-      const htmlEntities = (text: string) => text
-         // Makes text displayable in browsers.
-         .replace(/[<>&]/g, (char: string) => {
-            switch (char) {
-               case '<':
-                  return '&lt;';
-               case '>':
-                  return '&gt;';
-               default:
-                  return '&amp;';
-               }
-            })
-         .replace(/\\"/g, '&bsol;&quot;');
+      const invalidHtml = /[<>&]|\\"/g;
+      const toHtml = (char: string) =>
+         char === '<' ? '&lt;' :
+         char === '>' ? '&gt;' :
+         char === '&' ? '&amp;' :
+         '&bsol;&quot;';  //escaped quote: \"
       const spanTag = (type: JsonType, display?: string): string =>
          // Creates HTML to display a value like: like "<span class=json-boolean>true</span>"
          display ? '<span class=json-' + type + '>' + display + '</span>' : '';
@@ -75,8 +68,8 @@ const prettyPrintJson = {
          //    ("[^"]*"|[\w.+-]*)  p3: value   Key value                    'true'
          //    ([{}[\],]*)         p4: end     Line termination characters  ','
          // For example, '   "active": true,' is parsed into: ['   ', '"active": ', 'true', ',']
-      const json = JSON.stringify(thing, null, settings.indent) || 'undefined';
-      const html = htmlEntities(json).replace(jsonLine, replacer);
+      const json =     JSON.stringify(thing, null, settings.indent) || 'undefined';
+      const html =     json.replace(invalidHtml, toHtml).replace(jsonLine, replacer);
       const makeLine = (line: string): string => `   <li>${line}</li>`;
       const addLineNumbers = (html: string): string =>  //wrap html in an <ol> tag
          ['<ol class=json-lines>', ...html.split('\n').map(makeLine), '</ol>'].join('\n');

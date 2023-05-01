@@ -1,7 +1,7 @@
-//! pretty-print-json v2.0.0 ~~ https://pretty-print-json.js.org ~~ MIT License
+//! pretty-print-json v2.0.1 ~~ https://pretty-print-json.js.org ~~ MIT License
 
 const prettyPrintJson = {
-    version: '2.0.0',
+    version: '2.0.1',
     toHtml(thing, options) {
         const defaults = {
             indent: 3,
@@ -12,11 +12,11 @@ const prettyPrintJson = {
             trailingComma: true,
         };
         const settings = Object.assign(Object.assign({}, defaults), options);
-        const htmlEntities = (text) => text
-            .replace(/&/g, '&amp;')
-            .replace(/\\"/g, '&bsol;&quot;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;');
+        const invalidHtml = /[<>&]|\\"/g;
+        const toHtml = (char) => char === '<' ? '&lt;' :
+            char === '>' ? '&gt;' :
+                char === '&' ? '&amp;' :
+                    '&bsol;&quot;';
         const spanTag = (type, display) => display ? '<span class=json-' + type + '>' + display + '</span>' : '';
         const buildValueHtml = (value) => {
             const strType = /^"/.test(value) && 'string';
@@ -44,7 +44,7 @@ const prettyPrintJson = {
         };
         const jsonLine = /^( *)("[^"]+": )?("[^"]*"|[\w.+-]*)?([{}[\],]*)?$/mg;
         const json = JSON.stringify(thing, null, settings.indent) || 'undefined';
-        const html = htmlEntities(json).replace(jsonLine, replacer);
+        const html = json.replace(invalidHtml, toHtml).replace(jsonLine, replacer);
         const makeLine = (line) => `   <li>${line}</li>`;
         const addLineNumbers = (html) => ['<ol class=json-lines>', ...html.split('\n').map(makeLine), '</ol>'].join('\n');
         return settings.lineNumbers ? addLineNumbers(html) : html;
