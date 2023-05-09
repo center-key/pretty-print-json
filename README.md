@@ -78,12 +78,14 @@ styling is applied to each line (`<li>`).
 See the TypeScript declarations at the top of the
 [pretty-print-json.ts](dist/pretty-print-json.ts) file.
 
-The output of the `prettyPrintJson.toHtml(thing: unknown, options?: FormatOptions)` function is
-configured with a `FormatOptions` object:
+Customize the output of the function `prettyPrintJson.toHtml(data: unknown, options?: FormatOptions)`
+using the `options` parameter.
+
+The `options` parameter is a `FormatOptions` object:
 ```typescript
 type FormatOptions = {
    indent?:        number,   //number of spaces for indentation
-   lineNumbers?:   boolean,  //add line numbers
+   lineNumbers?:   boolean,  //wrap HTML in an <ol> tag to support line numbers
    linkUrls?:      boolean,  //create anchor tags for URLs
    linksNewTab?:   boolean,  //add a target=_blank attribute setting to anchor tags
    quoteKeys?:     boolean,  //always double quote key names
@@ -101,7 +103,8 @@ const html: string = prettyPrintJson.toHtml(data, options);
 ```
 
 ## E) Build Environment
-Check out the [package.json](package.json) file for an interesting approach to managing build tasks.
+Check out the `runScriptsConfig` section in [package.json](package.json) for an
+interesting approach to organizing build tasks.
 
 **CLI Build Tools**
    - 🎋 [add-dist-header](https://github.com/center-key/add-dist-header):&nbsp; _Prepend a one-line banner comment (with license notice) to distribution files_

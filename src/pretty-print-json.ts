@@ -2,7 +2,7 @@
 
 export type FormatSettings = {
    indent:        number,   //number of spaces for indentation
-   lineNumbers:   boolean,  //add line numbers
+   lineNumbers:   boolean,  //wrap HTML in an <ol> tag to support line numbers
    linkUrls:      boolean,  //create anchor tags for URLs
    linksNewTab:   boolean,  //add a target=_blank attribute setting to anchor tags
    quoteKeys:     boolean,  //always double quote key names
@@ -15,7 +15,8 @@ const prettyPrintJson = {
 
    version: '{{pkg.version}}',
 
-   toHtml(thing: unknown, options?: FormatOptions): string {
+   toHtml(data: unknown, options?: FormatOptions): string {
+      // Converts an object or primitive into an HTML string suitable for rendering.
       const defaults = {
          indent:        3,
          lineNumbers:   false,
@@ -68,7 +69,7 @@ const prettyPrintJson = {
          //    ("[^"]*"|[\w.+-]*)  p3: value   Key value                    'true'
          //    ([{}[\],]*)         p4: end     Line termination characters  ','
          // For example, '   "active": true,' is parsed into: ['   ', '"active": ', 'true', ',']
-      const json =     JSON.stringify(thing, null, settings.indent) || 'undefined';
+      const json =     JSON.stringify(data, null, settings.indent) || 'undefined';
       const html =     json.replace(invalidHtml, toHtml).replace(jsonLine, replacer);
       const makeLine = (line: string): string => `   <li>${line}</li>`;
       const addLineNumbers = (html: string): string =>  //wrap html in an <ol> tag
