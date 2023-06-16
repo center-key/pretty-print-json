@@ -21,8 +21,8 @@
    <link rel=preconnect       href=https://fonts.gstatic.com crossorigin>
    <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4/css/all.min.css>
    <link rel=stylesheet       href=../dist/css/pretty-print-json.css>
-   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna-engine@2.3/dist/dna-engine.css>
-   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@1.7/dist/reset.min.css>
+   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna-engine@3.0/dist/dna-engine.css>
+   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@2.0/dist/reset.min.css>
    <style>
       body {
          max-width: 1200px;
@@ -168,29 +168,28 @@
          [data-component=pretty-print] >section:last-child >div { min-height: 200px; }
          }
    </style>
-   <script defer src=https://cdn.jsdelivr.net/npm/jquery@3.6/dist/jquery.min.js></script>
    <script defer src=../dist/pretty-print-json.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/fetch-json@3.1/dist/fetch-json.min.js></script>
-   <script defer src=https://cdn.jsdelivr.net/npm/dna-engine@2.3/dist/dna-engine.min.js></script>
-   <script defer src=https://cdn.jsdelivr.net/npm/web-ignition@1.7/dist/lib-x.min.js></script>
+   <script defer src=https://cdn.jsdelivr.net/npm/dna-engine@3.0/dist/dna-engine.min.js></script>
+   <script defer src=https://cdn.jsdelivr.net/npm/web-ignition@2.0/dist/lib-x.min.js></script>
    <script data-on-load=app.setup data-wait-for=libX>
       const app = {
          processJson(target, event, component) {
-            const elem = component.data().elem;
+            const elem = dna.dom.state(component).elem;
             const options = {
-               lineNumbers:   elem.option.numbers.is(':checked'),
-               quoteKeys:     elem.option.keys.is(':checked'),
-               trailingComma: elem.option.commas.is(':checked'),
+               lineNumbers:   elem.option.numbers.checked,
+               quoteKeys:     elem.option.keys.checked,
+               trailingComma: elem.option.commas.checked,
                };
-            component.toggleClass('line-numbers', options.lineNumbers);
-            component.removeClass('invalid-json');
+            dna.dom.toggleClass(component, 'line-numbers', options.lineNumbers);
+            component.classList.remove('invalid-json');
             try {
-               const data = elem.textarea.val().trim().length ? JSON.parse(elem.textarea.val()) : null;
+               const data = elem.textarea.value.trim().length ? JSON.parse(elem.textarea.value) : null;
                const html = data ? prettyPrintJson.toHtml(data, options) : '[EMPTY]';
-               elem.output.html(html);
+               elem.output.innerHTML = html;
                }
             catch (e) {
-               globalThis.setTimeout(() => component.addClass('invalid-json'), 400);
+               globalThis.setTimeout(() => component.classList.add('invalid-json'), 400);
                }
             },
          showExampleUrl(icon, event, component) {
@@ -204,55 +203,57 @@
                'https://www.googleapis.com/books/v1/volumes?q=spacex',
                'https://api.github.com/repos/center-key/pretty-print-json/contributors',
                ];
-            component.data().currentExample = ((component.data().currentExample ?? -1) + 1) % exampleUrls.length;
-            const elem = component.data().elem;
+            const state = dna.dom.state(component);
+            state.currentExample = ((state.currentExample ?? -1) + 1) % exampleUrls.length;
             libX.animate.jiggleIt(icon);
-            elem.url.val(exampleUrls[component.data().currentExample]);
+            state.elem.url.value = exampleUrls[state.currentExample];
             },
          fetchData(target, event, component) {
-            const elem = component.data().elem;
-            const url =  elem.url.val().trim();
+            const elem = dna.dom.state(component).elem;
+            const url =  elem.url.value.trim();
             const link = 'https://pretty-print-json.js.org/?url=' + url;
-            elem.fetch.disable();
+            elem.fetch.disabled = true;
             const handleData = (data) => {
-               elem.link.attr('href', link).text(link);
-               elem.textarea.val(JSON.stringify(data, null, 3)).trigger('change');
-               elem.fetch.enable();
+               elem.link.href =        link;
+               elem.link.textContent = link;
+               elem.fetch.disabled =   false;
+               elem.textarea.value =   JSON.stringify(data, null, 3);
+               dna.dom.triggerChange(elem.textarea);
                };
             globalThis.fetchJson.get(url)
                .then(handleData)
                .catch(error => handleData({ url: url, error: error.message }));
             },
          copyToClipboard(icon, event, component) {
-            const elem =      component.data().elem;
+            const elem =      dna.dom.state(component).elem;
             const selection = globalThis.getSelection();
             const range =     document.createRange();
             libX.animate.jiggleIt(icon);
-            range.selectNode(elem.output[0]);
+            range.selectNode(elem.output);
             selection.empty();
             selection.addRange(range);
             document.execCommand('copy');
             },
          toggleDarkMode(target, event, component) {
-            component.toggleClass('dark-mode', target.is(':checked'));
+            dna.dom.toggleClass(component, 'dark-mode', target.checked);
             },
          setup() {
-            const component = $('[data-component=pretty-print]');
+            const component = globalThis.document.querySelector('[data-component=pretty-print]');
             const elem = {
-               textarea: component.find('>section >textarea'),
-               message:  component.find('>section >#error-message'),
-               url:      component.find('>section >fieldset >input'),
-               fetch:    component.find('>section >fieldset >button'),
-               link:     component.find('>section >a'),
-               output:   component.find('>section >div >output'),
+               textarea: component.querySelector('section >textarea'),
+               message:  component.querySelector('section >#error-message'),
+               url:      component.querySelector('section >fieldset >input'),
+               fetch:    component.querySelector('section >fieldset >button'),
+               link:     component.querySelector('section >a'),
+               output:   component.querySelector('section >div >output'),
                option: {
-                  numbers: component.find('>section >nav input[type=checkbox]#numbers'),
-                  keys:    component.find('>section >nav input[type=checkbox]#keys'),
-                  commas:  component.find('>section >nav input[type=checkbox]#commas'),
-                  dark:    component.find('>section >nav input[type=checkbox]#dark'),
+                  numbers: component.querySelector('section >nav input[type=checkbox]#numbers'),
+                  keys:    component.querySelector('section >nav input[type=checkbox]#keys'),
+                  commas:  component.querySelector('section >nav input[type=checkbox]#commas'),
+                  dark:    component.querySelector('section >nav input[type=checkbox]#dark'),
                   },
                };
-            component.data().elem = elem;
+            dna.dom.state(component).elem = elem;
             const intro = {
                message:  'Put some JSON in the text box.',
                error:    null,
@@ -262,16 +263,18 @@
                space:    '🪐🚀✨',
                fancy:    'https://json5.org/?' + Date.now() % 20,
                };
-            const url = new URLSearchParams(globalThis.location.search).get('url');
-            elem.url.val(url);
+            const url =           new URLSearchParams(globalThis.location.search).get('url');
+            elem.url.value =      url;
+            elem.textarea.value = JSON.stringify(intro);
             if (url)
                elem.fetch.click();
             else
-               elem.textarea.val(JSON.stringify(intro)).trigger('change');
+               dna.dom.triggerChange(elem.textarea);
             elem.option.commas.click();  //turn on trailing commas
             if (globalThis.matchMedia?.('(prefers-color-scheme: dark)').matches)
                elem.option.dark.click();  //turn on dark mode
-            $('.version-number').text(prettyPrintJson.version);
+            const versionNumber = globalThis.document.querySelector('.version-number');
+            versionNumber.textContent = prettyPrintJson.version;
             },
          };
    </script>
@@ -291,7 +294,7 @@
          <header>
             <h3>JSON input:</h3>
          </header>
-         <textarea data-smart-update=app.processJson placeholder="Enter some JSON" autofocus></textarea>
+         <textarea data-on-smart-update=app.processJson placeholder="Enter some JSON" autofocus></textarea>
          <p id=error-message>Invalid JSON</p>
          <header>
             <h3 class=popup-anchor>
@@ -301,27 +304,27 @@
                   <a href=https://github.com/center-key/fetch-json#readme class=external-site>fetch-json</a>
                </label>
             </h3>
-            <i data-icon=wand-magic-sparkles data-click=app.showExampleUrl></i>
+            <i data-icon=wand-magic-sparkles data-on-click=app.showExampleUrl></i>
          </header>
          <fieldset>
             <input type=text>
-            <button data-click=app.fetchData>Fetch Data</button>
+            <button data-on-click=app.fetchData>Fetch Data</button>
          </fieldset>
          <a href=#></a>&nbsp;
       </section>
       <section>
          <header>
             <h3>Color output:</h3>
-            <i data-icon=copy data-click=app.copyToClipboard></i>
+            <i data-icon=copy data-on-click=app.copyToClipboard></i>
          </header>
          <div>
             <output class=json-container></output>
          </div>
          <nav>
-            <label><input id=numbers type=checkbox data-change=app.processJson>line numbers</label>
-            <label><input id=keys    type=checkbox data-change=app.processJson>quote keys</label>
-            <label><input id=commas  type=checkbox data-change=app.processJson>trailing commas</label>
-            <label><input id=dark    type=checkbox data-change=app.toggleDarkMode>dark mode</label>
+            <label><input id=numbers type=checkbox data-on-change=app.processJson>line numbers</label>
+            <label><input id=keys    type=checkbox data-on-change=app.processJson>quote keys</label>
+            <label><input id=commas  type=checkbox data-on-change=app.processJson>trailing commas</label>
+            <label><input id=dark    type=checkbox data-on-change=app.toggleDarkMode>dark mode</label>
          </nav>
       </section>
    </div>

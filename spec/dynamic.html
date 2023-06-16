@@ -14,8 +14,8 @@
    <link rel=preconnect href=https://fonts.gstatic.com crossorigin>
    <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4/css/all.min.css>
    <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/pretty-print-json@2.0/dist/css/pretty-print-json.css>
-   <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/dna-engine@2.3/dist/dna-engine.css>
-   <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/web-ignition@1.7/dist/reset.min.css>
+   <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/dna-engine@3.0/dist/dna-engine.css>
+   <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/web-ignition@2.0/dist/reset.min.css>
    <style>
       body {
          max-width: 700px;
@@ -42,17 +42,16 @@
          opacity: 1;
          }
    </style>
-   <script defer src=https://cdn.jsdelivr.net/npm/jquery@3.6/dist/jquery.min.js></script>
-   <script defer src=https://cdn.jsdelivr.net/npm/dna-engine@2.3/dist/dna-engine.min.js></script>
-   <script defer src=https://cdn.jsdelivr.net/npm/web-ignition@1.7/dist/lib-x.min.js></script>
+   <script defer src=https://cdn.jsdelivr.net/npm/dna-engine@3.0/dist/dna-engine.min.js></script>
+   <script defer src=https://cdn.jsdelivr.net/npm/web-ignition@2.0/dist/lib-x.min.js></script>
    <script data-on-load=app.setup data-wait-for=libX>
       const app = {
          loadModule(module) {
             const buttonClicked = new Date();
             const url = 'https://cdn.jsdelivr.net/npm/pretty-print-json@2.0/dist/pretty-print-json.js';
-            $('main pre').addClass('active');
+            globalThis.document.querySelectorAll('main pre').classList.add('active');
             import(url).then(module => {
-               const pageLoaded = $('body').data().pageLoaded;
+               const pageLoaded =   Number(globalThis.document.body.dataset.pageLoaded);
                const moduleLoaded = new Date();
                const message = {
                   message: 'ES Module Dynamic Loading',
@@ -67,15 +66,17 @@
                      loadModule:   moduleLoaded - buttonClicked,
                      },
                   };
-               const html = module.prettyPrintJson.toHtml(message);
-               $('main output').hide().html(html).slideDown();
+               const html =   module.prettyPrintJson.toHtml(message);
+               const output = globalThis.document.querySelector('main output');
+               output.innerHTML = html;
+               dna.ui.fadeSlideIn(output);
                });
             },
          setup() {
-            const pageLoaded = new Date();
-            $('body').data().pageLoaded = pageLoaded;
-            $('main code').text(pageLoaded.toString());
-            $('main button').on({ click: app.loadModule });
+            const pageLoaded = String(new Date());
+            globalThis.document.body.dataset.pageLoaded = pageLoaded;
+            globalThis.document.querySelector('main code').textContent = pageLoaded;
+            dna.dom.onClick(app.loadModule, 'main button');
             libX.ui.autoDisableButtons();
             },
          };
