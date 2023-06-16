@@ -1,4 +1,4 @@
-//! pretty-print-json v2.0.1 ~~ https://pretty-print-json.js.org ~~ MIT License
+//! pretty-print-json v2.0.2 ~~ https://pretty-print-json.js.org ~~ MIT License
 
 (function (factory) {
     if (typeof module === "object" && typeof module.exports === "object") {
@@ -13,8 +13,8 @@
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.prettyPrintJson = void 0;
     const prettyPrintJson = {
-        version: '2.0.1',
-        toHtml(thing, options) {
+        version: '2.0.2',
+        toHtml(data, options) {
             const defaults = {
                 indent: 3,
                 lineNumbers: false,
@@ -55,7 +55,7 @@
                 return indentHtml + keyHtml + valueHtml + endHtml;
             };
             const jsonLine = /^( *)("[^"]+": )?("[^"]*"|[\w.+-]*)?([{}[\],]*)?$/mg;
-            const json = JSON.stringify(thing, null, settings.indent) || 'undefined';
+            const json = JSON.stringify(data, null, settings.indent) || 'undefined';
             const html = json.replace(invalidHtml, toHtml).replace(jsonLine, replacer);
             const makeLine = (line) => `   <li>${line}</li>`;
             const addLineNumbers = (html) => ['<ol class=json-lines>', ...html.split('\n').map(makeLine), '</ol>'].join('\n');
