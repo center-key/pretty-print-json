@@ -49,8 +49,8 @@
          loadModule(module) {
             const buttonClicked = new Date();
             const url = 'https://cdn.jsdelivr.net/npm/pretty-print-json@2.0/dist/pretty-print-json.js';
-            globalThis.document.querySelectorAll('main pre').classList.add('active');
-            import(url).then(module => {
+            globalThis.document.querySelector('main pre').classList.add('active');
+            const onModuleLoad = (module) => {
                const pageLoaded =   Number(globalThis.document.body.dataset.pageLoaded);
                const moduleLoaded = new Date();
                const message = {
@@ -70,7 +70,8 @@
                const output = globalThis.document.querySelector('main output');
                output.innerHTML = html;
                dna.ui.fadeSlideIn(output);
-               });
+               };
+            import(url).then(onModuleLoad);
             },
          setup() {
             const pageLoaded = String(new Date());
