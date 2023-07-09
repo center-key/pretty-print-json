@@ -227,12 +227,12 @@
          copyToClipboard(icon, event, component) {
             const elem =      dna.dom.state(component).elem;
             const selection = globalThis.getSelection();
-            const range =     document.createRange();
+            const range =     globalThis.document.createRange();
             libX.animate.jiggleIt(icon);
             range.selectNode(elem.output);
             selection.empty();
             selection.addRange(range);
-            document.execCommand('copy');
+            globalThis.document.execCommand('copy');
             },
          toggleDarkMode(target, event, component) {
             dna.dom.toggleClass(component, 'dark-mode', target.checked);

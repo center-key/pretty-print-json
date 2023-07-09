@@ -6,7 +6,6 @@ _Pretty-print JSON data into HTML to indent and colorize (written in functional 
 [![License:MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/center-key/pretty-print-json/blob/main/LICENSE.txt)
 [![npm](https://img.shields.io/npm/v/pretty-print-json.svg)](https://www.npmjs.com/package/pretty-print-json)
 [![Size](https://badgen.net/bundlephobia/minzip/pretty-print-json)](https://bundlephobia.com/package/pretty-print-json)
-[![Vulnerabilities](https://snyk.io/test/github/center-key/pretty-print-json/badge.svg)](https://snyk.io/test/github/center-key/pretty-print-json)
 [![Hits](https://data.jsdelivr.com/v1/package/npm/pretty-print-json/badge?style=rounded)](https://www.jsdelivr.com/package/npm/pretty-print-json)
 [![Build](https://github.com/center-key/pretty-print-json/workflows/build/badge.svg)](https://github.com/center-key/pretty-print-json/actions/workflows/run-spec-on-push.yaml)
 
