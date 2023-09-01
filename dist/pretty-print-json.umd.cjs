@@ -1,4 +1,4 @@
-//! pretty-print-json v2.0.2 ~~ https://pretty-print-json.js.org ~~ MIT License
+//! pretty-print-json v2.0.3 ~~ https://pretty-print-json.js.org ~~ MIT License
 
 (function (factory) {
     if (typeof module === "object" && typeof module.exports === "object") {
@@ -13,7 +13,7 @@
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.prettyPrintJson = void 0;
     const prettyPrintJson = {
-        version: '2.0.2',
+        version: '2.0.3',
         toHtml(data, options) {
             const defaults = {
                 indent: 3,
@@ -23,7 +23,7 @@
                 quoteKeys: false,
                 trailingComma: true,
             };
-            const settings = Object.assign(Object.assign({}, defaults), options);
+            const settings = { ...defaults, ...options };
             const invalidHtml = /[<>&]|\\"/g;
             const toHtml = (char) => char === '<' ? '&lt;' :
                 char === '>' ? '&gt;' :
@@ -42,7 +42,6 @@
                 return spanTag(type, display);
             };
             const replacer = (match, p1, p2, p3, p4) => {
-                var _a;
                 const part = { indent: p1, key: p2, value: p3, end: p4 };
                 const findName = settings.quoteKeys ? /(.*)(): / : /"([\w$]+)": |(.*): /;
                 const indentHtml = part.indent || '';
@@ -51,7 +50,7 @@
                 const valueHtml = part.value ? buildValueHtml(part.value) : '';
                 const noComma = !part.end || [']', '}'].includes(match.at(-1));
                 const addComma = settings.trailingComma && match.at(0) === ' ' && noComma;
-                const endHtml = spanTag('mark', addComma ? ((_a = part.end) !== null && _a !== void 0 ? _a : '') + ',' : part.end);
+                const endHtml = spanTag('mark', addComma ? (part.end ?? '') + ',' : part.end);
                 return indentHtml + keyHtml + valueHtml + endHtml;
             };
             const jsonLine = /^( *)("[^"]+": )?("[^"]*"|[\w.+-]*)?([{}[\],]*)?$/mg;
