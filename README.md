@@ -101,7 +101,7 @@ const html: string = prettyPrintJson.toHtml(data, options);
 Check out the `runScriptsConfig` section in [package.json](package.json) for an
 interesting approach to organizing build tasks.
 
-**CLI Build Tools**
+**CLI Build Tools for package.json**
    - 🎋 [add-dist-header](https://github.com/center-key/add-dist-header):&nbsp; _Prepend a one-line banner comment (with license notice) to distribution files_
    - 📄 [copy-file-util](https://github.com/center-key/copy-file-util):&nbsp; _Copy or rename a file with optional package version number_
    - 📂 [copy-folder-util](https://github.com/center-key/copy-folder-util):&nbsp; _Recursively copy files from one folder to another folder_

@@ -47,9 +47,9 @@ const prettyPrintJson = {
          const display =    strType && settings.linkUrls ? value.replace(urlPattern, makeLink) : value;
          return spanTag(type, display);
          };
-      const replacer = (match: string, p1: string, p2: string, p3: string, p4: string): string => {
+      const replacer = (match: string, ...parts: string[]): string => {
          // Converts the four parenthesized capture groups (indent, key, value, end) into HTML.
-         const part =       { indent: p1, key: p2, value: p3, end: p4 };
+         const part =       { indent: parts[0], key: parts[1], value: parts[2], end: parts[3] };
          const findName =   settings.quoteKeys ? /(.*)(): / : /"([\w$]+)": |(.*): /;
          const indentHtml = part.indent || '';
          const keyName =    part.key && part.key.replace(findName, '$1$2');
