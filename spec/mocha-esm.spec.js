@@ -151,7 +151,7 @@ describe('The .toHtml() function', () => {
       const actual =   {
          lines: lines.length,
          first: lines[0],
-         last:  lines[lines.length - 1],
+         last:  lines.at(-1),
          };
       const expected = {
          lines: fileLineCount,

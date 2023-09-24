@@ -19,7 +19,10 @@
       },
       "./": "./dist/"
    },
-   "repository": "github:center-key/pretty-print-json",
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/center-key/pretty-print-json.git"
+   },
    "homepage": "https://pretty-print-json.js.org",
    "bugs": "https://github.com/center-key/pretty-print-json/issues",
    "docs": "https://pretty-print-json.js.org",
@@ -111,7 +114,7 @@
       "copy-folder-util": "~1.1",
       "csso-cli": "~4.0",
       "dna-engine": "~3.0",
-      "eslint": "~8.49",
+      "eslint": "~8.50",
       "esm-to-plain-js": "~1.1",
       "fetch-json": "~3.2",
       "jsdom": "~22.1",
