@@ -1,4 +1,4 @@
-//! pretty-print-json v2.0.3 ~~ https://pretty-print-json.js.org ~~ MIT License
+//! pretty-print-json v2.0.4 ~~ https://pretty-print-json.js.org ~~ MIT License
 
 (function (factory) {
     if (typeof module === "object" && typeof module.exports === "object") {
@@ -13,8 +13,10 @@
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.prettyPrintJson = void 0;
     const prettyPrintJson = {
-        version: '2.0.3',
+        version: '2.0.4',
         toHtml(data, options) {
+            if (!''.at)
+                String.prototype.at = function (i) { return this.charAt(i + (i < 0 ? this.length : 0)); };
             const defaults = {
                 indent: 3,
                 lineNumbers: false,
@@ -41,8 +43,8 @@
                 const display = strType && settings.linkUrls ? value.replace(urlPattern, makeLink) : value;
                 return spanTag(type, display);
             };
-            const replacer = (match, p1, p2, p3, p4) => {
-                const part = { indent: p1, key: p2, value: p3, end: p4 };
+            const replacer = (match, ...parts) => {
+                const part = { indent: parts[0], key: parts[1], value: parts[2], end: parts[3] };
                 const findName = settings.quoteKeys ? /(.*)(): / : /"([\w$]+)": |(.*): /;
                 const indentHtml = part.indent || '';
                 const keyName = part.key && part.key.replace(findName, '$1$2');

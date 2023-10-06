@@ -1,6 +1,6 @@
 {
    "name": "pretty-print-json",
-   "version": "2.0.3",
+   "version": "2.0.4",
    "description": "Pretty-print JSON data into HTML to indent and colorize (written in functional TypeScript)",
    "license": "MIT",
    "type": "module",
@@ -92,7 +92,7 @@
       ],
       "docs": [
          "replacer spec/interactive.html build/docs1 --find=dynamic.html --replacement=dynamic/",
-         "replacer build/docs1 build/docs2 --find=../dist --replacement=https://cdn.jsdelivr.net/npm/pretty-print-json@{{pkg.version{{pipe}}minor-version}}/dist --pkg",
+         "replacer build/docs1 build/docs2 --find=../dist --replacement=https://cdn.jsdelivr.net/npm/pretty-print-json@{{pkg.version{{pipe}}minor-version}}/dist",
          "copy-file build/docs2/interactive.html docs/index.html",
          "copy-file spec/dynamic.html docs/dynamic/index.html",
          "html-validator docs"
@@ -105,7 +105,7 @@
    },
    "devDependencies": {
       "@fortawesome/fontawesome-free": "~6.4",
-      "@types/node": "~20.6",
+      "@types/node": "~20.8",
       "@typescript-eslint/eslint-plugin": "~6.7",
       "@typescript-eslint/parser": "~6.7",
       "add-dist-header": "~1.3",
