@@ -17,6 +17,7 @@ const prettyPrintJson = {
 
    toHtml(data: unknown, options?: FormatOptions): string {
       // Converts an object or primitive into an HTML string suitable for rendering.
+      if (!''.at) String.prototype.at = function(i) { return this.charAt(i + (i < 0 ? this.length : 0)); }  //polyfill to support older versions of Electron
       const defaults = {
          indent:        3,
          lineNumbers:   false,
