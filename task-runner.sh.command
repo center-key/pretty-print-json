@@ -57,7 +57,7 @@ releaseInstructions() {
       echo "When ready to do the next release:"
       echo
       echo "   === Increment version ==="
-      echo "   Edit pacakge.json to bump $version to next version number"
+      echo "   Edit package.json to bump $version to next version number"
       echo "   $projectHome/package.json"
       }
    nextActionCommitTagPub() {
