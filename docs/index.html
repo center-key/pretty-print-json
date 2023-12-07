@@ -1,7 +1,8 @@
 <!doctype html>
-<!-- - - - - - - - - - -->
-<!-- Pretty Print JSON -->
-<!-- - - - - - - - - - -->
+<!-- - - - - - - - - - - - - - -->
+<!-- Pretty Print JSON         -->
+<!-- pretty-print-json.js.org  -->
+<!-- - - - - - - - - - - - - - -->
 <html lang=en>
 <head>
    <meta charset=utf-8>
@@ -20,7 +21,7 @@
    <link rel=preconnect       href=https://fonts.googleapis.com>
    <link rel=preconnect       href=https://fonts.gstatic.com crossorigin>
    <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4/css/all.min.css>
-   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/pretty-print-json@2.0/dist/css/pretty-print-json.css>
+   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/pretty-print-json@2.1/dist/css/pretty-print-json.css>
    <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna-engine@3.0/dist/dna-engine.css>
    <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@2.0/dist/reset.min.css>
    <style>
@@ -168,19 +169,15 @@
          [data-component=pretty-print] >section:last-child >div { min-height: 200px; }
          }
    </style>
-   <script defer src=https://cdn.jsdelivr.net/npm/pretty-print-json@2.0/dist/pretty-print-json.min.js></script>
+   <script defer src=https://cdn.jsdelivr.net/npm/pretty-print-json@2.1/dist/pretty-print-json.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/fetch-json@3.2/dist/fetch-json.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/dna-engine@3.0/dist/dna-engine.min.js></script>
    <script defer src=https://cdn.jsdelivr.net/npm/web-ignition@2.0/dist/lib-x.min.js></script>
    <script data-on-load=app.setup data-wait-for=libX>
       const app = {
          processJson(target, event, component) {
-            const elem = dna.dom.state(component).elem;
-            const options = {
-               lineNumbers:   elem.option.numbers.checked,
-               quoteKeys:     elem.option.keys.checked,
-               trailingComma: elem.option.commas.checked,
-               };
+            const elem =    dna.dom.state(component).elem;
+            const options = app.savePreferences(component);
             dna.dom.toggleClass(component, 'line-numbers', options.lineNumbers);
             component.classList.remove('invalid-json');
             try {
@@ -236,8 +233,26 @@
          toggleDarkMode(target, event, component) {
             dna.dom.toggleClass(component, 'dark-mode', target.checked);
             },
-         setup() {
-            const component = globalThis.document.querySelector('[data-component=pretty-print]');
+         savePreferences(component) {
+            const elem = dna.dom.state(component).elem;
+            const userPreferences = {
+               lineNumbers:    elem.option.lineNumbers.checked,
+               quoteKeys:      elem.option.quoteKeys.checked,
+               trailingCommas: elem.option.trailingCommas.checked,
+               };
+            globalThis.localStorage.setItem('userPreferences', JSON.stringify(userPreferences));
+            return userPreferences;
+            },
+         readPreferences() {
+            const defaultPreferences = {
+               lineNumbers:    false,
+               quoteKeys:      false,
+               trailingCommas: true,
+               };
+            const userPreferences = globalThis.localStorage.getItem('userPreferences');
+            return userPreferences ? JSON.parse(userPreferences) : defaultPreferences;
+            },
+         createElemMap(component) {
             const elem = {
                textarea: component.querySelector('section >textarea'),
                message:  component.querySelector('section >#error-message'),
@@ -246,13 +261,18 @@
                link:     component.querySelector('section >a'),
                output:   component.querySelector('section >div >output'),
                option: {
-                  numbers: component.querySelector('section >nav input[type=checkbox]#numbers'),
-                  keys:    component.querySelector('section >nav input[type=checkbox]#keys'),
-                  commas:  component.querySelector('section >nav input[type=checkbox]#commas'),
-                  dark:    component.querySelector('section >nav input[type=checkbox]#dark'),
+                  lineNumbers:    component.querySelector('section >nav input[type=checkbox]#line-numbers'),
+                  quoteKeys:      component.querySelector('section >nav input[type=checkbox]#quote-keys'),
+                  trailingCommas: component.querySelector('section >nav input[type=checkbox]#trailing-commas'),
+                  darkMode:       component.querySelector('section >nav input[type=checkbox]#dark-mode'),
                   },
                };
             dna.dom.state(component).elem = elem;
+            return elem;
+            },
+         setup() {
+            const component = globalThis.document.querySelector('[data-component=pretty-print]');
+            const elem = app.createElemMap(component);
             const intro = {
                message:  'Put some JSON in the text box.',
                error:    null,
@@ -269,9 +289,10 @@
                elem.fetch.click();
             else
                dna.dom.triggerChange(elem.textarea);
-            elem.option.commas.click();  //turn on trailing commas
+            const options = app.readPreferences();
+            Object.keys(options).forEach(key => options[key] && elem.option[key].click());
             if (globalThis.matchMedia?.('(prefers-color-scheme: dark)').matches)
-               elem.option.dark.click();  //turn on dark mode
+               elem.option.darkMode.click();  //turn on dark mode
             const versionNumber = globalThis.document.querySelector('.version-number');
             versionNumber.textContent = prettyPrintJson.version;
             },
@@ -320,10 +341,10 @@
             <output class=json-container></output>
          </div>
          <nav>
-            <label><input id=numbers type=checkbox data-on-change=app.processJson>line numbers</label>
-            <label><input id=keys    type=checkbox data-on-change=app.processJson>quote keys</label>
-            <label><input id=commas  type=checkbox data-on-change=app.processJson>trailing commas</label>
-            <label><input id=dark    type=checkbox data-on-change=app.toggleDarkMode>dark mode</label>
+            <label><input id=line-numbers    type=checkbox data-on-change=app.processJson>line numbers</label>
+            <label><input id=quote-keys      type=checkbox data-on-change=app.processJson>quote keys</label>
+            <label><input id=trailing-commas type=checkbox data-on-change=app.processJson>trailing commas</label>
+            <label><input id=dark-mode       type=checkbox data-on-change=app.toggleDarkMode>dark mode</label>
          </nav>
       </section>
    </div>

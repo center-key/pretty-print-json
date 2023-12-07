@@ -1,17 +1,19 @@
-//! pretty-print-json v2.0.4 ~~ https://pretty-print-json.js.org ~~ MIT License
+//! pretty-print-json v2.1.0 ~~ https://pretty-print-json.js.org ~~ MIT License
 
 const prettyPrintJson = {
-    version: '2.0.4',
+    version: '2.1.0',
     toHtml(data, options) {
         if (!''.at)
             String.prototype.at = function (i) { return this.charAt(i + (i < 0 ? this.length : 0)); };
+        if (options?.['trailingComma'] !== undefined)
+            options.trailingCommas = options['trailingComma'];
         const defaults = {
             indent: 3,
             lineNumbers: false,
             linkUrls: true,
             linksNewTab: true,
             quoteKeys: false,
-            trailingComma: true,
+            trailingCommas: true,
         };
         const settings = { ...defaults, ...options };
         const invalidHtml = /[<>&]|\\"/g;
@@ -39,7 +41,7 @@ const prettyPrintJson = {
             const keyHtml = part.key ? spanTag('key', keyName) + spanTag('mark', ': ') : '';
             const valueHtml = part.value ? buildValueHtml(part.value) : '';
             const noComma = !part.end || [']', '}'].includes(match.at(-1));
-            const addComma = settings.trailingComma && match.at(0) === ' ' && noComma;
+            const addComma = settings.trailingCommas && match.at(0) === ' ' && noComma;
             const endHtml = spanTag('mark', addComma ? (part.end ?? '') + ',' : part.end);
             return indentHtml + keyHtml + valueHtml + endHtml;
         };
