@@ -308,7 +308,7 @@ describe('The "quoteKeys" option', () => {
    });
 
 ////////////////////////////////////////////////////////////////////////////////
-describe('The "trailingComma" option can be disabled', () => {
+describe('The "trailingCommas" option can be disabled', () => {
 
    it('to remove commas after the last item in arrays and objects', () => {
       const input = { active: true, codes: [48348, 28923, 39080], city: 'London' };
@@ -323,7 +323,7 @@ describe('The "trailingComma" option can be disabled', () => {
          '   <span class=json-key>city</span><span class=json-mark>: </span><span class=json-string>"London"</span>',
          '<span class=json-mark>}</span>',
          ];
-      const actual =   { html: prettyPrintJson.toHtml(input, { trailingComma: false }).split('\n') };
+      const actual =   { html: prettyPrintJson.toHtml(input, { trailingCommas: false }).split('\n') };
       const expected = { html: htmlLines };
       assertDeepStrictEqual(actual, expected);
       });

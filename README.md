@@ -55,14 +55,14 @@ const elem = document.getElementById('account');
 elem.innerHTML = prettyPrintJson.toHtml(data);
 ```
 ### 3. Options
-| Name (key)      | Type        | Default | Description                                                 |
-| :-------------- | :---------- | :-----: | :---------------------------------------------------------- |
-| `indent`        | **integer** | `3`     | Number of spaces for indentation.                           |
-| `lineNumbers`   | **boolean** | `false` | Wrap HTML in an `<ol>` tag to support line numbers.<b>*</b> |
-| `linkUrls`      | **boolean** | `true`  | Create anchor tags for URLs.                                |
-| `linksNewTab`   | **boolean** | `true`  | Add a `target=_blank` attribute setting to anchor tags.     |
-| `quoteKeys`     | **boolean** | `false` | Always double quote key names.                              |
-| `trailingComma` | **boolean** | `true`  | Append a comma after the last item in arrays and objects.   |
+| Name (key)       | Type        | Default | Description                                                 |
+| :--------------- | :---------- | :-----: | :---------------------------------------------------------- |
+| `indent`         | **integer** | `3`     | Number of spaces for indentation.                           |
+| `lineNumbers`    | **boolean** | `false` | Wrap HTML in an `<ol>` tag to support line numbers.<b>*</b> |
+| `linkUrls`       | **boolean** | `true`  | Create anchor tags for URLs.                                |
+| `linksNewTab`    | **boolean** | `true`  | Add a `target=_blank` attribute setting to anchor tags.     |
+| `quoteKeys`      | **boolean** | `false` | Always double quote key names.                              |
+| `trailingCommas` | **boolean** | `true`  | Append a comma after the last item in arrays and objects.   |
 
 <b>*</b>When setting `lineNumbers` to `true`, do not use the `<pre>` tag as the `white-space: pre;`
 styling is applied to each line (`<li>`).
@@ -79,12 +79,12 @@ using the `options` parameter.
 The `options` parameter is a `FormatOptions` object:
 ```typescript
 type FormatOptions = {
-   indent?:        number,   //number of spaces for indentation
-   lineNumbers?:   boolean,  //wrap HTML in an <ol> tag to support line numbers
-   linkUrls?:      boolean,  //create anchor tags for URLs
-   linksNewTab?:   boolean,  //add a target=_blank attribute setting to anchor tags
-   quoteKeys?:     boolean,  //always double quote key names
-   trailingComma?: boolean,  //append a comma after the last item in arrays and objects
+   indent?:         number,   //number of spaces for indentation
+   lineNumbers?:    boolean,  //wrap HTML in an <ol> tag to support line numbers
+   linkUrls?:       boolean,  //create anchor tags for URLs
+   linksNewTab?:    boolean,  //add a target=_blank attribute setting to anchor tags
+   quoteKeys?:      boolean,  //always double quote key names
+   trailingCommas?: boolean,  //append a comma after the last item in arrays and objects
    };
 ```
 

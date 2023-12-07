@@ -1,12 +1,12 @@
 // pretty-print-json ~ MIT License
 
 export type FormatSettings = {
-   indent:        number,   //number of spaces for indentation
-   lineNumbers:   boolean,  //wrap HTML in an <ol> tag to support line numbers
-   linkUrls:      boolean,  //create anchor tags for URLs
-   linksNewTab:   boolean,  //add a target=_blank attribute setting to anchor tags
-   quoteKeys:     boolean,  //always double quote key names
-   trailingComma: boolean,  //append a comma after the last item in arrays and objects
+   indent:         number,   //number of spaces for indentation
+   lineNumbers:    boolean,  //wrap HTML in an <ol> tag to support line numbers
+   linkUrls:       boolean,  //create anchor tags for URLs
+   linksNewTab:    boolean,  //add a target=_blank attribute setting to anchor tags
+   quoteKeys:      boolean,  //always double quote key names
+   trailingCommas: boolean,  //append a comma after the last item in arrays and objects
    };
 export type FormatOptions = Partial<FormatSettings>;
 export type JsonType = 'key' | 'string' | 'number' | 'boolean' | 'null' | 'mark';
@@ -18,13 +18,14 @@ const prettyPrintJson = {
    toHtml(data: unknown, options?: FormatOptions): string {
       // Converts an object or primitive into an HTML string suitable for rendering.
       if (!''.at) String.prototype.at = function(i) { return this.charAt(i + (i < 0 ? this.length : 0)); }  //polyfill to support older versions of Electron
+      if (options?.[<keyof FormatOptions>'trailingComma'] !== undefined) options.trailingCommas = <boolean>options[<keyof FormatOptions>'trailingComma'];  //support deprecated option name for backwards compatibility
       const defaults = {
-         indent:        3,
-         lineNumbers:   false,
-         linkUrls:      true,
-         linksNewTab:   true,
-         quoteKeys:     false,
-         trailingComma: true,
+         indent:         3,
+         lineNumbers:    false,
+         linkUrls:       true,
+         linksNewTab:    true,
+         quoteKeys:      false,
+         trailingCommas: true,
          };
       const settings = { ...defaults, ...options };
       const invalidHtml = /[<>&]|\\"/g;
@@ -57,7 +58,7 @@ const prettyPrintJson = {
          const keyHtml =    part.key ? spanTag('key', keyName) + spanTag('mark', ': ') : '';
          const valueHtml =  part.value ? buildValueHtml(part.value) : '';
          const noComma =    !part.end || [']', '}'].includes(match.at(-1)!);
-         const addComma =   settings.trailingComma && match.at(0) === ' ' && noComma;
+         const addComma =   settings.trailingCommas && match.at(0) === ' ' && noComma;
          const endHtml =    spanTag('mark', addComma ? (part.end ?? '') + ',' : part.end);
          return indentHtml + keyHtml + valueHtml + endHtml;
          };
