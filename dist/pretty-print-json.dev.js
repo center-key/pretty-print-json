@@ -1,7 +1,7 @@
-//! pretty-print-json v2.1.0 ~~ https://pretty-print-json.js.org ~~ MIT License
+//! pretty-print-json v2.1.1 ~~ https://pretty-print-json.js.org ~~ MIT License
 
 const prettyPrintJson = {
-    version: '2.1.0',
+    version: '2.1.1',
     toHtml(data, options) {
         if (!''.at)
             String.prototype.at = function (i) { return this.charAt(i + (i < 0 ? this.length : 0)); };
