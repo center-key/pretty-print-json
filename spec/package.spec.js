@@ -16,7 +16,6 @@ describe('The "dist" folder', () => {
          'pretty-print-json.dev.js',
          'pretty-print-json.js',
          'pretty-print-json.min.js',
-         'pretty-print-json.umd.cjs',
          ];
       assertDeepStrictEqual(actual, expected);
       });

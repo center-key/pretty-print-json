@@ -5,20 +5,13 @@
    "license": "MIT",
    "type": "module",
    "module": "dist/pretty-print-json.js",
-   "jsdelivr": "dist/pretty-print-json.min.js",
-   "main": "dist/pretty-print-json.umd.cjs",
+   "browser": "dist/pretty-print-json.min.js",
    "style": "dist/css/pretty-print-json.css",
    "types": "dist/pretty-print-json.d.ts",
+   "exports": "./dist/pretty-print-json.js",
    "files": [
       "dist"
    ],
-   "exports": {
-      ".": {
-         "import": "./dist/pretty-print-json.js",
-         "require": "./dist/pretty-print-json.umd.cjs"
-      },
-      "./": "./dist/"
-   },
    "repository": {
       "type": "git",
       "url": "git+https://github.com/center-key/pretty-print-json.git"
@@ -77,8 +70,6 @@
       ],
       "build": [
          "tsc",
-         "tsc --module UMD --outDir build/umd",
-         "copy-file build/umd/pretty-print-json.js build/pretty-print-json.umd.cjs",
          "esm-to-plain-js --cd=build pretty-print-json.js pretty-print-json.dev.js",
          "uglifyjs build/pretty-print-json.dev.js --output build/pretty-print-json.min.js",
          "copy-folder src --ext=.css build/css",
@@ -117,7 +108,7 @@
       "eslint": "~8.56",
       "esm-to-plain-js": "~1.1",
       "fetch-json": "~3.2",
-      "jsdom": "~23.2",
+      "jsdom": "~24.0",
       "jshint": "~2.13",
       "mocha": "~10.2",
       "replacer-util": "~1.2",
