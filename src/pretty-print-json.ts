@@ -17,9 +17,6 @@ const prettyPrintJson = {
 
    toHtml(data: unknown, options?: FormatOptions): string {
       // Converts an object or primitive into an HTML string suitable for rendering.
-      const deprecatedTrailingComma = options?.[<keyof FormatOptions>'trailingComma'];  //option renamed to trailingCommas
-      if (deprecatedTrailingComma !== undefined) options!.trailingCommas = <boolean>deprecatedTrailingComma;  //backwards compatibility
-      if (deprecatedTrailingComma !== undefined) console.warn('pretty-print-json: Use "trailingCommas" option instead of "trailingComma".');
       const defaults = {
          indent:         3,
          lineNumbers:    false,
