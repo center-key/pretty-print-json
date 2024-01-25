@@ -17,7 +17,6 @@ const prettyPrintJson = {
 
    toHtml(data: unknown, options?: FormatOptions): string {
       // Converts an object or primitive into an HTML string suitable for rendering.
-      if (!''.at) String.prototype.at = function(i) { return this.charAt(i + (i < 0 ? this.length : 0)); }  //polyfill to support older versions of Electron
       const deprecatedTrailingComma = options?.[<keyof FormatOptions>'trailingComma'];  //option renamed to trailingCommas
       if (deprecatedTrailingComma !== undefined) options!.trailingCommas = <boolean>deprecatedTrailingComma;  //backwards compatibility
       if (deprecatedTrailingComma !== undefined) console.warn('pretty-print-json: Use "trailingCommas" option instead of "trailingComma".');
