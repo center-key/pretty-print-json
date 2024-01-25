@@ -1,15 +1,8 @@
-//! pretty-print-json v2.1.2 ~~ https://pretty-print-json.js.org ~~ MIT License
+//! pretty-print-json v3.0.0 ~~ https://pretty-print-json.js.org ~~ MIT License
 
 const prettyPrintJson = {
-    version: '2.1.2',
+    version: '3.0.0',
     toHtml(data, options) {
-        if (!''.at)
-            String.prototype.at = function (i) { return this.charAt(i + (i < 0 ? this.length : 0)); };
-        const deprecatedTrailingComma = options?.['trailingComma'];
-        if (deprecatedTrailingComma !== undefined)
-            options.trailingCommas = deprecatedTrailingComma;
-        if (deprecatedTrailingComma !== undefined)
-            console.warn('pretty-print-json: Use "trailingCommas" option instead of "trailingComma".');
         const defaults = {
             indent: 3,
             lineNumbers: false,

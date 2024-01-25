@@ -23,6 +23,8 @@ Load from the [jsdelivr.com CDN](https://www.jsdelivr.com/package/npm/pretty-pri
 ...
 <script src=https://cdn.jsdelivr.net/npm/pretty-print-json@2.1/dist/pretty-print-json.min.js></script>
 ```
+The minified JS file is 2 KB.
+
 For **dark mode**, replace `pretty-print-json.css` with `pretty-print-json.dark-mode.css` in
 the `<link>` tag.
 
