@@ -47,7 +47,7 @@ const html = prettyPrintJson.toHtml(data, options?);
 ### 2. Example
 ##### HTML:
 ```html
-<pre id=account class=json-container></pre>
+<pre id="account" class="json-container"></pre>
 ```
 ##### JavaScript:
 Pass data into `prettyPrintJson.toHtml(data, options)` and display the results.
