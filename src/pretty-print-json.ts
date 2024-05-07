@@ -13,7 +13,7 @@ export type JsonType = 'key' | 'string' | 'number' | 'boolean' | 'null' | 'mark'
 
 const prettyPrintJson = {
 
-   version: '{{pkg.version}}',
+   version: '{{package.version}}',
 
    toHtml(data: unknown, options?: FormatOptions): string {
       // Converts an object or primitive into an HTML string suitable for rendering.

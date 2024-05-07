@@ -1,11 +1,12 @@
-name: build
+name: Build and Run Specifications
+
 on: [push]
+
 jobs:
   build:
-    name: Run Specifications
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4    #see: https://github.com/actions/checkout/releases
+      - uses: actions/setup-node@v4  #see: https://github.com/actions/setup-node/releases
       - run: npm install
       - run: npm test
