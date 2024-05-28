@@ -1,4 +1,4 @@
-name: Build and Run Specifications
+name: Build and Test
 
 on: [push]
 
