@@ -1,7 +1,7 @@
-//! pretty-print-json v3.0.1 ~~ https://pretty-print-json.js.org ~~ MIT License
+//! pretty-print-json v3.0.2 ~~ https://pretty-print-json.js.org ~~ MIT License
 
 const prettyPrintJson = {
-    version: '3.0.1',
+    version: '3.0.2',
     toHtml(data, options) {
         const defaults = {
             indent: 3,
