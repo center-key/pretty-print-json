@@ -28,6 +28,11 @@ ol.json-lines >li:hover           { background-color: lemonchiffon; }
 
 /* Dark Mode */
 @media (prefers-color-scheme: dark) {
+   ol.json-lines {
+      --colorGraphite: #303030;
+      --colorCharcoal: #222222;
+      --colorTar:      #161616;
+      }
    .json-container                   { background-color: black; }
    .json-key                         { color: indianred; }
    .json-string                      { color: khaki; }
@@ -40,7 +45,7 @@ ol.json-lines >li:hover           { background-color: lemonchiffon; }
    a.json-link:hover                 { color: violet; }
    a.json-link:active                { color: slategray; }
    ol.json-lines >li::marker         { color: silver; }
-   ol.json-lines >li:nth-child(odd)  { background-color: #222222; }
-   ol.json-lines >li:nth-child(even) { background-color: #161616; }
+   ol.json-lines >li:nth-child(odd)  { background-color: var(--colorCharcoal); }
+   ol.json-lines >li:nth-child(even) { background-color: var(--colorTar); }
    ol.json-lines >li:hover           { background-color: dimgray; }
    }

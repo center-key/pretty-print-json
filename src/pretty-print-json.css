@@ -9,6 +9,13 @@ ol.json-lines >li         { white-space: pre; text-indent: 0.7em; line-height: 1
 ol.json-lines >li::marker { font-family: system-ui, sans-serif; font-weight: normal; }
 .json-key, .json-string, .json-number, .json-boolean, .json-null, .json-mark, a.json-link, ol.json-lines >li { transition: all 400ms; }
 
+/* Custom Colors */
+ol.json-lines {
+   --colorGraphite: #303030;
+   --colorCharcoal: #222222;
+   --colorTar:      #161616;
+   }
+
 /* Colors */
 .json-container                   { background-color: white; }
 .json-key                         { color: brown; }
@@ -39,6 +46,6 @@ ol.json-lines >li:hover           { background-color: lemonchiffon; }
 .dark-mode a.json-link:hover                 { color: violet; }
 .dark-mode a.json-link:active                { color: slategray; }
 .dark-mode ol.json-lines >li::marker         { color: silver; }
-.dark-mode ol.json-lines >li:nth-child(odd)  { background-color: #222222; }
-.dark-mode ol.json-lines >li:nth-child(even) { background-color: #161616; }
+.dark-mode ol.json-lines >li:nth-child(odd)  { background-color: var(--colorCharcoal); }
+.dark-mode ol.json-lines >li:nth-child(even) { background-color: var(--colorTar); }
 .dark-mode ol.json-lines >li:hover           { background-color: dimgray; }
