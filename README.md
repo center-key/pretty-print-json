@@ -53,7 +53,12 @@ const html = prettyPrintJson.toHtml(data, options?);
 ##### JavaScript:
 Pass data into `prettyPrintJson.toHtml(data, options)` and display the results.
 ```javascript
-const data = { active: true, mode: '🚃', codes: [48348, 28923, 39080], city: 'London' };
+const data = {
+   active: true,
+   mode:   '🚃',
+   codes:  [48348, 28923, 39080],
+   city:   'London',
+   };
 const elem = document.getElementById('account');
 elem.innerHTML = prettyPrintJson.toHtml(data);
 ```
