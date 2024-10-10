@@ -51,7 +51,7 @@
             const url = 'https://cdn.jsdelivr.net/npm/pretty-print-json@3.0/dist/pretty-print-json.js';
             globalThis.document.querySelector('main pre').classList.add('active');
             const onModuleLoad = (module) => {
-               const pageLoaded =   Number(globalThis.document.body.dataset.pageLoaded);
+               const pageLoaded =   new Date(Number(globalThis.document.body.dataset.pageLoaded));
                const moduleLoaded = new Date();
                const message = {
                   message: 'ES Module Dynamic Loading',
@@ -61,22 +61,22 @@
                      buttonClicked: buttonClicked,
                      moduleLoaded_: moduleLoaded,
                      },
-                  milliseconds: {
-                     waitForClick: buttonClicked - pageLoaded,
-                     loadModule:   moduleLoaded - buttonClicked,
+                  seconds: {
+                     waitForClick: (buttonClicked - pageLoaded) / 1000,
+                     loadModule__: (moduleLoaded - buttonClicked) / 1000,
                      },
                   };
                const html =   module.prettyPrintJson.toHtml(message);
                const output = globalThis.document.querySelector('main output');
                output.innerHTML = html;
-               dna.ui.fadeSlideIn(output);
+               dna.ui.slideFadeIn(output);
                };
             import(url).then(onModuleLoad);
             },
          setup() {
-            const pageLoaded = String(new Date());
-            globalThis.document.body.dataset.pageLoaded = pageLoaded;
-            globalThis.document.querySelector('main code').textContent = pageLoaded;
+            const now = Date.now();
+            globalThis.document.body.dataset.pageLoaded = String(now);
+            globalThis.document.querySelector('main code').textContent = Date(now).toLocaleString();
             dna.dom.onClick(app.loadModule, 'main button');
             libX.ui.autoDisableButtons();
             },
