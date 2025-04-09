@@ -29,6 +29,7 @@ ol.json-lines >li:hover           { background-color: lemonchiffon; }
 /* Dark Mode */
 @media (prefers-color-scheme: dark) {
    ol.json-lines {
+      --colorSmoke:    #444444;
       --colorGraphite: #303030;
       --colorCharcoal: #222222;
       --colorTar:      #161616;

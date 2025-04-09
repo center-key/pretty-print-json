@@ -11,6 +11,7 @@ ol.json-lines >li::marker { font-family: system-ui, sans-serif; font-weight: nor
 
 /* Custom Colors */
 ol.json-lines {
+   --colorSmoke:    #444444;
    --colorGraphite: #303030;
    --colorCharcoal: #222222;
    --colorTar:      #161616;
