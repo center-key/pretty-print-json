@@ -13,18 +13,18 @@ import { prettyPrintJson } from '../dist/pretty-print-json.js';
 const runExamples = () => {
    // Cat in a Box
    const catInABox = ['🐈'];
-   console.log(divider);
-   console.log(catInABox);
-   console.log('HTML:');
-   console.log(prettyPrintJson.toHtml(catInABox));
+   console.info(divider);
+   console.info(catInABox);
+   console.info('HTML:');
+   console.info(prettyPrintJson.toHtml(catInABox));
 
    // Striped
    const striped = { striped: ['🦓', '🐅', '🦨'] };
    const stripedOptions = { indent: 8, lineNumbers: true };
-   console.log(divider);
-   console.log(striped, '👉', stripedOptions);
-   console.log('HTML:');
-   console.log(prettyPrintJson.toHtml(striped, stripedOptions));
+   console.info(divider);
+   console.info(striped, '👉', stripedOptions);
+   console.info('HTML:');
+   console.info(prettyPrintJson.toHtml(striped, stripedOptions));
 
    // Railway Car
    const railwayCar = {
@@ -35,14 +35,14 @@ const runExamples = () => {
       web:    'https://london.gov.uk',
       };
    const railwayCarOptions = {  };
-   console.log(divider);
-   console.log(railwayCar);
-   console.log('HTML:');
-   console.log(prettyPrintJson.toHtml(railwayCar, railwayCarOptions));
+   console.info(divider);
+   console.info(railwayCar);
+   console.info('HTML:');
+   console.info(prettyPrintJson.toHtml(railwayCar, railwayCarOptions));
    };
 
-console.log('Examples');
-console.log('========');
-console.log('pretty-print-json v' + prettyPrintJson.version);
+console.info('Examples');
+console.info('========');
+console.info('pretty-print-json v' + prettyPrintJson.version);
 const divider = '\n----------------';
 runExamples();
