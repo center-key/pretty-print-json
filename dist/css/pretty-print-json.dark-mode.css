@@ -1,4 +1,4 @@
-/*! pretty-print-json v3.0.4 ~~ https://pretty-print-json.js.org ~~ MIT License */
+/*! pretty-print-json v3.0.5 ~~ https://pretty-print-json.js.org ~~ MIT License */
 
 /* Layout */
 .json-container           { font-family: menlo, consolas, monospace; font-style: normal; font-weight: bold; line-height: 1.4em; font-size: 0.9rem; transition: background-color 400ms; }
@@ -11,6 +11,7 @@ ol.json-lines >li::marker { font-family: system-ui, sans-serif; font-weight: nor
 
 /* Custom Colors */
 ol.json-lines {
+   --colorSmoke:    #444444;
    --colorGraphite: #303030;
    --colorCharcoal: #222222;
    --colorTar:      #161616;
