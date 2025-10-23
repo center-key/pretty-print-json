@@ -10,7 +10,7 @@
    "types": "dist/pretty-print-json.d.ts",
    "exports": {
       ".": "./dist/pretty-print-json.js",
-      "./": "./dist/"
+      "./*": "./dist/*"
    },
    "files": [
       "dist"
