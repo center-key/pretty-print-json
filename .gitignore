@@ -1,9 +1,9 @@
 # pretty-print-json
 
-# Downloaded and generated files
+# Downloaded and Generated Files
 /node_modules/
 /package-lock.json
 /build/
 
-# Extraneous system files
+# Extraneous System Files
 .DS_Store
