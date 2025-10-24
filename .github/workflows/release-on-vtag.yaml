@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      w3cHtmlValidator: dry-run  #prevent rate limit error
     steps:
       - uses: actions/checkout@v5        #see: https://github.com/actions/checkout/releases
       - uses: actions/create-release@v1  #see: https://github.com/actions/create-release/releases
