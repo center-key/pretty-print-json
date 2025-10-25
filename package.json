@@ -69,13 +69,13 @@
          "replacer spec/interactive.html build/docs1 --find=dynamic.html --replacement=dynamic/",
          "replacer build/docs1 build/docs2 --find=../dist --replacement=https://cdn.jsdelivr.net/npm/pretty-print-json@{{package.version{{pipe}}minor-version}}/dist",
          "copy-file build/docs2/interactive.html docs/index.html",
-         "copy-file spec/dynamic.html docs/dynamic/index.html",
-         "html-validator docs"
+         "copy-file spec/dynamic.html docs/dynamic/index.html"
       ]
    },
    "scripts": {
       "pretest": "run-scripts clean lint build dist docs",
       "test": "mocha spec/*.spec.js",
+      "posttest": "html-validator docs",
       "examples": "npm test && node spec/examples.js"
    },
    "devDependencies": {
