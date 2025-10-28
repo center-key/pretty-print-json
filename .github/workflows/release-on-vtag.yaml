@@ -1,20 +1,15 @@
+# pretty-print-json
+
 name: Create Release
 
 on:
   push:
     tags:
-      - 'v*'
+      - "v*.*.*"
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5        #see: https://github.com/actions/checkout/releases
-      - uses: actions/create-release@v1  #see: https://github.com/actions/create-release/releases
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        with:
-          tag_name: ${{github.ref}}
-          release_name: Release ${{github.ref}}
-          draft: false
-          prerelease: false
+      - uses: actions/checkout@v5             #see: https://github.com/actions/checkout/releases
+      - uses: softprops/action-gh-release@v2  #see: https://github.com/softprops/action-gh-release/releases

@@ -69,7 +69,7 @@ releaseInstructions() {
       echo
       echo "   === Tag and publish ==="
       echo "   cd $projectHome"
-      echo "   git tag --annotate --message 'Release' $version"
+      echo "   git tag --annotate $version --message 'Release'"
       echo "   git remote --verbose"
       echo "   git push origin --tags"
       echo "   npm publish"
