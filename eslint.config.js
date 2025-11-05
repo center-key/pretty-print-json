@@ -16,7 +16,6 @@ export default [
          '@typescript-eslint/no-non-null-assertion':                  'off',  //ts cannot always know value exists
          '@typescript-eslint/restrict-template-expressions':          'off',  //numbers in templates are natural
          '@typescript-eslint/unbound-method':                         'off',  //safer to not use 'this'
-         '@typescript-eslint/unified-signatures':                     'off',  //bug in eslint v3.39, https://github.com/eslint/eslint/issues/20272
          '@typescript-eslint/use-unknown-in-catch-callback-variable': 'off',  //clarity over theoretical exceptions
          },
       },

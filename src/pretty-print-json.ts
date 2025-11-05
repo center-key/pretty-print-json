@@ -17,7 +17,7 @@ const prettyPrintJson = {
 
    toHtml(data: unknown, options?: FormatOptions): string {
       // Converts an object or primitive into an HTML string suitable for rendering.
-      const defaults = {
+      const defaults: FormatOptions = {
          indent:         3,
          lineNumbers:    false,
          linkUrls:       true,
