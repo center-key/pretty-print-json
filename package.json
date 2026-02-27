@@ -44,7 +44,7 @@
       "node": true,
       "mocha": true
    },
-   "replacerConfig": {
+   "cliConfig": {
       "macros": {
          "cdn-url": "https://cdn.jsdelivr.net/npm/pretty-print-json@{{package.version|minor-version}}/dist"
       }
@@ -59,9 +59,9 @@
       ],
       "build": [
          "tsc",
-         "esm-to-plain-js --cd=build pretty-print-json.js pretty-print-json.dev.js",
-         "uglifyjs build/pretty-print-json.dev.js --output build/pretty-print-json.min.js",
-         "copy-folder src --ext=.css build/css",
+         "esm-to-plain-js build/pretty-print-json.js        build/pretty-print-json.dev.js",
+         "uglifyjs build/pretty-print-json.dev.js  --output build/pretty-print-json.min.js",
+         "copy-folder src --ext=.css                        build/css",
          "csso src/pretty-print-json.css           --output build/css/pretty-print-json.min.css",
          "csso src/pretty-print-json.dark-mode.css --output build/css/pretty-print-json.dark-mode.min.css",
          "csso src/pretty-print-json.prefers.css   --output build/css/pretty-print-json.prefers.min.css"
@@ -70,42 +70,42 @@
          "add-dist-header build dist",
          "add-dist-header build/css dist/css"
       ],
-      "docs": [
+      "publish": [
          "replacer spec/interactive.html build/docs1 --find=dynamic.html --replacement=dynamic/",
          "replacer build/docs1 build/docs2 --find=../dist --replacement={{macro:cdn-url}}",
          "copy-file build/docs2/interactive.html docs/index.html",
-         "copy-file spec/dynamic.html docs/dynamic/index.html"
+         "copy-file spec/dynamic.html            docs/dynamic/index.html"
       ]
    },
    "scripts": {
-      "pretest": "run-scripts clean lint build dist docs",
+      "pretest": "run-scripts clean lint build dist publish",
       "test": "mocha spec/*.spec.js",
       "posttest": "html-validator docs",
       "examples": "npm test && node spec/examples.js"
    },
    "devDependencies": {
       "@eslint/js": "~9.39",
-      "@fortawesome/fontawesome-free": "~7.1",
-      "@types/node": "~24.10",
+      "@fortawesome/fontawesome-free": "~7.2",
+      "@types/node": "~25.3",
       "add-dist-header": "~1.6",
       "assert-deep-strict-equal": "~1.2",
       "copy-file-util": "~1.3",
-      "copy-folder-util": "~1.1",
+      "copy-folder-util": "~1.2",
       "csso-cli": "~4.0",
-      "dna-engine": "~3.3",
+      "dna-dom": "~3.3",
       "eslint": "~9.39",
       "esm-to-plain-js": "~1.2",
       "fetch-json": "~3.3",
-      "jsdom": "~27.1",
+      "jsdom": "~28.1",
       "jshint": "~2.13",
       "mocha": "~11.7",
-      "replacer-util": "~1.4",
+      "replacer-util": "~1.6",
       "rimraf": "~6.1",
       "run-scripts-util": "~1.3",
       "typescript": "~5.9",
-      "typescript-eslint": "~8.46",
+      "typescript-eslint": "~8.56",
       "uglify-js": "~3.19",
-      "w3c-html-validator": "~2.0",
-      "web-ignition": "~2.4"
+      "w3c-html-validator": "~2.2",
+      "web-ignition": "~2.5"
    }
 }

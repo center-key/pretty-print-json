@@ -10,7 +10,7 @@ jobs:
     env:
       w3cHtmlValidator: dry-run  #only run html validation locally
     steps:
-      - uses: actions/checkout@v5    #see: https://github.com/actions/checkout/releases
+      - uses: actions/checkout@v6    #see: https://github.com/actions/checkout/releases
       - uses: actions/setup-node@v6  #see: https://github.com/actions/setup-node/releases
       - run: npm install
       - run: npm test
