@@ -4,7 +4,7 @@
 // Imports
 import { assertDeepStrictEqual } from 'assert-deep-strict-equal';
 import { JSDOM } from 'jsdom';
-import fs from 'fs';
+import fs from 'node:fs';
 
 // Setup
 const mode =       { type: 'Minified', file: 'dist/pretty-print-json.min.js' };

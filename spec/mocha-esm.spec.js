@@ -4,7 +4,7 @@
 // Imports
 import { assertDeepStrictEqual } from 'assert-deep-strict-equal';
 import { prettyPrintJson } from '../dist/pretty-print-json.js';
-import fs from 'fs';
+import fs from 'node:fs';
 
 // Setup
 const mode =     { type: 'ES Module', file: 'dist/pretty-print-json.js' };
