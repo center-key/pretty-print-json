@@ -17,10 +17,10 @@ describe(`Specifications: ${filename} - ${mode.type} (${mode.file})`, () => {
 describe('Library version number', () => {
 
    it('follows semantic version formatting', () => {
-      const data = prettyPrintJson.version;
-      const semVerPattern = /\d+[.]\d+[.]\d+/;
-      const actual =   { version: data, valid: semVerPattern.test(data) };
-      const expected = { version: data, valid: true };
+      const version =  prettyPrintJson.version;
+      const semVer =   /\d+[.]\d+[.]\d+/;
+      const actual =   { version: version, valid: semVer.test(version) };
+      const expected = { version: version, valid: true };
       assertDeepStrictEqual(actual, expected);
       });
 

@@ -5,6 +5,9 @@
 import { assertDeepStrictEqual } from 'assert-deep-strict-equal';
 import fs from 'node:fs';
 
+// Setup
+import { prettyPrintJson } from '../dist/pretty-print-json.js';
+
 ////////////////////////////////////////////////////////////////////////////////
 describe('The "dist" folder', () => {
 
@@ -30,6 +33,19 @@ describe('The "dist" folder', () => {
          'pretty-print-json.prefers.css',
          'pretty-print-json.prefers.min.css',
          ];
+      assertDeepStrictEqual(actual, expected);
+      });
+
+   });
+
+////////////////////////////////////////////////////////////////////////////////
+describe('Library version number', () => {
+
+   it('follows semantic version formatting', () => {
+      const version =  prettyPrintJson.version;
+      const semVer =   /\d+[.]\d+[.]\d+/;
+      const actual =   { version: version, valid: semVer.test(version) };
+      const expected = { version: version, valid: true };
       assertDeepStrictEqual(actual, expected);
       });
 
