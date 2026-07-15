@@ -21,7 +21,7 @@
    <link rel=apple-touch-icon href=https://centerkey.com/graphics/mobile-home-screen.png>
    <link rel=preconnect       href=https://fonts.googleapis.com>
    <link rel=preconnect       href=https://fonts.gstatic.com crossorigin>
-   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2/css/all.min.css>
+   <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3/css/all.min.css>
    <link rel=stylesheet       href=../dist/css/pretty-print-json.css>
    <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/dna-dom@3.3/dist/dna-dom.css>
    <link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/web-ignition@2.5/dist/reset.min.css>
@@ -329,7 +329,8 @@
          <header>
             <h3>JSON input:</h3>
          </header>
-         <textarea data-on-smart-update=app.processJson placeholder="Enter some JSON" autofocus></textarea>
+         <textarea data-on-smart-update=app.processJson spellcheck=false autofocus
+            placeholder="Enter some JSON"></textarea>
          <p id=error-message>Invalid JSON</p>
          <header>
             <h3 class=popup-anchor>
