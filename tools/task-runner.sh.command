@@ -5,10 +5,10 @@
 #####################
 
 # To make this file runnable:
-#     $ chmod +x *.sh.command
+#     $ chmod +x tools/*.sh.command
 
 banner="pretty-print-json"
-projectHome=$(cd $(dirname $0); pwd)
+projectHome=$(realpath $0/../..)
 
 setupTools() {
    # Check for Node.js installation and download project dependencies
@@ -16,6 +16,7 @@ setupTools() {
    echo
    echo $banner
    echo $(echo $banner | sed s/./=/g)
+   date
    pwd
    [ -d .git ] || { echo "Project must be in a git repository."; exit; }
    [ -d dist ] && git restore dist
