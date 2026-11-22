@@ -17,7 +17,7 @@ Interactive online tool to format JSON:<br>
 https://pretty-print-json.js.org
 
 ## B) Setup
-### 1. Web browser
+### 1. Web Browser
 Load from the [jsdelivr.com CDN](https://www.jsdelivr.com/package/npm/pretty-print-json):
 ```html
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/pretty-print-json@3.0/dist/css/pretty-print-json.css>
@@ -30,7 +30,7 @@ For **dark mode**, replace `pretty-print-json.css` with `pretty-print-json.dark-
 the `<link>` tag.
 
 Or to automatically sense **dark mode** based on the `prefers-color-scheme` CSS media feature, use `pretty-print-json.prefers.css` instead.
-### 2. Node.js server
+### 2. Node.js Server
 Install package for node:
 ```shell
 $ npm install pretty-print-json
